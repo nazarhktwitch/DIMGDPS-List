@@ -481,47 +481,18 @@
           </div>
 
           <div class="rules-sidebar">
-            <div class="section-card">
-              <h2 class="section-title" style="font-size: 1.1rem; margin-bottom: 12px;">Подача рекорда</h2>
-              <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 15px; line-height: 1.4;">Все
-                рекорды принимаются и проверяются модераторами в нашем Discord-сервере. Заполните форму ниже, чтобы сформировать сообщение для отправки.</p>
-
-              <form class="submit-record-form" id="record-form">
-                <div class="form-group">
-                  <label for="frm-nickname">Никнейм</label>
-                  <input type="text" class="form-input" id="frm-nickname" placeholder="Ваш ник в игре" required>
-                </div>
-
-                <div class="form-group">
-                  <label for="frm-level">Название уровня</label>
-                  <input type="text" class="form-input" id="frm-level" placeholder="Например: P I G" required>
-                </div>
-
-                <div class="form-group">
-                  <label for="frm-progress">Прогресс (%)</label>
-                  <input type="number" class="form-input" id="frm-progress" min="1" max="100" placeholder="100"
-                    required>
-                </div>
-
-                <div class="form-group">
-                  <label for="frm-video">Ссылка на видео</label>
-                  <input type="url" class="form-input" id="frm-video" placeholder="YouTube, Twitch и т.д." required>
-                </div>
-
-                <div class="form-group">
-                  <label for="frm-notes">Комментарий</label>
-                  <input type="text" class="form-input" id="frm-notes" placeholder="Дополнительная информация">
-                </div>
-
-                <button type="submit" class="btn btn-primary" style="margin-top: 10px; width: 100%;">Сформировать заявку</button>
-              </form>
-              <div id="form-success-msg"
-                style="display: none; border: 1px solid rgba(168, 85, 247, 0.2); padding: 15px; border-radius: 8px; background: rgba(168, 85, 247, 0.05); margin-top: 15px;">
-                <p style="color: var(--text-primary); font-size: 0.9rem; margin-bottom: 10px; font-weight: 500;">Заявка сформирована!</p>
-                <textarea id="formatted-record-text" readonly style="width: 100%; height: 100px; background: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-primary); padding: 8px; border-radius: 6px; font-family: monospace; font-size: 0.85rem; resize: none; margin-bottom: 12px;"></textarea>
-                <button id="copy-record-btn" class="btn btn-secondary" style="width: 100%; margin-bottom: 8px; font-size: 0.85rem;">Скопировать текст</button>
-                <a href="https://discord.gg/vBkthNt2N" target="_blank" class="btn btn-primary" style="width: 100%; font-size: 0.85rem; background: #5865f2;">Перейти в #submit-records</a>
+            <div class="section-card" style="text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 24px; gap: 16px;">
+              <div style="width: 64px; height: 64px; border-radius: 50%; background: rgba(88, 101, 242, 0.1); display: flex; align-items: center; justify-content: center; color: #5865f2; margin-bottom: 8px;">
+                <svg width="32" height="32" viewBox="0 0 24 24" style="display: block;"><use href="#icon-discord"/></svg>
               </div>
+              <h2 class="section-title" style="font-size: 1.25rem; font-family: var(--font-title); font-weight: 700; margin: 0;">Подача рекордов</h2>
+              <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5; margin: 0;">
+                Все рекорды принимаются и проверяются модераторами в нашем Discord-сервере в канале <span style="color: var(--accent-purple); font-weight: 600;">#принятие-рекордов</span>.
+              </p>
+              <a href="https://discord.gg/vBkthNt2N" target="_blank" class="btn btn-primary" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; background: #5865f2; margin-top: 8px;">
+                <svg width="18" height="18" viewBox="0 0 24 24"><use href="#icon-discord"/></svg>
+                Перейти в Discord
+              </a>
             </div>
           </div>
 

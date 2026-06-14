@@ -68,7 +68,6 @@ let currentTab = '';
 document.addEventListener('DOMContentLoaded', () => {
   setupNavigation();
   setupFilterListeners();
-  setupFormListener();
   setupMobileModal();
   loadAllData();
   window.addEventListener('hashchange', handleRouting);
@@ -588,7 +587,7 @@ function renderSlayers(list) {
     const row = document.createElement('div');
     row.className = 'leaderboard-row grid-slayers';
     row.innerHTML = `
-      <div class="cell-rank ${rankClass}">#${rank}</div>
+      <div class="cell-rank"><span class="${rankClass}">#${rank}</span></div>
       <div class="cell-name">${nickname}</div>
       <div class="cell-tops" style="font-weight: 700; color: var(--accent-purple); font-size: 1.1rem;">${tops}</div>
     `;
@@ -1004,48 +1003,6 @@ function renderUpdatesList() {
     `;
     updatesContainer.appendChild(item);
   });
-}
-
-function setupFormListener() {
-  const form = document.getElementById('record-form');
-  const successMsg = document.getElementById('form-success-msg');
-  const formattedText = document.getElementById('formatted-record-text');
-  const copyBtn = document.getElementById('copy-record-btn');
-
-  if (!form) return;
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    const nickname = document.getElementById('frm-nickname').value;
-    const level = document.getElementById('frm-level').value;
-    const progress = document.getElementById('frm-progress').value;
-    const video = document.getElementById('frm-video').value;
-    const notes = document.getElementById('frm-notes').value || 'нет';
-
-    const text = `!submit\nИгрок: ${nickname}\nУровень: ${level}\nПрогресс: ${progress}%\nВидео: ${video}\nКомментарий: ${notes}`;
-
-    if (formattedText) {
-      formattedText.value = text;
-    }
-
-    successMsg.style.display = 'block';
-    form.reset();
-  });
-
-  if (copyBtn && formattedText) {
-    copyBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      formattedText.select();
-      navigator.clipboard.writeText(formattedText.value);
-
-      const originalText = copyBtn.textContent;
-      copyBtn.textContent = 'Скопировано!';
-      setTimeout(() => {
-        copyBtn.textContent = originalText;
-      }, 2000);
-    });
-  }
 }
 
 function parseProgresses(progressStr) {
