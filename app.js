@@ -1026,14 +1026,7 @@ function parseProgresses(progressStr) {
 }
 
 function getCleanDifficultyName(diffStr) {
-  let name = diffStr || 'Extreme Demon';
-  const d = name.toLowerCase();
-  if (d.includes('extreme')) return 'Extreme Demon';
-  if (d.includes('insane')) return 'Insane Demon';
-  if (d.includes('hard')) return 'Hard Demon';
-  if (d.includes('medium')) return 'Medium Demon';
-  if (d.includes('easy')) return 'Easy Demon';
-  return name;
+  return diffStr || 'Extreme Demon';
 }
 
 function getDifficultyClass(diffStr) {
@@ -1051,6 +1044,6 @@ function getCpsBadge(cps) {
   if (c.includes('low')) return '<span class="badge badge-cps-low">Low CPS (&lt;5)</span>';
   if (c.includes('medium')) return '<span class="badge badge-cps-medium">Medium CPS (5-10)</span>';
   if (c.includes('high') && !c.includes('ultra')) return '<span class="badge badge-cps-high">High CPS (10-15)</span>';
-  if (c.includes('ultra') || c.includes('15+')) return '<span class="badge badge-cps-ultra">Ultra CPS (15+)</span>';
+  if (c.includes('ultra') || c.includes('15+')) return '<span class="badge badge-cps-ultra">Ultra CPS (всегда 15)</span>';
   return `<span class="badge badge-cps-high">${cps}</span>`;
 }
