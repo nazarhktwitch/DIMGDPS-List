@@ -724,13 +724,16 @@ function getDetailsHTML(tabName, item) {
     let progressesHTML = '<div class="progress-item" style="color: var(--text-secondary);">Нет прогрессов</div>';
     if (progressList.length > 0) {
       progressesHTML = progressList.map(prog => {
-        const splitIdx = prog.lastIndexOf('-');
+        let splitIdx = prog.indexOf(' - ');
+        if (splitIdx === -1) {
+          splitIdx = prog.lastIndexOf('-');
+        }
         let namePart = prog;
         let progPart = '100%';
 
         if (splitIdx !== -1) {
           namePart = prog.substring(0, splitIdx).trim();
-          progPart = prog.substring(splitIdx + 1).trim();
+          progPart = prog.substring(splitIdx + (prog.charAt(splitIdx) === ' ' ? 3 : 1)).trim();
         } else {
           const percentIdx = prog.indexOf('%');
           if (percentIdx !== -1) {
