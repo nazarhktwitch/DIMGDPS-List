@@ -25,9 +25,9 @@ const FALLBACK_DATA = {
     { Slayers: 'DimStrem', Tops: '4' }
   ],
   future: [
-    { Levels: 'CoLIMBO', 'Upcoming Top': 'TOP 2', Author: 'techopro9', Verifer: '?????', Difficulty: 'Fire Extreme Demon' },
-    { Levels: 'orbit', 'Upcoming Top': 'top 7-8', Author: 'techopro9, pro100nubikcl', Verifer: 'pro100nubikcl', Difficulty: 'cruel insane' },
-    { Levels: 'Sakupen Disco (Disco series)', 'Upcoming Top': 'TOP 5-6', Author: 'techopro9', Verifer: 'techopro9', Difficulty: 'Super Easy Extreme Demon' }
+    { Levels: 'CoLIMBO', 'Upcoming Top': 'TOP 2', Author: 'techopro9', Verifer: '?????', Difficulty: 'Fire Extreme Demon', Status: 'Строится', Progress: '15%' },
+    { Levels: 'orbit', 'Upcoming Top': 'top 7-8', Author: 'techopro9, pro100nubikcl', Verifer: 'pro100nubikcl', Difficulty: 'cruel insane', Status: 'Заброшен', Progress: '42%' },
+    { Levels: 'Sakupen Disco (Disco series)', 'Upcoming Top': 'TOP 5-6', Author: 'techopro9', Verifer: 'techopro9', Difficulty: 'Super Easy Extreme Demon', Status: 'Готов', Progress: '100%' }
   ]
 };
 
@@ -649,12 +649,34 @@ function renderFutureLevels(list) {
     let verifier = getProp(item, ['verifier', 'verifer']);
     const diff = getProp(item, ['difficulty', 'diff']);
 
+    const status = getProp(item, ['status', 'статус']) || 'Неизвестно';
+    const progress = getProp(item, ['progress', 'прогресс']) || '0%';
+
     if (verifier.includes('?????') || verifier.trim() === '') {
       verifier = '<span style="color: var(--text-muted);">Неизвестно</span>';
     }
 
     const diffClass = getDifficultyClass(diff);
     const badgeName = getCleanDifficultyName(diff);
+
+    let statusColor = 'var(--text-primary)';
+    const sLower = status.toLowerCase();
+    if (sLower.includes('заброшен') || sLower.includes('отменен')) statusColor = '#ef4444';
+    else if (sLower.includes('заморожен')) statusColor = '#f59e0b';
+    else if (sLower.includes('строит') || sLower.includes('процесс')) statusColor = '#3b82f6';
+    else if (sLower.includes('готов') || sLower.includes('завершен')) statusColor = '#10b981';
+
+    let progressHTML = `<span style="font-weight: 500;">${progress}</span>`;
+    const progMatch = progress.match(/(\\d+)%/);
+    if (progMatch) {
+      const pVal = progMatch[1];
+      progressHTML = `
+        <div style="flex: 1; max-width: 120px; background: rgba(255,255,255,0.1); border-radius: 4px; height: 16px; overflow: hidden; position: relative; display: flex; align-items: center; margin-left: 8px;">
+          <div style="background: var(--accent-cyan); height: 100%; width: ${pVal}%;"></div>
+          <span style="position: absolute; width: 100%; text-align: center; font-size: 0.7rem; font-weight: 600; text-shadow: 1px 1px 2px rgba(0,0,0,0.8); color: white;">${progress}</span>
+        </div>
+      `;
+    }
 
     const card = document.createElement('div');
     card.className = 'future-card';
@@ -675,6 +697,16 @@ function renderFutureLevels(list) {
       <div class="future-detail-item">
         <span class="future-detail-label" style="color: var(--text-secondary);">Верификатор:</span>
         <span style="font-weight: 500;">${verifier}</span>
+      </div>
+
+      <div class="future-detail-item" style="margin-top: 8px;">
+        <span class="future-detail-label" style="color: var(--text-secondary);">Статус:</span>
+        <span style="font-weight: 600; color: ${statusColor};">${status}</span>
+      </div>
+      
+      <div class="future-detail-item" style="${progMatch ? 'display: flex; align-items: center; justify-content: space-between;' : ''}">
+        <span class="future-detail-label" style="color: var(--text-secondary);">Прогресс:</span>
+        ${progressHTML}
       </div>
     `;
 
