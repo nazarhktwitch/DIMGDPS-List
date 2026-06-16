@@ -1,0 +1,175 @@
+{
+  "demonlist": [
+    {
+      "Level": "P I G",
+      "Top": "1",
+      "Author": "AngryBanana1212",
+      "Verifer": "AngryBanana1212",
+      "Level Difficulty": "Hard Extreme Demon",
+      "Progresses": "No",
+      "Points": "150"
+    },
+    {
+      "Level": "PIGAZAN",
+      "Top": "2",
+      "Author": "AngryBanana1212",
+      "Verifer": "AngryBanana1212",
+      "Level Difficulty": "Hell Extreme Demon",
+      "Progresses": "No",
+      "Points": "125"
+    },
+    {
+      "Level": "PigWave",
+      "Top": "3",
+      "Author": "AngryBanana1212",
+      "Verifer": "AngryBanana1212",
+      "Level Difficulty": "Hell Extreme Demon",
+      "Progresses": "No",
+      "Points": "100"
+    },
+    {
+      "Level": "The Blade of Bamboo",
+      "Top": "4",
+      "Author": "AngryBanana1212",
+      "Verifer": "AngryBanana1212",
+      "Level Difficulty": "High Extreme Demon",
+      "Progresses": "No",
+      "Points": "97.5"
+    },
+    {
+      "Level": "Ultra pig poop level",
+      "Top": "5",
+      "Author": "AngryBanana1212",
+      "Verifer": "AngryBanana1212",
+      "Level Difficulty": "Extreme Demon",
+      "Progresses": "pro100nubikcl - 48%-98%",
+      "Points": "95"
+    }
+  ],
+  "impossible": [
+    {
+      "Levels": "sakupen dih",
+      "Top Impossible": "top 1",
+      "Author": "NazarHK",
+      "CPS": "High",
+      "ID": "183",
+      "Использование Tps bypass": "Разрешено",
+      "Рекорд сервера": "No",
+      "Low cps - <5 cps": ""
+    },
+    {
+      "Levels": "help god",
+      "Top Impossible": "top 2",
+      "Author": "techopro9",
+      "CPS": "High",
+      "ID": "224",
+      "Использование Tps bypass": "Запрещено",
+      "Рекорд сервера": "No",
+      "Low cps - <5 cps": ""
+    },
+    {
+      "Levels": "silent sakupen lvl2",
+      "Top Impossible": "top 3",
+      "Author": "TheUNrealKorben(pro100nubikcl)",
+      "CPS": "Ultra High",
+      "ID": "165",
+      "Использование Tps bypass": "Запрещено",
+      "Рекорд сервера": "TheUNrealkorben - 5.67%",
+      "Low cps - <5 cps": "Medium cps 5-10 cps"
+    },
+    {
+      "Levels": "silent denouement",
+      "Top Impossible": "top 4",
+      "Author": "techopro9",
+      "CPS": "High",
+      "ID": "167",
+      "Использование Tps bypass": "Запрещено",
+      "Рекорд сервера": "No",
+      "Low cps - <5 cps": ""
+    },
+    {
+      "Levels": "ton 67",
+      "Top Impossible": "top 5",
+      "Author": "NazarHK",
+      "CPS": "High",
+      "ID": "164",
+      "Использование Tps bypass": "Разрешено",
+      "Рекорд сервера": "NazarHK - 30%",
+      "Low cps - <5 cps": "High cps - 10-15 cps"
+    }
+  ],
+  "slayers": [
+    {
+      "Slayers": "AngryBanana1212",
+      "Tops": "1",
+      "Points": "1374,5"
+    },
+    {
+      "Slayers": "TheUNrealkorben",
+      "Tops": "2",
+      "Points": "230,75"
+    },
+    {
+      "Slayers": "techopro9",
+      "Tops": "3",
+      "Points": "17,75"
+    },
+    {
+      "Slayers": "NazarHK",
+      "Tops": "4",
+      "Points": "3"
+    },
+    {
+      "Slayers": "DimStrem",
+      "Tops": "5",
+      "Points": "0"
+    }
+  ],
+  "future": [
+    {
+      "Levels": "CoLIMBO",
+      "Upcoming Top": "Top 2",
+      "Author": "techopro9",
+      "Verifer": "?????",
+      "Difficulty": "Fire Extreme Demon",
+      "Progress": "2%",
+      "Status": "Abandoned"
+    },
+    {
+      "Levels": "silopoeh",
+      "Upcoming Top": "Top 1",
+      "Author": "ZlukaW",
+      "Verifer": "?????",
+      "Difficulty": "Extreme Demon",
+      "Progress": "???%",
+      "Status": "In progress"
+    },
+    {
+      "Levels": "Sakupen Disco (Disco series)",
+      "Upcoming Top": "Top 3-5",
+      "Author": "techopro9",
+      "Verifer": "techopro9",
+      "Difficulty": "Hell Extreme Demon",
+      "Progress": "38%",
+      "Status": "In progress"
+    },
+    {
+      "Levels": "mat pidora",
+      "Upcoming Top": "Top 3-2",
+      "Author": "pro100nubikcl",
+      "Verifer": "?????",
+      "Difficulty": "Extreme Demon",
+      "Progress": "100%",
+      "Status": "No verifer"
+    },
+    {
+      "Levels": "Silent Every End",
+      "Upcoming Top": "Top 1",
+      "Author": "pro100nubickl",
+      "Verifer": "pro100nubikcl",
+      "Difficulty": "Melted Extreme Demon",
+      "Progress": "100%",
+      "Status": "Verification"
+    }
+  ]
+}

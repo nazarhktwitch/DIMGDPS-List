@@ -11,23 +11,28 @@ const FALLBACK_DATA = {
     { Level: 'PIGAZAN', Top: '2', Author: 'AngryBanana1212', Verifer: 'AngryBanana1212', 'Level Difficulty': 'Hell Extreme Demon', Progresses: 'No', Points: '125' },
     { Level: 'PigWave', Top: '3', Author: 'AngryBanana1212', Verifer: 'AngryBanana1212', 'Level Difficulty': 'Hell Extreme Demon', Progresses: 'No', Points: '100' },
     { Level: 'The Blade of Bamboo', Top: '4', Author: 'AngryBanana1212', Verifer: 'AngryBanana1212', 'Level Difficulty': 'High Extreme Demon', Progresses: 'No', Points: '97.5' },
-    { Level: 'Ultra pig poop level', Top: '5', Author: 'AngryBanana1212', Verifer: 'AngryBanana1212', 'Level Difficulty': 'Extreme Demon', Progresses: 'pro100nubikcl - 48% - 98%', Points: '95' }
+    { Level: 'Ultra pig poop level', Top: '5', Author: 'AngryBanana1212', Verifer: 'AngryBanana1212', 'Level Difficulty': 'Extreme Demon', Progresses: 'pro100nubikcl - 48%-98%', Points: '95' }
   ],
   impossible: [
     { Levels: 'sakupen dih', 'Top Impossible': 'top 1', Author: 'NazarHK', CPS: 'High', ID: '183', 'Использование Tps bypass': 'Разрешено', 'Рекорд сервера': 'No' },
     { Levels: 'help god', 'Top Impossible': 'top 2', Author: 'techopro9', CPS: 'High', ID: '224', 'Использование Tps bypass': 'Запрещено', 'Рекорд сервера': 'No' },
-    { Levels: 'silent sakupen lvl2', 'Top Impossible': 'top 3', Author: 'TheUNrealKorben(pro100nubikcl)', CPS: 'Ultra High', ID: '165', 'Использование Tps bypass': 'Запрещено', 'Рекорд сервера': 'TheUNrealkorben - 5.67%' }
+    { Levels: 'silent sakupen lvl2', 'Top Impossible': 'top 3', Author: 'TheUNrealKorben(pro100nubikcl)', CPS: 'Ultra High', ID: '165', 'Использование Tps bypass': 'Запрещено', 'Рекорд сервера': 'TheUNrealkorben - 5.67%' },
+    { Levels: 'silent denouement', 'Top Impossible': 'top 4', Author: 'techopro9', CPS: 'High', ID: '167', 'Использование Tps bypass': 'Запрещено', 'Рекорд сервера': 'No' },
+    { Levels: 'ton 67', 'Top Impossible': 'top 5', Author: 'NazarHK', CPS: 'High', ID: '164', 'Использование Tps bypass': 'Разрешено', 'Рекорд сервера': 'NazarHK - 30%' }
   ],
   slayers: [
-    { Slayers: 'AngryBanana1212', Tops: '1' },
-    { Slayers: 'TheUNrealkorben', Tops: '2' },
-    { Slayers: 'techopro9', Tops: '3' },
-    { Slayers: 'DimStrem', Tops: '4' }
+    { Slayers: 'AngryBanana1212', Tops: '1', Points: '1374,5' },
+    { Slayers: 'TheUNrealkorben', Tops: '2', Points: '230,75' },
+    { Slayers: 'techopro9', Tops: '3', Points: '17,75' },
+    { Slayers: 'NazarHK', Tops: '4', Points: '3' },
+    { Slayers: 'DimStrem', Tops: '5', Points: '0' }
   ],
   future: [
-    { Levels: 'CoLIMBO', 'Upcoming Top': 'TOP 2', Author: 'techopro9', Verifer: '?????', Difficulty: 'Fire Extreme Demon', Status: 'Строится', Progress: '15%' },
-    { Levels: 'orbit', 'Upcoming Top': 'top 7-8', Author: 'techopro9, pro100nubikcl', Verifer: 'pro100nubikcl', Difficulty: 'cruel insane', Status: 'Заброшен', Progress: '42%' },
-    { Levels: 'Sakupen Disco (Disco series)', 'Upcoming Top': 'TOP 5-6', Author: 'techopro9', Verifer: 'techopro9', Difficulty: 'Super Easy Extreme Demon', Status: 'Готов', Progress: '100%' }
+    { Levels: 'CoLIMBO', 'Upcoming Top': 'Top 2', Author: 'techopro9', Verifer: '?????', Difficulty: 'Fire Extreme Demon', Status: 'Abandoned', Progress: '2%' },
+    { Levels: 'silopoeh', 'Upcoming Top': 'Top 1', Author: 'ZlukaW', Verifer: '?????', Difficulty: 'Extreme Demon', Status: 'In progress', Progress: '???%' },
+    { Levels: 'Sakupen Disco (Disco series)', 'Upcoming Top': 'Top 3-5', Author: 'techopro9', Verifer: 'techopro9', Difficulty: 'Hell Extreme Demon', Status: 'In progress', Progress: '38%' },
+    { Levels: 'mat pidora', 'Upcoming Top': 'Top 3-2', Author: 'pro100nubikcl', Verifer: '?????', Difficulty: 'Extreme Demon', Status: 'No verifer', Progress: '100%' },
+    { Levels: 'Silent Every End', 'Upcoming Top': 'Top 1', Author: 'pro100nubickl', Verifer: 'pro100nubikcl', Difficulty: 'Melted Extreme Demon', Status: 'Verification', Progress: '100%' }
   ]
 };
 
@@ -578,6 +583,7 @@ function renderSlayers(list) {
     const rank = index + 1;
     const nickname = getProp(item, ['slayers', 'slayer', 'player']);
     const tops = getProp(item, ['tops', 'completed']);
+    const points = getProp(item, ['points', 'очки']) || '0';
 
     let rankClass = '';
     if (rank === 1) rankClass = 'cell-rank-gold';
@@ -590,6 +596,7 @@ function renderSlayers(list) {
       <div class="cell-rank"><span class="${rankClass}">#${rank}</span></div>
       <div class="cell-name">${nickname}</div>
       <div class="cell-tops" style="font-weight: 700; color: var(--accent-purple); font-size: 1.1rem;">${tops}</div>
+      <div class="cell-points" style="font-weight: 600; color: var(--accent-cyan);">${points}</div>
     `;
 
     container.appendChild(row);
