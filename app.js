@@ -217,11 +217,19 @@ async function loadListData(name) {
     const csvText = await response.text();
     const parsed = parseCSV(csvText);
 
-    if (parsed.length === 0) {
+    const validData = parsed.filter(item => {
+      if (name === 'demonlist') return !!getProp(item, ['level', 'name']);
+      if (name === 'impossible') return !!getProp(item, ['levels', 'level', 'name']);
+      if (name === 'slayers') return !!getProp(item, ['slayers', 'slayer', 'player']);
+      if (name === 'future') return !!getProp(item, ['levels', 'level', 'name']);
+      return true;
+    });
+
+    if (validData.length === 0) {
       throw new Error('Empty CSV data');
     }
 
-    STATE.data[name] = parsed;
+    STATE.data[name] = validData;
     STATE.loading[name] = false;
 
   } catch (error) {
@@ -568,9 +576,9 @@ function renderSlayers(list) {
   }
 
   filtered.sort((a, b) => {
-    const topsA = parseInt(getProp(a, ['tops', 'completed'])) || 0;
-    const topsB = parseInt(getProp(b, ['tops', 'completed'])) || 0;
-    return topsA - topsB;
+    const ptsA = parseFloat((getProp(a, ['points', 'очки']) || '0').replace(',', '.')) || 0;
+    const ptsB = parseFloat((getProp(b, ['points', 'очки']) || '0').replace(',', '.')) || 0;
+    return ptsB - ptsA;
   });
 
   if (filtered.length === 0) {
@@ -582,7 +590,6 @@ function renderSlayers(list) {
   filtered.forEach((item, index) => {
     const rank = index + 1;
     const nickname = getProp(item, ['slayers', 'slayer', 'player']);
-    const tops = getProp(item, ['tops', 'completed']);
     const points = getProp(item, ['points', 'очки']) || '0';
 
     let rankClass = '';
@@ -595,7 +602,6 @@ function renderSlayers(list) {
     row.innerHTML = `
       <div class="cell-rank"><span class="${rankClass}">#${rank}</span></div>
       <div class="cell-name">${nickname}</div>
-      <div class="cell-tops" style="font-weight: 700; color: var(--accent-purple); font-size: 1.1rem;">${tops}</div>
       <div class="cell-points" style="font-weight: 600; color: var(--accent-cyan);">${points}</div>
     `;
 
@@ -920,14 +926,14 @@ function renderHomeScreen() {
   if (STATE.data.slayers.length > 0) {
     const slayersCopy = [...STATE.data.slayers];
     slayersCopy.sort((a, b) => {
-      const tA = parseInt(getProp(a, ['tops', 'completed'])) || 0;
-      const tB = parseInt(getProp(b, ['tops', 'completed'])) || 0;
-      return tA - tB;
+      const ptsA = parseFloat((getProp(a, ['points', 'очки']) || '0').replace(',', '.')) || 0;
+      const ptsB = parseFloat((getProp(b, ['points', 'очки']) || '0').replace(',', '.')) || 0;
+      return ptsB - ptsA;
     });
     const topSlayer = slayersCopy[0];
     const name = getProp(topSlayer, ['slayers', 'slayer', 'player']);
-    const count = getProp(topSlayer, ['tops', 'completed']);
-    document.getElementById('stat-top-slayer').textContent = `${name} (${count})`;
+    const pts = getProp(topSlayer, ['points', 'очки']);
+    document.getElementById('stat-top-slayer').textContent = `${name} (${pts} pts)`;
   } else {
     document.getElementById('stat-top-slayer').textContent = '-';
   }
@@ -1011,11 +1017,17 @@ function renderUpdatesList() {
   }
 
   if (STATE.data.slayers.length > 0) {
-    const topSlayer = STATE.data.slayers[0];
+    const slayersCopy = [...STATE.data.slayers];
+    slayersCopy.sort((a, b) => {
+      const ptsA = parseFloat((getProp(a, ['points', 'очки']) || '0').replace(',', '.')) || 0;
+      const ptsB = parseFloat((getProp(b, ['points', 'очки']) || '0').replace(',', '.')) || 0;
+      return ptsB - ptsA;
+    });
+    const topSlayer = slayersCopy[0];
     updates.push({
       author: 'Топ слеер',
       date: currentDateStr,
-      text: `${getProp(topSlayer, ['slayers', 'player'])} занимает лидирующее место в рейтинге слееров с результатом в ${getProp(topSlayer, ['tops'])} пройденных топов.`
+      text: `${getProp(topSlayer, ['slayers', 'player'])} занимает лидирующее место в рейтинге слееров с результатом в ${getProp(topSlayer, ['points', 'очки'])} очков.`
     });
   }
 

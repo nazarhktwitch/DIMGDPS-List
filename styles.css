@@ -770,7 +770,7 @@ textarea {
 }
 
 .grid-slayers {
-  grid-template-columns: 80px 2.5fr 1.5fr 100px;
+  grid-template-columns: 80px 1fr 100px;
 }
 
 .cell-rank {
@@ -1447,7 +1447,7 @@ textarea {
   }
 
   .grid-slayers {
-    grid-template-columns: 50px 1fr 80px 60px;
+    grid-template-columns: 50px 1fr 60px;
   }
 
   .footer-inner {
