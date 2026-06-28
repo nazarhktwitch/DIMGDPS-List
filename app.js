@@ -5,6 +5,10 @@ const SHEET_URLS = {
   future: 'https://docs.google.com/spreadsheets/d/1WhgXIuoCEbBgLMfYW9qwYH0uQ7g0o053TyxawIH_SH4/export?format=csv'
 };
 
+const LEVEL_WARNINGS = {
+  alquimia: 'Для зачёта прохождения необходимо пройти уровень без скипов и секрет-веев!'
+};
+
 const FALLBACK_DATA = {
   demonlist: [
     { Level: 'P I G', Top: '1', Author: 'AngryBanana1212', Verifer: 'AngryBanana1212', 'Level Difficulty': 'Hard Extreme Demon', Progresses: 'No', Points: '150' },
@@ -459,10 +463,14 @@ function renderDemonlist(list) {
 
     const row = document.createElement('div');
     row.className = `leaderboard-row grid-demonlist ${isActive ? 'active' : ''}`;
+    const warningBadge = getLevelWarning(levelName)
+      ? '<span class="level-warning-badge" title="Есть особые условия зачёта">!</span>'
+      : '';
+
     row.innerHTML = `
       <div class="cell-rank">#${rank}</div>
       <div class="cell-name-block">
-        <div class="cell-name">${levelName}</div>
+        <div class="cell-name">${levelName}${warningBadge}</div>
         <div class="cell-badge"><span class="badge ${diffClass}" style="margin-top: 4px; padding: 2px 6px; font-size: 0.65rem;">${badgeName}</span></div>
       </div>
       <div class="cell-author cell-sub">${author}</div>
@@ -804,6 +812,8 @@ function getDetailsHTML(tabName, item) {
         <div class="detail-rank">Топ #${rank}</div>
         <h2 class="detail-title">${levelName}</h2>
       </div>
+
+      ${getLevelWarningHTML(levelName)}
       
       <div class="detail-meta-list">
         <div class="detail-meta-item">
@@ -1077,6 +1087,23 @@ function parseProgresses(progressStr) {
     }
   }
   return results;
+}
+
+function getLevelWarning(levelName) {
+  const key = (levelName || '').trim().toLowerCase();
+  return LEVEL_WARNINGS[key] || null;
+}
+
+function getLevelWarningHTML(levelName) {
+  const message = getLevelWarning(levelName);
+  if (!message) return '';
+
+  return `
+    <div class="level-warning-banner">
+      <span class="level-warning-icon" aria-hidden="true">!</span>
+      <span>${message}</span>
+    </div>
+  `;
 }
 
 function getCleanDifficultyName(diffStr) {
