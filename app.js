@@ -6,7 +6,7 @@ const SHEET_URLS = {
 };
 
 const LEVEL_WARNINGS = {
-  airboneRobots: 'Для зачёта прохождения необходимо пройти уровень без скипов и секрет-веев!'
+  'airbone robots': 'Для зачёта прохождения необходимо пройти уровень без скипов и секрет-веев!'
 };
 
 const FALLBACK_DATA = {
