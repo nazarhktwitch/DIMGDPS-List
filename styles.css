@@ -773,6 +773,10 @@ textarea {
   grid-template-columns: 80px 1fr 100px;
 }
 
+.grid-silent {
+  grid-template-columns: 80px 2fr 1.5fr 120px 120px;
+}
+
 .cell-rank {
   font-family: var(--font-title);
   font-weight: 800;
@@ -1493,6 +1497,16 @@ textarea {
 
   .grid-slayers {
     grid-template-columns: 50px 1fr 60px;
+  }
+
+  .grid-silent {
+    grid-template-columns: 50px 1fr 80px;
+  }
+
+  .grid-silent .cell-author,
+  .grid-silent .cell-fps,
+  .grid-silent .cell-cps {
+    display: none;
   }
 
   .footer-inner {

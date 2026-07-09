@@ -2,7 +2,8 @@ const SHEET_URLS = {
   demonlist: 'https://docs.google.com/spreadsheets/d/1fPdeRx__uwcYhE8Fo8-gxah-pcHwFU-G1kj71hrq7Dc/export?format=csv',
   impossible: 'https://docs.google.com/spreadsheets/d/1R4Euoc5fVRknKKlJkyCjZbgCvOrqXPkM59ufcrYlBsQ/export?format=csv',
   slayers: 'https://docs.google.com/spreadsheets/d/1ra2WMQXr7NpC3zKkkGmCPBbFFxR6SYJHDLB3O4KfPBs/export?format=csv',
-  future: 'https://docs.google.com/spreadsheets/d/1WhgXIuoCEbBgLMfYW9qwYH0uQ7g0o053TyxawIH_SH4/export?format=csv'
+  future: 'https://docs.google.com/spreadsheets/d/1WhgXIuoCEbBgLMfYW9qwYH0uQ7g0o053TyxawIH_SH4/export?format=csv',
+  silent: 'https://docs.google.com/spreadsheets/d/1bTxdDTD2k-Ady3s6ucG2ZmmSZ57QqPLukyE5d4rhmbw/export?format=csv'
 };
 
 const LEVEL_WARNINGS = {
@@ -37,6 +38,9 @@ const FALLBACK_DATA = {
     { Levels: 'Sakupen Disco (Disco series)', 'Upcoming Top': 'Top 3-5', Author: 'techopro9', Verifer: 'techopro9', Difficulty: 'Hell Extreme Demon', Status: 'In progress', Progress: '38%' },
     { Levels: 'mat pidora', 'Upcoming Top': 'Top 3-2', Author: 'pro100nubikcl', Verifer: '?????', Difficulty: 'Extreme Demon', Status: 'No verifer', Progress: '100%' },
     { Levels: 'Silent Every End', 'Upcoming Top': 'Top 1', Author: 'pro100nubickl', Verifer: 'pro100nubikcl', Difficulty: 'Melted Extreme Demon', Status: 'Verification', Progress: '100%' }
+  ],
+  silent: [
+    { Name: 'Abomination', Top: '1', FPS: '960', CPS: '31463', Author: 'pro100nubickl' }
   ]
 };
 
@@ -46,13 +50,15 @@ const STATE = {
     demonlist: [],
     impossible: [],
     slayers: [],
-    future: []
+    future: [],
+    silent: []
   },
   filters: {
     demonlist: { search: '', difficulty: 'all', sort: 'rank-asc' },
     impossible: { search: '', cps: 'all', tps: 'all', sort: 'rank-asc' },
     slayers: { search: '' },
-    future: { search: '', difficulty: 'all' }
+    future: { search: '', difficulty: 'all' },
+    silent: { search: '', sort: 'rank-asc' }
   },
   selectedLevel: {
     demonlist: null,
@@ -62,13 +68,15 @@ const STATE = {
     demonlist: true,
     impossible: true,
     slayers: true,
-    future: true
+    future: true,
+    silent: true
   },
   errors: {
     demonlist: null,
     impossible: null,
     slayers: null,
-    future: null
+    future: null,
+    silent: null
   }
 };
 
@@ -87,7 +95,7 @@ function handleRouting() {
   const cleanHash = hash.split('?')[0];
   const params = parseQueryParams(hash);
   const tabName = cleanHash.replace('#', '');
-  const validTabs = ['home', 'demonlist', 'impossible', 'slayers', 'future', 'rules'];
+  const validTabs = ['home', 'demonlist', 'impossible', 'slayers', 'future', 'silent', 'rules'];
 
   if (!validTabs.includes(tabName)) {
     navigateTo('home');
@@ -226,6 +234,7 @@ async function loadListData(name) {
       if (name === 'impossible') return !!getProp(item, ['levels', 'level', 'name']);
       if (name === 'slayers') return !!getProp(item, ['slayers', 'slayer', 'player']);
       if (name === 'future') return !!getProp(item, ['levels', 'level', 'name']);
+      if (name === 'silent') return !!getProp(item, ['name']);
       return true;
     });
 
@@ -370,6 +379,18 @@ function setupFilterListeners() {
     STATE.filters.future.difficulty = e.target.value;
     renderList('future');
   });
+
+  const slSearch = document.getElementById('silent-search');
+  const slSort = document.getElementById('silent-sort');
+
+  slSearch.addEventListener('input', (e) => {
+    STATE.filters.silent.search = e.target.value;
+    renderList('silent');
+  });
+  slSort.addEventListener('change', (e) => {
+    STATE.filters.silent.sort = e.target.value;
+    renderList('silent');
+  });
 }
 
 function renderList(name) {
@@ -384,6 +405,8 @@ function renderList(name) {
     renderSlayers(list);
   } else if (name === 'future') {
     renderFutureLevels(list);
+  } else if (name === 'silent') {
+    renderSilentList(list);
   }
 }
 
@@ -735,6 +758,60 @@ function renderFutureLevels(list) {
   });
 }
 
+function renderSilentList(list) {
+  const container = document.getElementById('silent-table');
+  let filtered = [...list];
+  const filters = STATE.filters.silent;
+
+  if (filters.search) {
+    const q = filters.search.toLowerCase();
+    filtered = filtered.filter(item => {
+      const name = getProp(item, ['name']).toLowerCase();
+      return name.includes(q);
+    });
+  }
+
+  filtered.sort((a, b) => {
+    const rankA = parseInt(getProp(a, ['top', 'rank'])) || 9999;
+    const rankB = parseInt(getProp(b, ['top', 'rank'])) || 9999;
+
+    if (filters.sort === 'rank-asc') return rankA - rankB;
+    if (filters.sort === 'rank-desc') return rankB - rankA;
+    if (filters.sort === 'name-asc') {
+      const nameA = getProp(a, ['name']).toLowerCase();
+      const nameB = getProp(b, ['name']).toLowerCase();
+      return nameA.localeCompare(nameB, 'ru');
+    }
+    return rankA - rankB;
+  });
+
+  if (filtered.length === 0) {
+    container.innerHTML = '<div style="padding: 30px; text-align: center; color: var(--text-secondary);">Ничего не найдено</div>';
+    return;
+  }
+
+  container.innerHTML = '';
+  filtered.forEach(item => {
+    const rank = getProp(item, ['top', 'rank']);
+    const levelName = getProp(item, ['name']);
+    const author = getProp(item, ['author', 'creator']);
+    const fps = getProp(item, ['fps']);
+    const cps = getProp(item, ['cps']);
+
+    const row = document.createElement('div');
+    row.className = 'leaderboard-row grid-silent';
+    row.innerHTML = `
+      <div class="cell-rank">#${rank}</div>
+      <div class="cell-name">${levelName}</div>
+      <div class="cell-author cell-sub">${author}</div>
+      <div class="cell-fps" style="font-weight: 600; color: var(--accent-cyan);">${fps}</div>
+      <div class="cell-cps" style="font-weight: 600; color: var(--accent-purple);">${cps}</div>
+    `;
+
+    container.appendChild(row);
+  });
+}
+
 function selectLevel(tabName, item, updateUrl = true) {
   STATE.selectedLevel[tabName] = item;
   const levelName = getProp(item, ['level', 'levels', 'name']);
@@ -932,6 +1009,7 @@ function renderHomeScreen() {
   document.getElementById('stat-verified-count').textContent = STATE.data.demonlist.length || '-';
   document.getElementById('stat-impossible-count').textContent = STATE.data.impossible.length || '-';
   document.getElementById('stat-future-count').textContent = STATE.data.future.length || '-';
+  document.getElementById('stat-silent-count').textContent = STATE.data.silent.length || '-';
 
   if (STATE.data.slayers.length > 0) {
     const slayersCopy = [...STATE.data.slayers];

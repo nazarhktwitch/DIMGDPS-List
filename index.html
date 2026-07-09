@@ -102,6 +102,7 @@
           <a class="nav-link" data-target="impossible">Impossible List</a>
           <a class="nav-link" data-target="slayers">Top Slayers</a>
           <a class="nav-link" data-target="future">Future Levels</a>
+          <a class="nav-link" data-target="silent">Silent List</a>
           <a class="nav-link" data-target="rules">Правила</a>
           <a class="discord-btn" href="https://discord.gg/vBkthNt2N" target="_blank">
             <svg width="16" height="16" viewBox="0 0 24 24">
@@ -157,6 +158,10 @@
           <div class="stat-card">
             <div class="stat-label">Будущие релизы</div>
             <div class="stat-value" id="stat-future-count">-</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Silent List</div>
+            <div class="stat-value" id="stat-silent-count">-</div>
           </div>
         </div>
 
@@ -435,6 +440,42 @@
           </div>
         </div>
 
+      </section>
+
+      <section class="page-section" id="page-silent">
+        <div style="max-width: 900px; margin: 0 auto;">
+
+          <div class="search-filter-bar">
+            <div class="search-wrapper" style="flex: 1;">
+              <svg class="search-icon" viewBox="0 0 24 24">
+                <use href="#icon-search" />
+              </svg>
+              <input type="text" class="search-input" id="silent-search" placeholder="Поиск по названию уровня...">
+            </div>
+
+            <select class="filter-select" id="silent-sort">
+              <option value="rank-asc">Позиция (по возрастанию)</option>
+              <option value="rank-desc">Позиция (по убыванию)</option>
+              <option value="name-asc">Название (А-Я)</option>
+            </select>
+          </div>
+
+          <div class="leaderboard-container">
+            <div class="leaderboard-header grid-silent">
+              <div>Топ</div>
+              <div>Название</div>
+              <div>Автор</div>
+              <div>FPS</div>
+              <div>CPS</div>
+            </div>
+            <div class="leaderboard-list" id="silent-table">
+              <div class="skeleton-row"></div>
+              <div class="skeleton-row"></div>
+              <div class="skeleton-row"></div>
+            </div>
+          </div>
+
+        </div>
       </section>
 
       <section class="page-section" id="page-rules">
