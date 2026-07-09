@@ -40,7 +40,9 @@ const FALLBACK_DATA = {
     { Levels: 'Silent Every End', 'Upcoming Top': 'Top 1', Author: 'pro100nubickl', Verifer: 'pro100nubikcl', Difficulty: 'Melted Extreme Demon', Status: 'Verification', Progress: '100%' }
   ],
   silent: [
-    { Name: 'Abomination', Top: '1', FPS: '960', CPS: '31463', Author: 'pro100nubickl' }
+    { Name: 'Abomination', Top: '1', FPS: '2400', TPS: '960', CPS: '31463', Author: 'pro100nubickl' },
+    { Name: 'Stereo madness copy', Top: '2', FPS: '2400', TPS: '960', CPS: '240', Author: 'pro100nubickl' },
+    { Name: 'Hierodule', Top: '3', FPS: '240', TPS: 'no', CPS: '240', Author: 'NazarHK' }
   ]
 };
 
@@ -796,6 +798,7 @@ function renderSilentList(list) {
     const levelName = getProp(item, ['name']);
     const author = getProp(item, ['author', 'creator']);
     const fps = getProp(item, ['fps']);
+    const tps = getProp(item, ['tps']);
     const cps = getProp(item, ['cps']);
 
     const row = document.createElement('div');
@@ -805,6 +808,7 @@ function renderSilentList(list) {
       <div class="cell-name">${levelName}</div>
       <div class="cell-author cell-sub">${author}</div>
       <div class="cell-fps" style="font-weight: 600; color: var(--accent-cyan);">${fps}</div>
+      <div class="cell-tps cell-sub">${tps}</div>
       <div class="cell-cps" style="font-weight: 600; color: var(--accent-purple);">${cps}</div>
     `;
 

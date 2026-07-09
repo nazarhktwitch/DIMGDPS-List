@@ -129,9 +129,26 @@
     {
       "Name": "Abomination",
       "Top": "1",
-      "FPS": "960",
+      "FPS": "2400",
+      "TPS": "960",
       "CPS": "31463",
       "Author": "pro100nubickl"
+    },
+    {
+      "Name": "Stereo madness copy",
+      "Top": "2",
+      "FPS": "2400",
+      "TPS": "960",
+      "CPS": "240",
+      "Author": "pro100nubickl"
+    },
+    {
+      "Name": "Hierodule",
+      "Top": "3",
+      "FPS": "240",
+      "TPS": "no",
+      "CPS": "240",
+      "Author": "NazarHK"
     }
   ],
   "future": [
