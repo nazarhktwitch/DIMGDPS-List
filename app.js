@@ -808,7 +808,7 @@ function renderSilentList(list) {
       <div class="cell-name">${levelName}</div>
       <div class="cell-author cell-sub">${author}</div>
       <div class="cell-fps" style="font-weight: 600; color: var(--accent-cyan);">${fps}</div>
-      <div class="cell-tps cell-sub">${tps}</div>
+      <div class="cell-tps">${tps}</div>
       <div class="cell-cps" style="font-weight: 600; color: var(--accent-purple);">${cps}</div>
     `;
 
