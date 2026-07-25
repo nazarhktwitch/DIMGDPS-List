@@ -1588,6 +1588,7 @@ function renderHomeScreen() {
   document.getElementById('stat-impossible-count').textContent = STATE.data.impossible.length || '-';
   document.getElementById('stat-future-count').textContent = STATE.data.future.length || '-';
   document.getElementById('stat-silent-count').textContent = STATE.data.silent.length || '-';
+  document.getElementById('stat-cll-count').textContent = STATE.data.cll.length || '-';
 
   if (STATE.data.slayers.length > 0) {
     const slayersCopy = [...STATE.data.slayers];
