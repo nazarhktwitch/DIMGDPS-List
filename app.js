@@ -1198,6 +1198,7 @@ function renderSlayers(list) {
     const rank = index + 1;
     const nickname = getProp(item, ['slayers', 'slayer', 'player']);
     const points = getProp(item, ['points', 'очки']) || '0';
+    const cllPoints = getProp(item, ['challenge point', 'challenge points', 'cll points', 'challenge']) || '0';
 
     let rankClass = '';
     if (rank === 1) rankClass = 'cell-rank-gold';
@@ -1210,6 +1211,7 @@ function renderSlayers(list) {
       <div class="cell-rank"><span class="${rankClass}">#${rank}</span></div>
       <div class="cell-name">${nickname}</div>
       <div class="cell-points" style="font-weight: 600; color: var(--accent-cyan);">${points}</div>
+      <div class="cell-points" style="font-weight: 600; color: var(--accent-purple);">${cllPoints}</div>
     `;
 
     container.appendChild(row);
@@ -1601,8 +1603,25 @@ function renderHomeScreen() {
     const name = getProp(topSlayer, ['slayers', 'slayer', 'player']);
     const pts = getProp(topSlayer, ['points', 'очки']);
     document.getElementById('stat-top-slayer').textContent = `${name} (${pts} pts)`;
+
+    const slayersCllCopy = [...STATE.data.slayers];
+    slayersCllCopy.sort((a, b) => {
+      const ptsA = parseFloat((getProp(a, ['challenge point', 'challenge points', 'cll points', 'challenge']) || '0').replace(',', '.')) || 0;
+      const ptsB = parseFloat((getProp(b, ['challenge point', 'challenge points', 'cll points', 'challenge']) || '0').replace(',', '.')) || 0;
+      return ptsB - ptsA;
+    });
+    const topCllSlayer = slayersCllCopy[0];
+    const nameCll = getProp(topCllSlayer, ['slayers', 'slayer', 'player']);
+    const cllPoints = getProp(topCllSlayer, ['challenge point', 'challenge points', 'cll points', 'challenge']) || '0';
+    
+    if (parseFloat(cllPoints.replace(',', '.')) > 0) {
+      document.getElementById('stat-top-slayer-cll').textContent = `${nameCll} (${cllPoints} pts)`;
+    } else {
+      document.getElementById('stat-top-slayer-cll').textContent = '-';
+    }
   } else {
     document.getElementById('stat-top-slayer').textContent = '-';
+    document.getElementById('stat-top-slayer-cll').textContent = '-';
   }
 
   const demonsContainer = document.getElementById('home-top-demons-container');

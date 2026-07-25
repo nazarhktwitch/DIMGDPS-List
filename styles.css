@@ -353,7 +353,7 @@ textarea {
 
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
   margin-bottom: 40px;
 }
@@ -770,7 +770,7 @@ textarea {
 }
 
 .grid-slayers {
-  grid-template-columns: 80px 1fr 100px;
+  grid-template-columns: 80px 1fr 100px 100px;
 }
 
 .grid-silent {
