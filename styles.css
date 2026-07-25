@@ -777,6 +777,10 @@ textarea {
   grid-template-columns: 80px 2fr 1.5fr 100px 100px 100px;
 }
 
+.grid-cll {
+  grid-template-columns: 80px 2fr 1.5fr 1.5fr 80px 80px 100px;
+}
+
 .cell-rank {
   font-family: var(--font-title);
   font-weight: 800;

@@ -1,9 +1,10 @@
 const SHEET_URLS = {
   demonlist: 'https://docs.google.com/spreadsheets/d/1fPdeRx__uwcYhE8Fo8-gxah-pcHwFU-G1kj71hrq7Dc/export?format=csv',
   impossible: 'https://docs.google.com/spreadsheets/d/1R4Euoc5fVRknKKlJkyCjZbgCvOrqXPkM59ufcrYlBsQ/export?format=csv',
-  slayers: 'https://docs.google.com/spreadsheets/d/1ra2WMQXr7NpC3zKkkGmCPBbFFxR6SYJHDLB3O4KfPBs/export?format=csv',
+  slayers: 'https://docs.google.com/spreadsheets/d/1lHXJiXSz74-U1Z69bnjJa0oRfRw29MGh40Z2dIv6M6w/export?format=csv',
   future: 'https://docs.google.com/spreadsheets/d/1WhgXIuoCEbBgLMfYW9qwYH0uQ7g0o053TyxawIH_SH4/export?format=csv',
-  silent: 'https://docs.google.com/spreadsheets/d/1bTxdDTD2k-Ady3s6ucG2ZmmSZ57QqPLukyE5d4rhmbw/export?format=csv'
+  silent: 'https://docs.google.com/spreadsheets/d/1bTxdDTD2k-Ady3s6ucG2ZmmSZ57QqPLukyE5d4rhmbw/export?format=csv',
+  cll: 'https://docs.google.com/spreadsheets/d/1Vxb9HJdapphMRACNcUGHuvGTiY_vfyCq04ie_BX5bUU/export?format=csv'
 };
 
 const LEVEL_WARNINGS = {
@@ -11,38 +12,596 @@ const LEVEL_WARNINGS = {
 };
 
 const FALLBACK_DATA = {
-  demonlist: [
-    { Level: 'P I G', Top: '1', Author: 'AngryBanana1212', Verifer: 'AngryBanana1212', 'Level Difficulty': 'Hard Extreme Demon', Progresses: 'No', Points: '150' },
-    { Level: 'PIGAZAN', Top: '2', Author: 'AngryBanana1212', Verifer: 'AngryBanana1212', 'Level Difficulty': 'Hell Extreme Demon', Progresses: 'No', Points: '125' },
-    { Level: 'PigWave', Top: '3', Author: 'AngryBanana1212', Verifer: 'AngryBanana1212', 'Level Difficulty': 'Hell Extreme Demon', Progresses: 'No', Points: '100' },
-    { Level: 'The Blade of Bamboo', Top: '4', Author: 'AngryBanana1212', Verifer: 'AngryBanana1212', 'Level Difficulty': 'High Extreme Demon', Progresses: 'No', Points: '97.5' },
-    { Level: 'Ultra pig poop level', Top: '5', Author: 'AngryBanana1212', Verifer: 'AngryBanana1212', 'Level Difficulty': 'Extreme Demon', Progresses: 'pro100nubikcl - 48%-98%', Points: '95' }
+  "demonlist": [
+    {
+      "Level": "P I G",
+      "Top": "1",
+      "Author": "AngryBanana1212",
+      "Verifer": "AngryBanana1212",
+      "Level Difficulty": "Hard Extreme Demon",
+      "Progresses": "No",
+      "Points": "150"
+    },
+    {
+      "Level": "PIGAZAN",
+      "Top": "2",
+      "Author": "AngryBanana1212",
+      "Verifer": "AngryBanana1212",
+      "Level Difficulty": "Hell Extreme Demon",
+      "Progresses": "No",
+      "Points": "125"
+    },
+    {
+      "Level": "PigWave",
+      "Top": "3",
+      "Author": "AngryBanana1212",
+      "Verifer": "AngryBanana1212",
+      "Level Difficulty": "Hell Extreme Demon",
+      "Progresses": "No",
+      "Points": "100"
+    },
+    {
+      "Level": "The Blade of Bamboo",
+      "Top": "4",
+      "Author": "AngryBanana1212",
+      "Verifer": "AngryBanana1212",
+      "Level Difficulty": "High Extreme Demon",
+      "Progresses": "No",
+      "Points": "97.5"
+    },
+    {
+      "Level": "Ultra pig poop level",
+      "Top": "5",
+      "Author": "AngryBanana1212",
+      "Verifer": "AngryBanana1212",
+      "Level Difficulty": "Extreme Demon",
+      "Progresses": "pro100nubikcl - 48%-98%",
+      "Points": "95"
+    },
+    {
+      "Level": "Averius",
+      "Top": "6",
+      "Author": "AngryBanana1212",
+      "Verifer": "AngryBanana1212",
+      "Level Difficulty": "Bizarre Extreme Demon",
+      "Progresses": "No",
+      "Points": "90"
+    },
+    {
+      "Level": "Snowflake",
+      "Top": "7",
+      "Author": "NazarHK",
+      "Verifer": "AngryBanana1212",
+      "Level Difficulty": "Bizarre Extreme Demon",
+      "Progresses": "No",
+      "Points": "85"
+    },
+    {
+      "Level": "Pig Disaster",
+      "Top": "8",
+      "Author": "AngryBanana1212",
+      "Verifer": "AngryBanana1212",
+      "Level Difficulty": "Brutal Extreme Demon",
+      "Progresses": "No",
+      "Points": "80"
+    },
+    {
+      "Level": "Pig After Pig",
+      "Top": "9",
+      "Author": "AngryBanana1212",
+      "Verifer": "AngryBanana1212",
+      "Level Difficulty": "Easy Extreme Demon",
+      "Progresses": "No",
+      "Points": "70"
+    },
+    {
+      "Level": "Vantus Processing",
+      "Top": "10",
+      "Author": "techopro9 , NazarHK , AngryBanana1212",
+      "Verifer": "AngryBanana1212",
+      "Level Difficulty": "Easy Extreme Demon",
+      "Progresses": "No",
+      "Points": "65"
+    },
+    {
+      "Level": "Femboy Circles",
+      "Top": "11",
+      "Author": "techopro9",
+      "Verifer": "AngryBanana1212",
+      "Level Difficulty": "Easy Extreme Demon",
+      "Progresses": "No",
+      "Points": "60"
+    },
+    {
+      "Level": "Sakupen Circles II",
+      "Top": "12",
+      "Author": "NazarHK",
+      "Verifer": "AngryBanana1212",
+      "Level Difficulty": "Easy Extreme Demon",
+      "Progresses": "No",
+      "Points": "55"
+    },
+    {
+      "Level": "Dnyami Nochami",
+      "Top": "13",
+      "Author": "pro100nubikcl",
+      "Verifer": "pro100nubikcl",
+      "Level Difficulty": "Easiest Extreme Demon",
+      "Progresses": "AngryBanana1212 - 100%",
+      "Points": "50"
+    },
+    {
+      "Level": "mat pidora",
+      "Top": "14",
+      "Author": "pro100nubickl",
+      "Verifer": "techopro9",
+      "Level Difficulty": "Easiest Extreme Demon",
+      "Progresses": "No",
+      "Points": "45"
+    },
+    {
+      "Level": "Pigpolis",
+      "Top": "15",
+      "Author": "AngryBanana1212",
+      "Verifer": "AngryBanana1212",
+      "Level Difficulty": "Cruel Insane Demon",
+      "Progresses": "No",
+      "Points": "40"
+    },
+    {
+      "Level": "Sakupen Circles",
+      "Top": "16",
+      "Author": "techopro9",
+      "Verifer": "AngryBanana1212",
+      "Level Difficulty": "Cruel Insane Demon",
+      "Progresses": "No",
+      "Points": "35"
+    },
+    {
+      "Level": "falling wave",
+      "Top": "17",
+      "Author": "pro100nubikcl",
+      "Verifer": "pro100nubikcl",
+      "Level Difficulty": "Cruel Insane Demon",
+      "Progresses": "AngryBanana1212 - 100%",
+      "Points": "30"
+    },
+    {
+      "Level": "lose circles",
+      "Top": "18",
+      "Author": "pro100nubikcl",
+      "Verifer": "AngryBanana1212",
+      "Level Difficulty": "Easy Insane Demon",
+      "Progresses": "Techopro9 - 37%\npro100nubikcl - 47%",
+      "Points": "25"
+    },
+    {
+      "Level": "Silent sakupen lvl",
+      "Top": "19",
+      "Author": "pro100nubikcl",
+      "Verifer": "pro100nubikcl",
+      "Level Difficulty": "Easy Insane Demon",
+      "Progresses": "AngryBanana1212 - 100%  techopro9 - 100% NazarHK - 100%",
+      "Points": "20"
+    },
+    {
+      "Level": "Shadow Swines Lament",
+      "Top": "20",
+      "Author": "AngryBanana1212",
+      "Verifer": "AngryBanana1212",
+      "Level Difficulty": "Easy Insane Demon",
+      "Progresses": "No",
+      "Points": "15"
+    },
+    {
+      "Level": "Alquimia",
+      "Top": "21",
+      "Author": "ZlukaW",
+      "Verifer": "ZlukaW",
+      "Level Difficulty": "Moderate Hard Demon",
+      "Progresses": "techopro9 -54%",
+      "Points": "10"
+    },
+    {
+      "Level": "The Past Is History",
+      "Top": "22",
+      "Author": "techopro9",
+      "Verifer": "pro100nubikcl",
+      "Level Difficulty": "Moderate Hard Demon",
+      "Progresses": "AngryBanana1212 - 100%",
+      "Points": "5"
+    },
+    {
+      "Level": "Last Arrival",
+      "Top": "23",
+      "Author": "AngryBanana1212",
+      "Verifer": "AngryBanana1212",
+      "Level Difficulty": "Moderate Hard Demon",
+      "Progresses": "pro100nubickl - 100%",
+      "Points": "2.5"
+    },
+    {
+      "Level": "therealchuhan gg",
+      "Top": "24",
+      "Author": "pro100nubikcl",
+      "Verifer": "pro100nubikcl",
+      "Level Difficulty": "Hard Demon",
+      "Progresses": "AngryBanana1212 - 100%",
+      "Points": "2"
+    },
+    {
+      "Level": "ColorWave",
+      "Top": "25",
+      "Author": "NazarHK",
+      "Verifer": "techopro9",
+      "Level Difficulty": "Hard Demon",
+      "Progresses": "pro100nubikcl - 70%",
+      "Points": "1"
+    },
+    {
+      "Level": "super sakupen lvl3",
+      "Top": "26",
+      "Author": "pro100nubikcl",
+      "Verifer": "pro100nubikcl",
+      "Level Difficulty": "Hard demon",
+      "Progresses": "AngryBanana1212 - 100%",
+      "Points": "0.75"
+    },
+    {
+      "Level": "super sakupen level",
+      "Top": "27",
+      "Author": "pro100nubikcl",
+      "Verifer": "pro100nubikcl",
+      "Level Difficulty": "Hard demon",
+      "Progresses": "AngryBanana1212 - 100%\nTechopro9 - 89%",
+      "Points": "0.5"
+    },
+    {
+      "Level": "Couch Bratan",
+      "Top": "28",
+      "Author": "NazarHK",
+      "Verifer": "NazarHK",
+      "Level Difficulty": "Couch Medium Demon",
+      "Progresses": "soulq1337 - 100%",
+      "Points": "0.25"
+    },
+    {
+      "Level": "NA KRYLCE X",
+      "Top": "29",
+      "Author": "NazarHK",
+      "Verifer": "NazarHK",
+      "Level Difficulty": "BAGANIY Medium Demon",
+      "Progresses": "AngryBanana1212 - 100%\nTechopro9 - 100%\npro100nubikcl - 100%",
+      "Points": "0.2"
+    },
+    {
+      "Level": "super sakupen lvl 2",
+      "Top": "30",
+      "Author": "pro100nubikcl",
+      "Verifer": "pro100nubikcl",
+      "Level Difficulty": "Medium Demon",
+      "Progresses": "AngryBanana1212 - 100%",
+      "Points": "0.175"
+    },
+    {
+      "Level": "Wave to the Past",
+      "Top": "31",
+      "Author": "soulq1337",
+      "Verifer": "soulq1337",
+      "Level Difficulty": "Medium Demon",
+      "Progresses": "pro100nubickl - 100% NazarHK - 100% techopro9 - 100%",
+      "Points": "0.15"
+    },
+    {
+      "Level": "Dihnoeument",
+      "Top": "32",
+      "Author": "zlukaW",
+      "Verifer": "techopro9",
+      "Level Difficulty": "Medium Demon",
+      "Progresses": "AngryBanana1212 - 100%",
+      "Points": "0.145"
+    },
+    {
+      "Level": "Winter Chill",
+      "Top": "33",
+      "Author": "pro100nubickl",
+      "Verifer": "pro100nubickl",
+      "Level Difficulty": "Easy Medium Demon",
+      "Progresses": "No",
+      "Points": "0.14"
+    },
+    {
+      "Level": "NULLSPACE",
+      "Top": "34",
+      "Author": "techopro9",
+      "Verifer": "techopro9",
+      "Level Difficulty": "Free Easy demon",
+      "Progresses": "No",
+      "Points": "0.135"
+    },
+    {
+      "Level": "party disco",
+      "Top": "35",
+      "Author": "techopro9",
+      "Verifer": "techopro9",
+      "Level Difficulty": "Free Easy Demon",
+      "Progresses": "AngryBanana1212 - 100%",
+      "Points": "0.13"
+    }
   ],
-  impossible: [
-    { Levels: 'sakupen dih', 'Top Impossible': 'top 1', Author: 'NazarHK', CPS: 'High', ID: '183', 'Использование Tps bypass': 'Разрешено', 'Рекорд сервера': 'No' },
-    { Levels: 'help god', 'Top Impossible': 'top 2', Author: 'techopro9', CPS: 'High', ID: '224', 'Использование Tps bypass': 'Запрещено', 'Рекорд сервера': 'No' },
-    { Levels: 'silent sakupen lvl2', 'Top Impossible': 'top 3', Author: 'TheUNrealKorben(pro100nubikcl)', CPS: 'Ultra High', ID: '165', 'Использование Tps bypass': 'Запрещено', 'Рекорд сервера': 'TheUNrealkorben - 5.67%' },
-    { Levels: 'silent denouement', 'Top Impossible': 'top 4', Author: 'techopro9', CPS: 'High', ID: '167', 'Использование Tps bypass': 'Запрещено', 'Рекорд сервера': 'No' },
-    { Levels: 'ton 67', 'Top Impossible': 'top 5', Author: 'NazarHK', CPS: 'High', ID: '164', 'Использование Tps bypass': 'Разрешено', 'Рекорд сервера': 'NazarHK - 30%' }
+  "impossible": [
+    {
+      "Levels": "sakupen dih",
+      "Top Impossible": "top 1",
+      "Author": "NazarHK",
+      "CPS": "High",
+      "ID": "183",
+      "Использование Tps bypass": "Разрешено",
+      "Рекорд сервера": "No",
+      "Low cps - <5 cps": ""
+    },
+    {
+      "Levels": "help god",
+      "Top Impossible": "top 2",
+      "Author": "techopro9",
+      "CPS": "High",
+      "ID": "224",
+      "Использование Tps bypass": "Запрещено",
+      "Рекорд сервера": "No",
+      "Low cps - <5 cps": ""
+    },
+    {
+      "Levels": "silent sakupen lvl2",
+      "Top Impossible": "top 3",
+      "Author": "TheUNrealKorben(pro100nubikcl)",
+      "CPS": "Ultra High",
+      "ID": "165",
+      "Использование Tps bypass": "Запрещено",
+      "Рекорд сервера": "TheUNrealkorben - 5.67%",
+      "Low cps - <5 cps": "Medium cps 5-10 cps"
+    },
+    {
+      "Levels": "silent denouement",
+      "Top Impossible": "top 4",
+      "Author": "techopro9",
+      "CPS": "High",
+      "ID": "167",
+      "Использование Tps bypass": "Запрещено",
+      "Рекорд сервера": "No",
+      "Low cps - <5 cps": ""
+    },
+    {
+      "Levels": "ton 67",
+      "Top Impossible": "top 5",
+      "Author": "NazarHK",
+      "CPS": "High",
+      "ID": "164",
+      "Использование Tps bypass": "Разрешено",
+      "Рекорд сервера": "NazarHK - 30%",
+      "Low cps - <5 cps": "High cps - 10-15 cps"
+    },
+    {
+      "Levels": "Asmarin",
+      "Top Impossible": "top 6",
+      "Author": "techopro9",
+      "CPS": "High",
+      "ID": "163",
+      "Использование Tps bypass": "Запрещено",
+      "Рекорд сервера": "techopro9 - 40%",
+      "Low cps - <5 cps": "Ultra High - 15 cps only"
+    },
+    {
+      "Levels": "sakupen pig",
+      "Top Impossible": "top 7",
+      "Author": "TheUNrealKorben(pro100nubikcl)",
+      "CPS": "High",
+      "ID": "160",
+      "Использование Tps bypass": "Запрещено",
+      "Рекорд сервера": "No",
+      "Low cps - <5 cps": ""
+    },
+    {
+      "Levels": "Snowflake (UNNERFIED)",
+      "Top Impossible": "top 8",
+      "Author": "NazarHK",
+      "CPS": "Medium",
+      "ID": "147",
+      "Использование Tps bypass": "Запрещено",
+      "Рекорд сервера": "No",
+      "Low cps - <5 cps": ""
+    },
+    {
+      "Levels": "Evil Parallelogram",
+      "Top Impossible": "top 9",
+      "Author": "techopro9",
+      "CPS": "Medium",
+      "ID": "209",
+      "Использование Tps bypass": "Запрещено",
+      "Рекорд сервера": "No",
+      "Low cps - <5 cps": ""
+    },
+    {
+      "Levels": "lose arrival pig",
+      "Top Impossible": "top 10",
+      "Author": "TheUNrealKorben(pro100nubikcl)",
+      "CPS": "Low",
+      "ID": "151",
+      "Использование Tps bypass": "Запрещено",
+      "Рекорд сервера": "techopro9 - 20%",
+      "Low cps - <5 cps": ""
+    }
   ],
-  slayers: [
-    { Slayers: 'AngryBanana1212', Tops: '1', Points: '1374,5' },
-    { Slayers: 'TheUNrealkorben', Tops: '2', Points: '230,75' },
-    { Slayers: 'techopro9', Tops: '3', Points: '17,75' },
-    { Slayers: 'NazarHK', Tops: '4', Points: '3' },
-    { Slayers: 'DimStrem', Tops: '5', Points: '0' }
+  "slayers": [
+    {
+      "Slayers": "AngryBanana1212",
+      "Tops": "1",
+      "Points": "1337, 665",
+      "Challenge point": "1000"
+    },
+    {
+      "Slayers": "TheUNrealkorben",
+      "Tops": "2",
+      "Points": "188,36",
+      "Challenge point": "0"
+    },
+    {
+      "Slayers": "techopro9",
+      "Tops": "3",
+      "Points": "87,31",
+      "Challenge point": "950"
+    },
+    {
+      "Slayers": "NazarHK",
+      "Tops": "4",
+      "Points": "26,21",
+      "Challenge point": "0"
+    },
+    {
+      "Slayers": "DimStrem",
+      "Tops": "5",
+      "Points": "0",
+      "Challenge point": "0"
+    }
   ],
-  future: [
-    { Levels: 'CoLIMBO', 'Upcoming Top': 'Top 2', Author: 'techopro9', Verifer: '?????', Difficulty: 'Fire Extreme Demon', Status: 'Abandoned', Progress: '2%' },
-    { Levels: 'silopoeh', 'Upcoming Top': 'Top 1', Author: 'ZlukaW', Verifer: '?????', Difficulty: 'Extreme Demon', Status: 'In progress', Progress: '???%' },
-    { Levels: 'Sakupen Disco (Disco series)', 'Upcoming Top': 'Top 3-5', Author: 'techopro9', Verifer: 'techopro9', Difficulty: 'Hell Extreme Demon', Status: 'In progress', Progress: '38%' },
-    { Levels: 'mat pidora', 'Upcoming Top': 'Top 3-2', Author: 'pro100nubikcl', Verifer: '?????', Difficulty: 'Extreme Demon', Status: 'No verifer', Progress: '100%' },
-    { Levels: 'Silent Every End', 'Upcoming Top': 'Top 1', Author: 'pro100nubickl', Verifer: 'pro100nubikcl', Difficulty: 'Melted Extreme Demon', Status: 'Verification', Progress: '100%' }
+  "future": [
+    {
+      "Levels": "Sakupen Disco",
+      "Upcoming Top": "Top 3-5",
+      "Author": "techopro9",
+      "Verifer": "techopro9",
+      "Difficulty": "Hell Extreme Demon",
+      "Progress": "38%",
+      "Status": "In progress"
+    },
+    {
+      "Levels": "Silent Every End",
+      "Upcoming Top": "Top 1",
+      "Author": "pro100nubickl",
+      "Verifer": "pro100nubikcl",
+      "Difficulty": "Melted Extreme Demon",
+      "Progress": "100%",
+      "Status": "Paused"
+    },
+    {
+      "Levels": "Every Start",
+      "Upcoming Top": "Top 14-16",
+      "Author": "techopro9",
+      "Verifer": "pro100nubickl",
+      "Difficulty": "Hard Demon - Moderate Hard Demon",
+      "Progress": "32%",
+      "Status": "In progress"
+    },
+    {
+      "Levels": "Every End",
+      "Upcoming Top": "Top 4-5",
+      "Author": "techopro9, ?????",
+      "Verifer": "pro100nubickl",
+      "Difficulty": "Brutal Extreme Demon",
+      "Progress": "0%",
+      "Status": "Not start"
+    },
+    {
+      "Levels": "Pig Buff Base",
+      "Upcoming Top": "Top 1",
+      "Author": "AngryBanana1212",
+      "Verifer": "AngryBanana1212",
+      "Difficulty": "Solid Extreme Demon",
+      "Progress": "100%",
+      "Status": "Paused"
+    },
+    {
+      "Levels": "Loneliness",
+      "Upcoming Top": "Top 1",
+      "Author": "techopro9",
+      "Verifer": "????",
+      "Difficulty": "Frozen Extreme Demon",
+      "Progress": "8%",
+      "Status": "In Progress"
+    },
+    {
+      "Levels": "Asankhyeya",
+      "Upcoming Top": "Top 4",
+      "Author": "techopro9",
+      "Verifer": "techopro9",
+      "Difficulty": "Hell Extreme Demon",
+      "Progress": "49%",
+      "Status": "In Progress"
+    },
+    {
+      "Levels": "Swinopowal",
+      "Upcoming Top": "Top 3-6",
+      "Author": "AngryBanana1212",
+      "Verifer": "AngryBanana1212",
+      "Difficulty": "Hell Extreme Demon - Bizarre Extreme Demon",
+      "Progress": "100%",
+      "Status": "In Progress"
+    },
+    {
+      "Levels": "Disconnection",
+      "Upcoming Top": "?",
+      "Author": "NazarHK",
+      "Verifer": "Techopro9",
+      "Difficulty": "Insane/Extreme Demon",
+      "Progress": "20%",
+      "Status": "In Progress"
+    },
+    {
+      "Levels": "Quantum Terminal",
+      "Upcoming Top": "?",
+      "Author": "NazarHK",
+      "Verifer": "AngryBanana1212",
+      "Difficulty": "Insane Demon",
+      "Progress": "75%",
+      "Status": "In Progress"
+    }
   ],
-  silent: [
-    { Name: 'Abomination', Top: '1', FPS: '2400', TPS: '960', CPS: '31463', Author: 'pro100nubickl' },
-    { Name: 'Stereo madness copy', Top: '2', FPS: '2400', TPS: '960', CPS: '240', Author: 'pro100nubickl' },
-    { Name: 'Hierodule', Top: '3', FPS: '240', TPS: 'no', CPS: '240', Author: 'NazarHK' }
+  "silent": [
+    {
+      "Name": "Abomination",
+      "Top": "1",
+      "FPS": "2400",
+      "TPS": "960",
+      "CPS": "31463",
+      "Author": "pro100nubickl"
+    },
+    {
+      "Name": "Stereo madness copy",
+      "Top": "2",
+      "FPS": "2400",
+      "TPS": "960",
+      "CPS": "33524",
+      "Author": "pro100nubickl"
+    },
+    {
+      "Name": "Hierodule",
+      "Top": "3",
+      "FPS": "240",
+      "TPS": "no",
+      "CPS": "240",
+      "Author": "NazarHK"
+    }
+  ],
+  "cll": [
+    {
+      "Name": "Tunnel of Hell",
+      "Top": "1",
+      "Author": "DimStream",
+      "Verifer": "AngryBanana1212",
+      "CPS": "5-7",
+      "FPS": "Any",
+      "Challenge point": "1000",
+      "Challenge point Record": "500"
+    },
+    {
+      "Name": "i gonna give you up",
+      "Top": "2",
+      "Author": "techopro9",
+      "Verifer": "techopro9",
+      "CPS": "5-6",
+      "FPS": "Any",
+      "Challenge point": "950",
+      "Challenge point Record": "-"
+    }
   ]
 };
 
@@ -53,14 +612,16 @@ const STATE = {
     impossible: [],
     slayers: [],
     future: [],
-    silent: []
+    silent: [],
+    cll: []
   },
   filters: {
     demonlist: { search: '', difficulty: 'all', sort: 'rank-asc' },
     impossible: { search: '', cps: 'all', tps: 'all', sort: 'rank-asc' },
     slayers: { search: '' },
     future: { search: '', difficulty: 'all' },
-    silent: { search: '', sort: 'rank-asc' }
+    silent: { search: '', sort: 'rank-asc' },
+    cll: { search: '', sort: 'rank-asc' }
   },
   selectedLevel: {
     demonlist: null,
@@ -71,14 +632,16 @@ const STATE = {
     impossible: true,
     slayers: true,
     future: true,
-    silent: true
+    silent: true,
+    cll: true
   },
   errors: {
     demonlist: null,
     impossible: null,
     slayers: null,
     future: null,
-    silent: null
+    silent: null,
+    cll: null
   }
 };
 
@@ -97,7 +660,7 @@ function handleRouting() {
   const cleanHash = hash.split('?')[0];
   const params = parseQueryParams(hash);
   const tabName = cleanHash.replace('#', '');
-  const validTabs = ['home', 'demonlist', 'impossible', 'slayers', 'future', 'silent', 'rules'];
+  const validTabs = ['home', 'demonlist', 'impossible', 'slayers', 'future', 'silent', 'cll', 'rules'];
 
   if (!validTabs.includes(tabName)) {
     navigateTo('home');
@@ -237,6 +800,7 @@ async function loadListData(name) {
       if (name === 'slayers') return !!getProp(item, ['slayers', 'slayer', 'player']);
       if (name === 'future') return !!getProp(item, ['levels', 'level', 'name']);
       if (name === 'silent') return !!getProp(item, ['name']);
+      if (name === 'cll') return !!getProp(item, ['name']);
       return true;
     });
 
@@ -393,6 +957,14 @@ function setupFilterListeners() {
     STATE.filters.silent.sort = e.target.value;
     renderList('silent');
   });
+
+  const cllSearch = document.getElementById('cll-search');
+  if (cllSearch) {
+    cllSearch.addEventListener('input', (e) => {
+      STATE.filters.cll.search = e.target.value;
+      renderList('cll');
+    });
+  }
 }
 
 function renderList(name) {
@@ -409,6 +981,8 @@ function renderList(name) {
     renderFutureLevels(list);
   } else if (name === 'silent') {
     renderSilentList(list);
+  } else if (name === 'cll') {
+    renderCllList(list);
   }
 }
 
@@ -1209,4 +1783,63 @@ function getCpsBadge(cps) {
   if (c.includes('high') && !c.includes('ultra')) return '<span class="badge badge-cps-high">High CPS (10-15)</span>';
   if (c.includes('ultra') || c.includes('15+')) return '<span class="badge badge-cps-ultra">Ultra CPS (всегда 15)</span>';
   return `<span class="badge badge-cps-high">${cps}</span>`;
+}
+
+function renderCllList(list) {
+  const container = document.getElementById('cll-table');
+  if (!container) return;
+  let filtered = [...list];
+  const filters = STATE.filters.cll;
+
+  if (filters.search) {
+    const q = filters.search.toLowerCase();
+    filtered = filtered.filter(item => {
+      const name = getProp(item, ['name']).toLowerCase();
+      return name.includes(q);
+    });
+  }
+
+  filtered.sort((a, b) => {
+    const rankA = parseInt(getProp(a, ['top', 'rank'])) || 9999;
+    const rankB = parseInt(getProp(b, ['top', 'rank'])) || 9999;
+
+    if (filters.sort === 'rank-asc') return rankA - rankB;
+    if (filters.sort === 'rank-desc') return rankB - rankA;
+    if (filters.sort === 'name-asc') {
+      const nameA = getProp(a, ['name']).toLowerCase();
+      const nameB = getProp(b, ['name']).toLowerCase();
+      return nameA.localeCompare(nameB, 'ru');
+    }
+    return rankA - rankB;
+  });
+
+  if (filtered.length === 0) {
+    container.innerHTML = '<div style="padding: 30px; text-align: center; color: var(--text-secondary);">Ничего не найдено</div>';
+    return;
+  }
+
+  container.innerHTML = '';
+  filtered.forEach(item => {
+    const rank = getProp(item, ['top', 'rank']);
+    const levelName = getProp(item, ['name']);
+    const author = getProp(item, ['author', 'creator']);
+    const verifier = getProp(item, ['verifer', 'verifier']);
+    const cps = getProp(item, ['cps']);
+    const fps = getProp(item, ['fps']);
+    const points = getProp(item, ['challenge point']);
+
+    const row = document.createElement('div');
+    row.className = 'leaderboard-row grid-cll';
+    row.innerHTML = `
+      <div class="cell-rank">#${rank}</div>
+      <div class="cell-name">${levelName}</div>
+      <div class="cell-author cell-sub">${author}</div>
+      <div class="cell-author cell-sub">${verifier}</div>
+      <div class="cell-points" style="color: #a855f7;">${cps}</div>
+      <div class="cell-sub">${fps}</div>
+      <div class="cell-points" style="font-weight: 600; color: var(--accent-cyan);">${points}</div>
+    `;
+
+    container.appendChild(row);
+  });
 }

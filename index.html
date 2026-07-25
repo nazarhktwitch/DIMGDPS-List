@@ -103,6 +103,7 @@
           <a class="nav-link" data-target="slayers">Top Slayers</a>
           <a class="nav-link" data-target="future">Future Levels</a>
           <a class="nav-link" data-target="silent">Silent List</a>
+          <a class="nav-link" data-target="cll">Challange List</a>
           <a class="nav-link" data-target="rules">Правила</a>
           <a class="discord-btn" href="https://discord.gg/vBkthNt2N" target="_blank">
             <svg width="16" height="16" viewBox="0 0 24 24">
@@ -479,6 +480,38 @@
         </div>
       </section>
 
+      <section class="page-section" id="page-cll">
+        <div style="max-width: 900px; margin: 0 auto;">
+
+          <div class="search-filter-bar">
+            <div class="search-wrapper" style="flex: 1;">
+              <svg class="search-icon" viewBox="0 0 24 24">
+                <use href="#icon-search" />
+              </svg>
+              <input type="text" class="search-input" id="cll-search" placeholder="Поиск по названию уровня...">
+            </div>
+          </div>
+
+          <div class="leaderboard-container">
+            <div class="leaderboard-header grid-cll">
+              <div>Топ</div>
+              <div>Название</div>
+              <div>Автор</div>
+              <div>Верификатор</div>
+              <div>CPS</div>
+              <div>FPS</div>
+              <div>Очки</div>
+            </div>
+            <div class="leaderboard-list" id="cll-table">
+              <div class="skeleton-row"></div>
+              <div class="skeleton-row"></div>
+              <div class="skeleton-row"></div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
       <section class="page-section" id="page-rules">
         <div class="rules-layout">
 
@@ -561,7 +594,18 @@
 
             <div class="rules-block">
               <h2><span>#</span>Правила подачи рекорда в Silent List</h2>
-              <p>Почти тоже что и Impossible List, но CPS <strong>БЕЗ ограничений</strong> (то есть главное чтоб гд бот прошёл хотя бы).</p>
+              <p>Почти тоже что и Impossible List, но CPS <strong>БЕЗ ограничений</strong> (то есть главное чтоб гд бот
+                прошёл хотя бы).</p>
+            </div>
+
+            <div class="rules-block">
+              <h2><span>#</span>Критерии добавления в Challange List</h2>
+              <ul class="rules-list">
+                <li>До 20-25кпс</li>
+                <li>FPS до 240</li>
+                <li>Уровень должен быть верифнут</li>
+                <li><strong>Длина уровня</strong> от 2 секунд до 30</li>
+              </ul>
             </div>
 
             <div class="rules-block">
@@ -628,6 +672,7 @@
           <a href="#demonlist">Demonlist</a>
           <a href="#impossible">Impossible List</a>
           <a href="#silent">Silent List</a>
+          <a href="#cll">Challange List</a>
         </div>
       </div>
     </footer>
