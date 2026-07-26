@@ -95,238 +95,247 @@ const FALLBACK_DATA = {
       "Points": "70"
     },
     {
-      "Level": "Vantus Processing",
+      "Level": "Despair",
       "Top": "10",
-      "Author": "techopro9 , NazarHK , AngryBanana1212",
-      "Verifer": "AngryBanana1212",
+      "Author": "pro100nubickl , soulq1337",
+      "Verifer": "pro100nubickl",
       "Level Difficulty": "Easy Extreme Demon",
       "Progresses": "No",
       "Points": "65"
     },
     {
-      "Level": "Femboy Circles",
+      "Level": "Vantus Processing",
       "Top": "11",
-      "Author": "techopro9",
+      "Author": "techopro9 , NazarHK , AngryBanana1212",
       "Verifer": "AngryBanana1212",
       "Level Difficulty": "Easy Extreme Demon",
       "Progresses": "No",
       "Points": "60"
     },
     {
-      "Level": "Sakupen Circles II",
+      "Level": "Femboy Circles",
       "Top": "12",
-      "Author": "NazarHK",
+      "Author": "techopro9",
       "Verifer": "AngryBanana1212",
       "Level Difficulty": "Easy Extreme Demon",
       "Progresses": "No",
       "Points": "55"
     },
     {
-      "Level": "Dnyami Nochami",
+      "Level": "Sakupen Circles II",
       "Top": "13",
+      "Author": "NazarHK",
+      "Verifer": "AngryBanana1212",
+      "Level Difficulty": "Easy Extreme Demon",
+      "Progresses": "No",
+      "Points": "50"
+    },
+    {
+      "Level": "Dnyami Nochami",
+      "Top": "14",
       "Author": "pro100nubikcl",
       "Verifer": "pro100nubikcl",
       "Level Difficulty": "Easiest Extreme Demon",
       "Progresses": "AngryBanana1212 - 100%",
-      "Points": "50"
+      "Points": "45"
     },
     {
       "Level": "mat pidora",
-      "Top": "14",
+      "Top": "15",
       "Author": "pro100nubickl",
       "Verifer": "techopro9",
       "Level Difficulty": "Easiest Extreme Demon",
       "Progresses": "No",
-      "Points": "45"
-    },
-    {
-      "Level": "Pigpolis",
-      "Top": "15",
-      "Author": "AngryBanana1212",
-      "Verifer": "AngryBanana1212",
-      "Level Difficulty": "Cruel Insane Demon",
-      "Progresses": "No",
       "Points": "40"
     },
     {
-      "Level": "Sakupen Circles",
+      "Level": "Pigpolis",
       "Top": "16",
-      "Author": "techopro9",
+      "Author": "AngryBanana1212",
       "Verifer": "AngryBanana1212",
       "Level Difficulty": "Cruel Insane Demon",
       "Progresses": "No",
       "Points": "35"
     },
     {
-      "Level": "falling wave",
+      "Level": "Sakupen Circles",
       "Top": "17",
+      "Author": "techopro9",
+      "Verifer": "AngryBanana1212",
+      "Level Difficulty": "Cruel Insane Demon",
+      "Progresses": "No",
+      "Points": "30"
+    },
+    {
+      "Level": "falling wave",
+      "Top": "18",
       "Author": "pro100nubikcl",
       "Verifer": "pro100nubikcl",
       "Level Difficulty": "Cruel Insane Demon",
       "Progresses": "AngryBanana1212 - 100%",
-      "Points": "30"
+      "Points": "25"
     },
     {
       "Level": "lose circles",
-      "Top": "18",
+      "Top": "19",
       "Author": "pro100nubikcl",
       "Verifer": "AngryBanana1212",
       "Level Difficulty": "Easy Insane Demon",
       "Progresses": "Techopro9 - 37%\npro100nubikcl - 47%",
-      "Points": "25"
+      "Points": "20"
     },
     {
       "Level": "Silent sakupen lvl",
-      "Top": "19",
+      "Top": "20",
       "Author": "pro100nubikcl",
       "Verifer": "pro100nubikcl",
       "Level Difficulty": "Easy Insane Demon",
       "Progresses": "AngryBanana1212 - 100%  techopro9 - 100% NazarHK - 100%",
-      "Points": "20"
+      "Points": "15"
     },
     {
       "Level": "Shadow Swines Lament",
-      "Top": "20",
+      "Top": "21",
       "Author": "AngryBanana1212",
       "Verifer": "AngryBanana1212",
       "Level Difficulty": "Easy Insane Demon",
       "Progresses": "No",
-      "Points": "15"
+      "Points": "10"
     },
     {
       "Level": "Alquimia",
-      "Top": "21",
+      "Top": "22",
       "Author": "ZlukaW",
       "Verifer": "ZlukaW",
       "Level Difficulty": "Moderate Hard Demon",
       "Progresses": "techopro9 -54%",
-      "Points": "10"
+      "Points": "5"
     },
     {
       "Level": "The Past Is History",
-      "Top": "22",
+      "Top": "23",
       "Author": "techopro9",
       "Verifer": "pro100nubikcl",
       "Level Difficulty": "Moderate Hard Demon",
       "Progresses": "AngryBanana1212 - 100%",
-      "Points": "5"
+      "Points": "2.5"
     },
     {
       "Level": "Last Arrival",
-      "Top": "23",
+      "Top": "24",
       "Author": "AngryBanana1212",
       "Verifer": "AngryBanana1212",
       "Level Difficulty": "Moderate Hard Demon",
       "Progresses": "pro100nubickl - 100%",
-      "Points": "2.5"
+      "Points": "2"
     },
     {
       "Level": "therealchuhan gg",
-      "Top": "24",
+      "Top": "25",
       "Author": "pro100nubikcl",
       "Verifer": "pro100nubikcl",
       "Level Difficulty": "Hard Demon",
       "Progresses": "AngryBanana1212 - 100%",
-      "Points": "2"
+      "Points": "1"
     },
     {
       "Level": "ColorWave",
-      "Top": "25",
+      "Top": "26",
       "Author": "NazarHK",
       "Verifer": "techopro9",
       "Level Difficulty": "Hard Demon",
       "Progresses": "pro100nubikcl - 70%",
-      "Points": "1"
-    },
-    {
-      "Level": "super sakupen lvl3",
-      "Top": "26",
-      "Author": "pro100nubikcl",
-      "Verifer": "pro100nubikcl",
-      "Level Difficulty": "Hard demon",
-      "Progresses": "AngryBanana1212 - 100%",
       "Points": "0.75"
     },
     {
-      "Level": "super sakupen level",
+      "Level": "super sakupen lvl3",
       "Top": "27",
       "Author": "pro100nubikcl",
       "Verifer": "pro100nubikcl",
       "Level Difficulty": "Hard demon",
-      "Progresses": "AngryBanana1212 - 100%\nTechopro9 - 89%",
+      "Progresses": "AngryBanana1212 - 100%",
       "Points": "0.5"
     },
     {
-      "Level": "Couch Bratan",
+      "Level": "super sakupen level",
       "Top": "28",
+      "Author": "pro100nubikcl",
+      "Verifer": "pro100nubikcl",
+      "Level Difficulty": "Hard demon",
+      "Progresses": "AngryBanana1212 - 100%\nTechopro9 - 89%",
+      "Points": "0.25"
+    },
+    {
+      "Level": "Couch Bratan",
+      "Top": "29",
       "Author": "NazarHK",
       "Verifer": "NazarHK",
       "Level Difficulty": "Couch Medium Demon",
       "Progresses": "soulq1337 - 100%",
-      "Points": "0.25"
+      "Points": "0.2"
     },
     {
       "Level": "NA KRYLCE X",
-      "Top": "29",
+      "Top": "30",
       "Author": "NazarHK",
       "Verifer": "NazarHK",
       "Level Difficulty": "BAGANIY Medium Demon",
       "Progresses": "AngryBanana1212 - 100%\nTechopro9 - 100%\npro100nubikcl - 100%",
-      "Points": "0.2"
+      "Points": "0.175"
     },
     {
       "Level": "super sakupen lvl 2",
-      "Top": "30",
+      "Top": "31",
       "Author": "pro100nubikcl",
       "Verifer": "pro100nubikcl",
       "Level Difficulty": "Medium Demon",
       "Progresses": "AngryBanana1212 - 100%",
-      "Points": "0.175"
+      "Points": "0.15"
     },
     {
       "Level": "Wave to the Past",
-      "Top": "31",
+      "Top": "32",
       "Author": "soulq1337",
       "Verifer": "soulq1337",
       "Level Difficulty": "Medium Demon",
       "Progresses": "pro100nubickl - 100% NazarHK - 100% techopro9 - 100%",
-      "Points": "0.15"
+      "Points": "0.145"
     },
     {
       "Level": "Dihnoeument",
-      "Top": "32",
+      "Top": "33",
       "Author": "zlukaW",
       "Verifer": "techopro9",
       "Level Difficulty": "Medium Demon",
       "Progresses": "AngryBanana1212 - 100%",
-      "Points": "0.145"
+      "Points": "0.14"
     },
     {
       "Level": "Winter Chill",
-      "Top": "33",
+      "Top": "34",
       "Author": "pro100nubickl",
       "Verifer": "pro100nubickl",
       "Level Difficulty": "Easy Medium Demon",
       "Progresses": "No",
-      "Points": "0.14"
+      "Points": "0.135"
     },
     {
       "Level": "NULLSPACE",
-      "Top": "34",
+      "Top": "35",
       "Author": "techopro9",
       "Verifer": "techopro9",
       "Level Difficulty": "Free Easy demon",
       "Progresses": "No",
-      "Points": "0.135"
+      "Points": "0.13"
     },
     {
       "Level": "party disco",
-      "Top": "35",
+      "Top": "36",
       "Author": "techopro9",
       "Verifer": "techopro9",
       "Level Difficulty": "Free Easy Demon",
       "Progresses": "AngryBanana1212 - 100%",
-      "Points": "0.13"
+      "Points": "0.125"
     }
   ],
   "impossible": [
