@@ -614,6 +614,8 @@ const FALLBACK_DATA = {
   ]
 };
 
+const CHANGELOG = [];
+
 const STATE = {
   activeTab: 'home',
   data: {
@@ -1687,71 +1689,98 @@ function renderUpdatesList() {
   const updatesContainer = document.getElementById('home-updates-list');
   updatesContainer.innerHTML = '';
 
-  const updates = [];
-  const currentDateStr = '14.06.2026';
+  const liveUpdates = [];
+  const listsToTrack = [
+    { key: 'demonlist', name: 'Demonlist', nameField: ['level', 'name'] },
+    { key: 'impossible', name: 'Impossible List', nameField: ['levels', 'level', 'name'] }
+  ];
 
-  if (STATE.data.demonlist.length > 0) {
-    const lvl1 = STATE.data.demonlist[0];
-    updates.push({
-      author: 'DIMGDPS',
-      date: currentDateStr,
-      text: `Уровень "${getProp(lvl1, ['level', 'name'])}" от ${getProp(lvl1, ['author', 'creator'])} удерживает позицию Топ-1 сложнейших демонов сервера.`
+  listsToTrack.forEach(listInfo => {
+    const currentList = STATE.data[listInfo.key] || [];
+    const fallbackList = FALLBACK_DATA[listInfo.key] || [];
+    
+    const fallbackMap = new Map();
+    fallbackList.forEach((item, idx) => {
+      const name = getProp(item, listInfo.nameField);
+      if (name) fallbackMap.set(name.toLowerCase().trim(), { rank: idx + 1, item });
     });
-  }
-
-  const recordLevel = STATE.data.impossible.find(item => {
-    const rec = getProp(item, ['рекорд сервера', 'record']);
-    return rec && rec.toLowerCase() !== 'no' && rec.includes('%');
+    
+    currentList.forEach((item, idx) => {
+      const name = getProp(item, listInfo.nameField);
+      if (!name) return;
+      
+      const currentRank = idx + 1;
+      const oldData = fallbackMap.get(name.toLowerCase().trim());
+      
+      const getAboveBelow = (index) => {
+        const above = index > 0 ? getProp(currentList[index - 1], listInfo.nameField) : null;
+        const below = index < currentList.length - 1 ? getProp(currentList[index + 1], listInfo.nameField) : null;
+        return { above, below };
+      };
+      
+      if (!oldData) {
+        liveUpdates.push({ type: 'add', list: listInfo.name, name, newRank: currentRank, date: 'ТЕКУЩИЕ ИЗМЕНЕНИЯ', ...getAboveBelow(idx) });
+      } else {
+        const oldRank = oldData.rank;
+        if (currentRank < oldRank) {
+          liveUpdates.push({ type: 'up', list: listInfo.name, name, oldRank, newRank: currentRank, date: 'ТЕКУЩИЕ ИЗМЕНЕНИЯ', ...getAboveBelow(idx) });
+        } else if (currentRank > oldRank) {
+          liveUpdates.push({ type: 'down', list: listInfo.name, name, oldRank, newRank: currentRank, date: 'ТЕКУЩИЕ ИЗМЕНЕНИЯ', ...getAboveBelow(idx) });
+        }
+      }
+    });
   });
-  if (recordLevel) {
-    updates.push({
-      author: 'Рекорд',
-      date: currentDateStr,
-      text: `Установлен рекорд сервера на Impossible-уровне "${getProp(recordLevel, ['levels', 'name'])}": ${getProp(recordLevel, ['рекорд сервера', 'record'])}.`
-    });
-  }
 
-  if (STATE.data.slayers.length > 0) {
-    const slayersCopy = [...STATE.data.slayers];
-    slayersCopy.sort((a, b) => {
-      const ptsA = parseFloat((getProp(a, ['points', 'очки']) || '0').replace(',', '.')) || 0;
-      const ptsB = parseFloat((getProp(b, ['points', 'очки']) || '0').replace(',', '.')) || 0;
-      return ptsB - ptsA;
-    });
-    const topSlayer = slayersCopy[0];
-    updates.push({
-      author: 'Топ слеер',
-      date: currentDateStr,
-      text: `${getProp(topSlayer, ['slayers', 'player'])} занимает лидирующее место в рейтинге слееров с результатом в ${getProp(topSlayer, ['points', 'очки'])} очков.`
-    });
-  }
+  const allUpdates = [...liveUpdates, ...(typeof CHANGELOG !== 'undefined' ? CHANGELOG : [])];
 
-  if (STATE.data.future.length > 0) {
-    const fut = STATE.data.future[0];
-    updates.push({
-      author: 'Анонс',
-      date: currentDateStr,
-      text: `Анонсирован будущий уровень "${getProp(fut, ['levels', 'name'])}" (предположительно ${getProp(fut, ['upcoming top', 'top'])}). Верификатор: ${getProp(fut, ['verifier', 'verifer'])}.`
-    });
-  }
-
-  updates.forEach(up => {
-    const item = document.createElement('div');
-    item.className = 'update-item';
-    item.innerHTML = `
-      <div class="update-icon">
-        <svg viewBox="0 0 24 24"><use href="#icon-info"/></svg>
-      </div>
-      <div class="update-details">
-        <div class="update-meta">
-          <span>${up.author}</span>
-          <span>${up.date}</span>
+  if (allUpdates.length === 0) {
+    updatesContainer.innerHTML = `
+      <div class="timeline-date-divider"><span>АКТУАЛЬНО</span></div>
+      <div class="timeline-item" style="opacity: 0.7;">
+        <div class="timeline-icon place" style="border-color: rgba(255,255,255,0.1); background: transparent;">
+          <svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
         </div>
-        <div class="update-text">${up.text}</div>
+        <div class="timeline-content">Все списки синхронизированы. За последнее время изменений не зафиксировано.</div>
       </div>
     `;
-    updatesContainer.appendChild(item);
+    return;
+  }
+
+  let html = '';
+  let currentDate = null;
+  
+  allUpdates.forEach(up => {
+    if (up.date !== currentDate) {
+      currentDate = up.date;
+      html += '<div class="timeline-date-divider"><span>' + currentDate + '</span></div>';
+    }
+    
+    let iconHtml = '';
+    let textHtml = '';
+    
+    const aboveStr = up.above ? `, выше <span class="level-ref">${up.above}</span>` : '';
+    const belowStr = up.below ? `, ниже <span class="level-ref">${up.below}</span>` : '';
+    
+    if (up.type === 'add') {
+      iconHtml = '<div class="timeline-icon place"><div class="inner-dot"></div></div>';
+      textHtml = '<span class="level-name">' + up.name + '</span> добавлен на #' + up.newRank + ' (' + up.list + ')' + aboveStr + belowStr;
+    } else if (up.type === 'up') {
+      iconHtml = '<div class="timeline-icon move-up"><svg viewBox="0 0 24 24"><path d="M12 20V4M6 14L12 20L18 14" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></div>';
+      textHtml = '<span class="level-name">' + up.name + '</span> #' + up.oldRank + ' &rarr; #' + up.newRank + ' (' + up.list + ')' + aboveStr + belowStr;
+    } else if (up.type === 'down') {
+      iconHtml = '<div class="timeline-icon move-down"><svg viewBox="0 0 24 24"><path d="M12 4V20M6 14L12 20L18 14" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></div>';
+      textHtml = '<span class="level-name">' + up.name + '</span> #' + up.oldRank + ' &rarr; #' + up.newRank + ' (' + up.list + ')' + aboveStr + belowStr;
+    }
+    
+    html += `
+      <div class="timeline-item">
+        ${iconHtml}
+        <div class="timeline-content">${textHtml}</div>
+      </div>
+    `;
   });
+  
+  updatesContainer.innerHTML = html;
 }
 
 function parseProgresses(progressStr) {

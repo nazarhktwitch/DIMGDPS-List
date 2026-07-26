@@ -508,57 +508,125 @@ textarea {
   display: inline-block;
 }
 
-.updates-list {
+.recent-changes-card {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  max-height: 480px;
 }
 
-.update-item {
+.recent-changes-card .section-title {
+  flex-shrink: 0;
+}
+
+.updates-timeline {
   display: flex;
-  gap: 15px;
-  padding-bottom: 15px;
-  border-bottom: 1px solid var(--border-color);
+  flex-direction: column;
+  gap: 6px;
+  overflow-y: auto;
+  padding-right: 8px;
+  margin-right: -8px;
+  flex: 1;
 }
 
-.update-item:last-child {
-  padding-bottom: 0;
-  border-bottom: none;
+.updates-timeline::-webkit-scrollbar {
+  width: 6px;
+}
+.updates-timeline::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.02);
+  border-radius: 4px;
+}
+.updates-timeline::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.1);
+  border-radius: 4px;
 }
 
-.update-icon {
-  width: 38px;
-  height: 38px;
-  border-radius: 8px;
-  background: rgba(168, 85, 247, 0.1);
+.timeline-date-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #475569;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin: 16px 0 10px 0;
+}
+.timeline-date-divider:first-child {
+  margin-top: 0;
+}
+.timeline-date-divider::before,
+.timeline-date-divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.timeline-date-divider:not(:empty)::before {
+  margin-right: 12px;
+}
+.timeline-date-divider:not(:empty)::after {
+  margin-left: 12px;
+}
+
+.timeline-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 6px 0;
+}
+
+.timeline-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  border: 1px solid rgba(168, 85, 247, 0.2);
+  margin-top: 2px;
 }
 
-.update-icon svg {
-  width: 18px;
-  height: 18px;
-  fill: var(--accent-purple);
+.timeline-icon.move-up {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
 }
 
-.update-details {
-  flex: 1;
+.timeline-icon.move-down {
+  background: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
 }
 
-.update-meta {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.75rem;
-  color: var(--text-secondary);
-  margin-bottom: 4px;
+.timeline-icon.place {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.25);
 }
 
-.update-text {
+.timeline-icon.place .inner-dot {
+  width: 8px;
+  height: 8px;
+  background: #10b981;
+  border-radius: 50%;
+}
+
+.timeline-icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+.timeline-content {
   font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.timeline-content .level-name {
+  font-weight: 700;
   color: var(--text-primary);
+  font-family: var(--font-title);
+  font-size: 0.95rem;
+}
+
+.timeline-content .level-ref {
+  color: var(--accent-cyan);
 }
 
 .discord-widget-card {

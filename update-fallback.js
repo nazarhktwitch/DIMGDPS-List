@@ -13,20 +13,29 @@ if (!urlsMatch) {
 const sheetUrlsCode = urlsMatch[1];
 const SHEET_URLS = new Function(`return ${sheetUrlsCode}`)();
 
-const startIndex = appJsContent.indexOf('const FALLBACK_DATA = {');
-if (startIndex === -1) {
-  console.error("Could not find 'const FALLBACK_DATA = {' in app.js");
+const startFallback = appJsContent.indexOf('const FALLBACK_DATA = {');
+const startChangelog = appJsContent.indexOf('\nconst CHANGELOG = [');
+const startState = appJsContent.indexOf('const STATE = {');
+
+if (startFallback === -1 || startState === -1) {
+  console.error("Could not find FALLBACK_DATA or STATE blocks.");
   process.exit(1);
 }
 
-const nextConstIndex = appJsContent.indexOf('const STATE = {', startIndex);
-if (nextConstIndex === -1) {
-  console.error("Could not find 'const STATE = {' in app.js");
-  process.exit(1);
-}
+const endFallback = startChangelog !== -1 ? startChangelog : startState;
 
-const oldFallbackCode = appJsContent.substring(startIndex + 'const FALLBACK_DATA = '.length, nextConstIndex).trim().replace(/;$/, '');
+const oldFallbackCode = appJsContent.substring(startFallback + 'const FALLBACK_DATA = '.length, endFallback).trim().replace(/;$/, '');
 const OLD_FALLBACK_DATA = new Function(`return ${oldFallbackCode}`)();
+
+let OLD_CHANGELOG = [];
+if (startChangelog !== -1) {
+  const oldChangelogCode = appJsContent.substring(startChangelog + '\nconst CHANGELOG = '.length, startState).trim().replace(/;$/, '');
+  try {
+    OLD_CHANGELOG = new Function(`return ${oldChangelogCode}`)() || [];
+  } catch (e) {
+    OLD_CHANGELOG = [];
+  }
+}
 
 function parseCSV(text) {
   const lines = [];
@@ -58,7 +67,6 @@ function parseCSV(text) {
   if (row.length > 1 || row[0] !== '') {
     lines.push(row);
   }
-
   if (lines.length === 0) return [];
 
   const headers = lines[0].map(h => h.trim());
@@ -95,8 +103,60 @@ function getProp(obj, possibleKeys) {
   return '';
 }
 
+function generateUpdates(oldData, newData) {
+  const updates = [];
+  const listsToTrack = [
+    { key: 'demonlist', name: 'Demonlist', nameField: ['level', 'name'] },
+    { key: 'impossible', name: 'Impossible', nameField: ['levels', 'level', 'name'] }
+  ];
+
+  listsToTrack.forEach(listInfo => {
+    const currentList = newData[listInfo.key] || [];
+    const fallbackList = oldData[listInfo.key] || [];
+
+    const fallbackMap = new Map();
+    fallbackList.forEach((item, idx) => {
+      const name = getProp(item, listInfo.nameField);
+      if (name) fallbackMap.set(name.toLowerCase().trim(), { rank: idx + 1, item });
+    });
+
+    currentList.forEach((item, idx) => {
+      const name = getProp(item, listInfo.nameField);
+      if (!name) return;
+
+      const currentRank = idx + 1;
+      const oldItem = fallbackMap.get(name.toLowerCase().trim());
+
+      const getAboveBelow = (index) => {
+        const above = index > 0 ? getProp(currentList[index - 1], listInfo.nameField) : null;
+        const below = index < currentList.length - 1 ? getProp(currentList[index + 1], listInfo.nameField) : null;
+        return { above, below };
+      };
+
+      if (!oldItem) {
+        updates.push({ type: 'add', list: listInfo.name, name, newRank: currentRank, ...getAboveBelow(idx) });
+      } else {
+        const oldRank = oldItem.rank;
+        if (currentRank < oldRank) {
+          updates.push({ type: 'up', list: listInfo.name, name, oldRank, newRank: currentRank, ...getAboveBelow(idx) });
+        } else if (currentRank > oldRank) {
+          updates.push({ type: 'down', list: listInfo.name, name, oldRank, newRank: currentRank, ...getAboveBelow(idx) });
+        }
+      }
+    });
+  });
+
+  return updates;
+}
+
+const months = ['ЯНВАРЯ', 'ФЕВРАЛЯ', 'МАРТА', 'АПРЕЛЯ', 'МАЯ', 'ИЮНЯ', 'ИЮЛЯ', 'АВГУСТА', 'СЕНТЯБРЯ', 'ОКТЯБРЯ', 'НОЯБРЯ', 'ДЕКАБРЯ'];
+function getTodayString() {
+  const d = new Date();
+  return `${d.getDate()} ${months[d.getMonth()]}, ${d.getFullYear()}`;
+}
+
 async function main() {
-  const FALLBACK_DATA = { ...OLD_FALLBACK_DATA };
+  const NEW_FALLBACK_DATA = { ...OLD_FALLBACK_DATA };
   let hasErrors = false;
 
   for (const [name, url] of Object.entries(SHEET_URLS)) {
@@ -119,27 +179,35 @@ async function main() {
         return true;
       });
 
-      FALLBACK_DATA[name] = validData;
+      NEW_FALLBACK_DATA[name] = validData;
       console.log(` -> Parsed ${validData.length} valid items.`);
     } catch (e) {
       console.error(` -> Error processing ${name}:`, e.message);
-      console.log(` -> Keeping old fallback data for ${name}.`);
       hasErrors = true;
     }
   }
 
-  const newFallbackString = 'const FALLBACK_DATA = ' + JSON.stringify(FALLBACK_DATA, null, 2) + ';';
+  const newUpdates = generateUpdates(OLD_FALLBACK_DATA, NEW_FALLBACK_DATA);
 
-  const part1 = appJsContent.substring(0, startIndex);
-  const part2 = appJsContent.substring(nextConstIndex);
+  if (newUpdates.length > 0) {
+    const todayStr = getTodayString();
+    newUpdates.forEach(u => u.date = todayStr);
 
-  appJsContent = part1 + newFallbackString + '\n\n' + part2;
+    OLD_CHANGELOG = [...newUpdates, ...OLD_CHANGELOG];
+    if (OLD_CHANGELOG.length > 200) OLD_CHANGELOG.length = 200;
+  }
+
+  const newFallbackString = 'const FALLBACK_DATA = ' + JSON.stringify(NEW_FALLBACK_DATA, null, 2) + ';';
+  const newChangelogString = 'const CHANGELOG = ' + JSON.stringify(OLD_CHANGELOG, null, 2) + ';';
+
+  const part1 = appJsContent.substring(0, startFallback);
+  const part2 = appJsContent.substring(startState);
+
+  appJsContent = part1 + newFallbackString + '\n\n' + newChangelogString + '\n\n' + part2;
 
   fs.writeFileSync(appJsPath, appJsContent, 'utf8');
-  console.log('Successfully updated app.js with new fallback data!');
-  if (hasErrors) {
-    console.log('Finished with some errors. The sections with errors kept their old data.');
-  }
+  console.log(`Successfully updated! Added ${newUpdates.length} changes to changelog.`);
+  if (hasErrors) console.log('Finished with some errors. The sections with errors kept their old data.');
 }
 
 main();
