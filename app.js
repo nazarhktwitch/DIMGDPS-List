@@ -95,19 +95,19 @@ const FALLBACK_DATA = {
       "Points": "70"
     },
     {
-      "Level": "Despair",
+      "Level": "Vantus Processing",
       "Top": "10",
-      "Author": "pro100nubickl , soulq1337",
-      "Verifer": "pro100nubickl",
+      "Author": "techopro9 , NazarHK , AngryBanana1212",
+      "Verifer": "AngryBanana1212",
       "Level Difficulty": "Easy Extreme Demon",
       "Progresses": "No",
       "Points": "65"
     },
     {
-      "Level": "Vantus Processing",
+      "Level": "Despair",
       "Top": "11",
-      "Author": "techopro9 , NazarHK , AngryBanana1212",
-      "Verifer": "AngryBanana1212",
+      "Author": "pro100nubickl , soulq1337",
+      "Verifer": "pro100nubickl",
       "Level Difficulty": "Easy Extreme Demon",
       "Progresses": "No",
       "Points": "60"
@@ -477,16 +477,16 @@ const FALLBACK_DATA = {
       "Levels": "Sakupen Disco",
       "Upcoming Top": "Top 3-5",
       "Author": "techopro9",
-      "Verifer": "techopro9",
+      "Verifier": "techopro9",
       "Difficulty": "Hell Extreme Demon",
-      "Progress": "38%",
+      "Progress": "50%",
       "Status": "In progress"
     },
     {
       "Levels": "Silent Every End",
       "Upcoming Top": "Top 1",
       "Author": "pro100nubickl",
-      "Verifer": "pro100nubikcl",
+      "Verifier": "pro100nubikcl",
       "Difficulty": "Melted Extreme Demon",
       "Progress": "100%",
       "Status": "Paused"
@@ -495,7 +495,7 @@ const FALLBACK_DATA = {
       "Levels": "Every Start",
       "Upcoming Top": "Top 14-16",
       "Author": "techopro9",
-      "Verifer": "pro100nubickl",
+      "Verifier": "pro100nubickl",
       "Difficulty": "Hard Demon - Moderate Hard Demon",
       "Progress": "32%",
       "Status": "In progress"
@@ -504,7 +504,7 @@ const FALLBACK_DATA = {
       "Levels": "Every End",
       "Upcoming Top": "Top 4-5",
       "Author": "techopro9, ?????",
-      "Verifer": "pro100nubickl",
+      "Verifier": "pro100nubickl",
       "Difficulty": "Brutal Extreme Demon",
       "Progress": "0%",
       "Status": "Not start"
@@ -513,7 +513,7 @@ const FALLBACK_DATA = {
       "Levels": "Pig Buff Base",
       "Upcoming Top": "Top 1",
       "Author": "AngryBanana1212",
-      "Verifer": "AngryBanana1212",
+      "Verifier": "AngryBanana1212",
       "Difficulty": "Solid Extreme Demon",
       "Progress": "100%",
       "Status": "Paused"
@@ -522,7 +522,7 @@ const FALLBACK_DATA = {
       "Levels": "Loneliness",
       "Upcoming Top": "Top 1",
       "Author": "techopro9",
-      "Verifer": "????",
+      "Verifier": "????",
       "Difficulty": "Frozen Extreme Demon",
       "Progress": "8%",
       "Status": "In Progress"
@@ -531,16 +531,16 @@ const FALLBACK_DATA = {
       "Levels": "Asankhyeya",
       "Upcoming Top": "Top 4",
       "Author": "techopro9",
-      "Verifer": "techopro9",
+      "Verifier": "techopro9",
       "Difficulty": "Hell Extreme Demon",
-      "Progress": "49%",
-      "Status": "In Progress"
+      "Progress": "100%",
+      "Status": "Paused"
     },
     {
       "Levels": "Swinopowal",
       "Upcoming Top": "Top 3-6",
       "Author": "AngryBanana1212",
-      "Verifer": "AngryBanana1212",
+      "Verifier": "AngryBanana1212",
       "Difficulty": "Hell Extreme Demon - Bizarre Extreme Demon",
       "Progress": "100%",
       "Status": "In Progress"
@@ -549,7 +549,7 @@ const FALLBACK_DATA = {
       "Levels": "Disconnection",
       "Upcoming Top": "?",
       "Author": "NazarHK",
-      "Verifer": "Techopro9",
+      "Verifier": "Techopro9",
       "Difficulty": "Insane/Extreme Demon",
       "Progress": "20%",
       "Status": "In Progress"
@@ -558,7 +558,7 @@ const FALLBACK_DATA = {
       "Levels": "Quantum Terminal",
       "Upcoming Top": "?",
       "Author": "NazarHK",
-      "Verifer": "AngryBanana1212",
+      "Verifier": "AngryBanana1212",
       "Difficulty": "Insane Demon",
       "Progress": "75%",
       "Status": "In Progress"
@@ -595,26 +595,49 @@ const FALLBACK_DATA = {
       "Name": "Tunnel of Hell",
       "Top": "1",
       "Author": "DimStream",
-      "Verifer": "AngryBanana1212",
+      "Verifier": "AngryBanana1212",
       "CPS": "5-7",
       "FPS": "Any",
       "Challenge point": "1000",
-      "Challenge point Record": "500"
+      "Challenge point Record": "500",
+      "Records": "No"
     },
     {
       "Name": "i gonna give you up",
       "Top": "2",
       "Author": "techopro9",
-      "Verifer": "techopro9",
+      "Verifier": "techopro9",
       "CPS": "5-6",
       "FPS": "Any",
       "Challenge point": "950",
-      "Challenge point Record": "-"
+      "Challenge point Record": "-",
+      "Records": "No"
     }
   ]
 };
 
-const CHANGELOG = [];
+const CHANGELOG = [
+  {
+    "type": "up",
+    "list": "Demonlist",
+    "name": "Vantus Processing",
+    "oldRank": 11,
+    "newRank": 10,
+    "above": "Pig After Pig",
+    "below": "Despair",
+    "date": "26 ИЮЛЯ, 2026"
+  },
+  {
+    "type": "down",
+    "list": "Demonlist",
+    "name": "Despair",
+    "oldRank": 10,
+    "newRank": 11,
+    "above": "Vantus Processing",
+    "below": "Femboy Circles",
+    "date": "26 ИЮЛЯ, 2026"
+  }
+];
 
 const STATE = {
   activeTab: 'home',
