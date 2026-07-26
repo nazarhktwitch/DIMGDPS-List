@@ -1894,7 +1894,7 @@ function renderUpdatesList() {
       iconHtml = '<div class="timeline-icon place"><div class="inner-dot"></div></div>';
       textHtml = '<span class="level-name">' + up.name + '</span> добавлен на #' + up.newRank + ' (' + up.list + ')' + aboveStr + belowStr;
     } else if (up.type === 'up') {
-      iconHtml = '<div class="timeline-icon move-up"><svg viewBox="0 0 24 24"><path d="M12 20V4M6 14L12 20L18 14" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></div>';
+      iconHtml = '<div class="timeline-icon move-up"><svg viewBox="0 0 24 24"><path d="M12 20V4M6 10L12 4L18 10" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></div>';
       textHtml = '<span class="level-name">' + up.name + '</span> #' + up.oldRank + ' &rarr; #' + up.newRank + ' (' + up.list + ')' + aboveStr + belowStr;
     } else if (up.type === 'down') {
       iconHtml = '<div class="timeline-icon move-down"><svg viewBox="0 0 24 24"><path d="M12 4V20M6 14L12 20L18 14" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></div>';
