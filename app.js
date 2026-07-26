@@ -1215,6 +1215,7 @@ function renderImpossibleList(list) {
     const rankNum = rawRank.replace(/\D/g, '');
     const levelName = getProp(item, ['levels', 'level', 'name']);
     const author = getProp(item, ['author', 'creator']);
+    const authorHTML = formatAuthor(author);
     const cps = getProp(item, ['cps']);
     const id = getProp(item, ['id']);
     const tps = getProp(item, ['использование tps bypass', 'tps bypass', 'tps']);
@@ -1227,7 +1228,7 @@ function renderImpossibleList(list) {
     row.innerHTML = `
       <div class="cell-rank">#${rankNum}</div>
       <div class="cell-name">${levelName}</div>
-      <div class="cell-author cell-sub">${author}</div>
+      <div class="cell-author cell-sub">${authorHTML}</div>
       <div class="cell-cps">${cpsBadge}</div>
       <div class="cell-id cell-sub">${id}</div>
       <div class="cell-tps"><span class="badge ${tpsClass}">${tps}</span></div>
@@ -1881,6 +1882,16 @@ function getCleanDifficultyName(diff) {
   // If the difficulty contains a dash (range like "Hard - Extreme"), show unknown
   if (diff.includes(' - ')) return 'Неизвестно';
   return diff.trim();
+}
+
+function formatAuthor(author) {
+  if (!author) return '';
+  const match = author.match(/^([^(]+)\(([^)]+)\)(.*)$/);
+  if (!match) return author;
+  const main = match[1].trim();
+  const alias = match[2].trim();
+  const rest = match[3].trim();
+  return `${main}${rest ? ' ' + rest : ''}<br><span style="font-size:0.72rem; color: var(--text-muted); opacity: 0.7;">${alias}</span>`;
 }
 
 function getLevelWarning(levelName) {
