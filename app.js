@@ -1300,7 +1300,7 @@ function renderFutureLevels(list) {
     else if (sLower.includes('готов') || sLower.includes('завершен')) statusColor = '#10b981';
 
     let progressHTML = `<span style="font-weight: 500;">${progress}</span>`;
-    const progMatch = progress.match(/(\\d+)%/);
+    const progMatch = progress.match(/(\d+)%/);
     if (progMatch) {
       const pVal = progMatch[1];
       progressHTML = `
@@ -1319,7 +1319,7 @@ function renderFutureLevels(list) {
       
       <div class="future-detail-item">
         <span class="future-detail-label" style="color: var(--text-secondary);">Сложность:</span>
-        <span class="badge ${diffClass}" style="padding: 2px 6px; font-size: 0.7rem;">${badgeName}</span>
+        <span class="badge ${diffClass}" style="padding: 2px 6px; font-size: 0.7rem; white-space: nowrap;">${badgeName}</span>
       </div>
       
       <div class="future-detail-item" style="margin-top: 8px;">
@@ -1803,6 +1803,24 @@ function parseProgresses(progressStr) {
   return results;
 }
 
+function getDifficultyClass(diff) {
+  if (!diff || diff.trim() === '' || diff.trim() === '-') return 'badge-diff-unknown';
+  const d = diff.toLowerCase();
+  if (d.includes('extreme')) return 'badge-diff-extreme';
+  if (d.includes('insane')) return 'badge-diff-insane';
+  if (d.includes('hard')) return 'badge-diff-hard';
+  if (d.includes('medium')) return 'badge-diff-medium';
+  if (d.includes('easy')) return 'badge-diff-easy';
+  return 'badge-diff-unknown';
+}
+
+function getCleanDifficultyName(diff) {
+  if (!diff || diff.trim() === '' || diff.trim() === '-') return 'Неизвестно';
+  // If the difficulty contains a dash (range like "Hard - Extreme"), show unknown
+  if (diff.includes(' - ')) return 'Неизвестно';
+  return diff.trim();
+}
+
 function getLevelWarning(levelName) {
   const key = (levelName || '').trim().toLowerCase();
   return LEVEL_WARNINGS[key] || null;
@@ -1818,20 +1836,6 @@ function getLevelWarningHTML(levelName) {
       <span>${message}</span>
     </div>
   `;
-}
-
-function getCleanDifficultyName(diffStr) {
-  return diffStr || 'Extreme Demon';
-}
-
-function getDifficultyClass(diffStr) {
-  const d = (diffStr || '').toLowerCase();
-  if (d.includes('extreme')) return 'badge-diff-extreme';
-  if (d.includes('insane')) return 'badge-diff-insane';
-  if (d.includes('hard')) return 'badge-diff-hard';
-  if (d.includes('medium')) return 'badge-diff-medium';
-  if (d.includes('easy') || d.includes('free')) return 'badge-diff-easy';
-  return 'badge-diff-extreme';
 }
 
 function getCpsBadge(cps) {
