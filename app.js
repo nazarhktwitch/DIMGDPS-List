@@ -1886,8 +1886,9 @@ function renderUpdatesList() {
     let iconHtml = '';
     let textHtml = '';
 
-    const aboveStr = up.above ? `, выше <span class="level-ref">${up.above}</span>` : '';
-    const belowStr = up.below ? `, ниже <span class="level-ref">${up.below}</span>` : '';
+    // This is somehow reversed so it works
+    const aboveStr = up.above ? `, ниже <span class="level-ref">${up.above}</span>` : '';
+    const belowStr = up.below ? `, выше <span class="level-ref">${up.below}</span>` : '';
 
     if (up.type === 'add') {
       iconHtml = '<div class="timeline-icon place"><div class="inner-dot"></div></div>';
