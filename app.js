@@ -1055,9 +1055,16 @@ function setupFilterListeners() {
   });
 
   const cllSearch = document.getElementById('cll-search');
+  const cllSort = document.getElementById('cll-sort');
   if (cllSearch) {
     cllSearch.addEventListener('input', (e) => {
       STATE.filters.cll.search = e.target.value;
+      renderList('cll');
+    });
+  }
+  if (cllSort) {
+    cllSort.addEventListener('change', (e) => {
+      STATE.filters.cll.sort = e.target.value;
       renderList('cll');
     });
   }
