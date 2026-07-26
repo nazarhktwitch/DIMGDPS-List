@@ -1,8 +1,8 @@
 const SHEET_URLS = {
-  demonlist: 'https://docs.google.com/spreadsheets/d/1fPdeRx__uwcYhE8Fo8-gxah-pcHwFU-G1kj71hrq7Dc/export?format=csv',
+  demonlist: 'https://docs.google.com/spreadsheets/d/1AAgQXerA78YgH-LzbJ4Eq2MUO9UnPl0R_aU8S--ZIQ4/export?format=csv',
   impossible: 'https://docs.google.com/spreadsheets/d/1R4Euoc5fVRknKKlJkyCjZbgCvOrqXPkM59ufcrYlBsQ/export?format=csv',
   slayers: 'https://docs.google.com/spreadsheets/d/1lHXJiXSz74-U1Z69bnjJa0oRfRw29MGh40Z2dIv6M6w/export?format=csv',
-  future: 'https://docs.google.com/spreadsheets/d/1WhgXIuoCEbBgLMfYW9qwYH0uQ7g0o053TyxawIH_SH4/export?format=csv',
+  future: 'https://docs.google.com/spreadsheets/d/1HGWdQNAh3-AloKXXra2Tbmi-5kdEq2dFa68TeJi_fpI/export?format=csv',
   silent: 'https://docs.google.com/spreadsheets/d/1bTxdDTD2k-Ady3s6ucG2ZmmSZ57QqPLukyE5d4rhmbw/export?format=csv',
   cll: 'https://docs.google.com/spreadsheets/d/1Vxb9HJdapphMRACNcUGHuvGTiY_vfyCq04ie_BX5bUU/export?format=csv'
 };
@@ -1613,7 +1613,7 @@ function renderHomeScreen() {
     const topCllSlayer = slayersCllCopy[0];
     const nameCll = getProp(topCllSlayer, ['slayers', 'slayer', 'player']);
     const cllPoints = getProp(topCllSlayer, ['challenge point', 'challenge points', 'cll points', 'challenge']) || '0';
-    
+
     if (parseFloat(cllPoints.replace(',', '.')) > 0) {
       document.getElementById('stat-top-slayer-cll').textContent = `${nameCll} (${cllPoints} pts)`;
     } else {
