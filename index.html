@@ -499,34 +499,46 @@
       </section>
 
       <section class="page-section" id="page-cll">
-        <div style="max-width: 900px; margin: 0 auto;">
+        <div class="list-layout">
+          <div class="list-main">
+            <div class="search-filter-bar">
+              <div class="search-wrapper" style="flex: 1;">
+                <svg class="search-icon" viewBox="0 0 24 24">
+                  <use href="#icon-search" />
+                </svg>
+                <input type="text" class="search-input" id="cll-search" placeholder="Поиск по названию уровня...">
+              </div>
+            </div>
 
-          <div class="search-filter-bar">
-            <div class="search-wrapper" style="flex: 1;">
-              <svg class="search-icon" viewBox="0 0 24 24">
-                <use href="#icon-search" />
+            <div class="leaderboard-container">
+              <div class="leaderboard-header grid-cll">
+                <div>Топ</div>
+                <div>Название</div>
+                <div>Автор</div>
+                <div>Верификатор</div>
+                <div>CPS</div>
+                <div>FPS</div>
+                <div>Очки</div>
+              </div>
+              <div class="leaderboard-list" id="cll-table">
+                <div class="skeleton-row"></div>
+                <div class="skeleton-row"></div>
+                <div class="skeleton-row"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="details-sidebar" id="cll-details-sidebar">
+            <div class="details-placeholder" id="cll-details-placeholder">
+              <svg viewBox="0 0 24 24">
+                <use href="#icon-info" />
               </svg>
-              <input type="text" class="search-input" id="cll-search" placeholder="Поиск по названию уровня...">
+              <p>Выберите уровень из списка для просмотра подробной информации</p>
+            </div>
+
+            <div id="cll-details-content" style="display: none;">
             </div>
           </div>
-
-          <div class="leaderboard-container">
-            <div class="leaderboard-header grid-cll">
-              <div>Топ</div>
-              <div>Название</div>
-              <div>Автор</div>
-              <div>Верификатор</div>
-              <div>CPS</div>
-              <div>FPS</div>
-              <div>Очки</div>
-            </div>
-            <div class="leaderboard-list" id="cll-table">
-              <div class="skeleton-row"></div>
-              <div class="skeleton-row"></div>
-              <div class="skeleton-row"></div>
-            </div>
-          </div>
-
         </div>
       </section>
 

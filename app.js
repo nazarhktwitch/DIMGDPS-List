@@ -1572,7 +1572,10 @@ function getDetailsHTML(tabName, item) {
         </div>
       </div>
       
-      <button class="btn btn-secondary" style="width: 100%;" onclick="navigateTo('rules')">Подать свой рекорд</button>
+      <a class="btn btn-secondary" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;" href="https://discord.gg/u4wjPv3ggH" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24"><use href="#icon-discord"/></svg>
+        Подать рекорд
+      </a>
     `;
 
   } else if (tabName === 'impossible') {
@@ -1624,6 +1627,68 @@ function getDetailsHTML(tabName, item) {
       <a class="btn btn-secondary" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;" href="https://discord.gg/u4wjPv3ggH" target="_blank">
         <svg width="16" height="16" viewBox="0 0 24 24"><use href="#icon-discord"/></svg>
         Обсудить в Discord
+      </a>
+    `;
+  } else if (tabName === 'cll') {
+    const rawRank = getProp(item, ['top', 'rank']);
+    const rankNum = rawRank ? String(rawRank).replace(/\D/g, '') : '';
+    const author = getProp(item, ['author', 'creator']);
+    const verifier = getProp(item, ['verifer', 'verifier']);
+    const cps = getProp(item, ['cps']);
+    const fps = getProp(item, ['fps']);
+    const points = getProp(item, ['challenge point']);
+    const recordPoints = getProp(item, ['challenge point record']);
+    const record = getProp(item, ['records', 'рекорд']);
+
+    return `
+      <div class="detail-title-wrapper">
+        <div class="detail-rank">CLL Топ #${rankNum}</div>
+        <h2 class="detail-title">${levelName}</h2>
+      </div>
+      
+      <div class="detail-meta-list">
+        <div class="detail-meta-item">
+          <span class="detail-meta-label">Создатель</span>
+          <span class="detail-meta-val">${author}</span>
+        </div>
+        <div class="detail-meta-item">
+          <span class="detail-meta-label">Верификатор</span>
+          <span class="detail-meta-val">${verifier}</span>
+        </div>
+        <div class="detail-meta-item">
+          <span class="detail-meta-label">CPS</span>
+          <span class="detail-meta-val" style="color: #a855f7; font-weight: 700;">${cps}</span>
+        </div>
+        <div class="detail-meta-item">
+          <span class="detail-meta-label">FPS</span>
+          <span class="detail-meta-val">${fps}</span>
+        </div>
+        <div class="detail-meta-item">
+          <span class="detail-meta-label">Очки</span>
+          <span class="detail-meta-val" style="color: var(--accent-cyan); font-weight: 700;">${points} pts</span>
+        </div>
+        ${recordPoints && recordPoints !== '-' ? `
+        <div class="detail-meta-item">
+          <span class="detail-meta-label">Очки (рекорд)</span>
+          <span class="detail-meta-val" style="color: var(--color-silver); font-weight: 700;">${recordPoints} pts</span>
+        </div>
+        ` : ''}
+      </div>
+      
+      <div class="detail-progress-section">
+        <div class="progress-section-title">Лучший рекорд</div>
+        <div class="progress-list">
+          <div class="progress-item" style="border: none; padding: 4px 0;">
+            <span class="progress-player" style="font-weight: 500; color: var(--accent-cyan);">
+              ${record && record !== '-' && record.toLowerCase() !== 'no' && record !== '' ? record : '<span style="color: var(--text-muted);">Нет рекордов</span>'}
+            </span>
+          </div>
+        </div>
+      </div>
+      
+      <a class="btn btn-secondary" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;" href="https://discord.gg/vBkthNt2N" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24"><use href="#icon-discord"/></svg>
+        Подать рекорд
       </a>
     `;
   }
@@ -1963,8 +2028,9 @@ function renderCllList(list) {
     const fps = getProp(item, ['fps']);
     const points = getProp(item, ['challenge point']);
 
+    const isActive = STATE.selectedLevel.cll && getProp(STATE.selectedLevel.cll, ['name']) === levelName;
     const row = document.createElement('div');
-    row.className = 'leaderboard-row grid-cll';
+    row.className = `leaderboard-row grid-cll ${isActive ? 'active' : ''}`;
     row.innerHTML = `
       <div class="cell-rank">#${rank}</div>
       <div class="cell-name">${levelName}</div>
@@ -1974,6 +2040,12 @@ function renderCllList(list) {
       <div class="cell-sub">${fps}</div>
       <div class="cell-points" style="font-weight: 600; color: var(--accent-cyan);">${points}</div>
     `;
+
+    row.addEventListener('click', () => {
+      selectLevel('cll', item);
+      document.querySelectorAll('#cll-table .leaderboard-row').forEach(r => r.classList.remove('active'));
+      row.classList.add('active');
+    });
 
     container.appendChild(row);
   });
