@@ -938,16 +938,6 @@ textarea {
   border: 1px solid transparent;
 }
 
-.cell-rank-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4px 10px;
-  border-radius: 6px;
-  font-size: 0.8rem;
-  font-weight: 700;
-}
-
 .cell-rank-gold {
   display: inline-flex;
   align-items: center;
@@ -1319,28 +1309,6 @@ textarea {
   }
 }
 
-.error-fallback {
-  text-align: center;
-  padding: 50px 20px;
-  background: var(--bg-card);
-  border: 1px solid rgba(239, 68, 68, 0.2);
-  border-radius: 16px;
-}
-
-.error-title {
-  font-family: var(--font-title);
-  font-size: 1.2rem;
-  color: #ef4444;
-  margin-bottom: 8px;
-  font-weight: 700;
-}
-
-.error-desc {
-  color: var(--text-secondary);
-  font-size: 0.9rem;
-  margin-bottom: 20px;
-}
-
 .rules-layout {
   display: grid;
   grid-template-columns: 3fr 1fr;
@@ -1409,43 +1377,6 @@ textarea {
   height: 6px;
   border-radius: 50%;
   background: var(--accent-cyan);
-}
-
-.submit-record-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  margin-top: 20px;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.form-group label {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--text-secondary);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.form-input {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  padding: 10px 14px;
-  border-radius: 8px;
-  color: var(--text-primary);
-  font-size: 0.9rem;
-  transition: all 0.2s ease;
-}
-
-.form-input:focus {
-  outline: none;
-  border-color: var(--border-active);
-  box-shadow: var(--glow-purple);
 }
 
 .modal-overlay {

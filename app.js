@@ -659,7 +659,8 @@ const STATE = {
   },
   selectedLevel: {
     demonlist: null,
-    impossible: null
+    impossible: null,
+    cll: null
   },
   loading: {
     demonlist: true,
@@ -688,6 +689,18 @@ document.addEventListener('DOMContentLoaded', () => {
   setupSupport();
   loadAllData();
   window.addEventListener('hashchange', handleRouting);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      const detailsModal = document.getElementById('details-modal');
+      if (detailsModal && detailsModal.classList.contains('active')) closeModal();
+      const supportModal = document.getElementById('support-modal');
+      if (supportModal && supportModal.classList.contains('active')) {
+        supportModal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+  });
 });
 
 function setupSupport() {
@@ -1138,10 +1151,10 @@ function renderDemonlist(list) {
       const nameB = getProp(b, ['level', 'name']).toLowerCase();
       return nameA.localeCompare(nameB, 'ru');
     }
-    if (filters.sort === 'points-desc') {
+    if (filters.sort === 'points-asc') {
       const ptsA = parseFloat(getProp(a, ['points', 'pts'])) || 0;
       const ptsB = parseFloat(getProp(b, ['points', 'pts'])) || 0;
-      return ptsB - ptsA;
+      return ptsA - ptsB;
     }
     return rankA - rankB;
   });
@@ -1207,6 +1220,9 @@ function renderImpossibleList(list) {
   if (filters.cps && filters.cps !== 'all') {
     filtered = filtered.filter(item => {
       const c = getProp(item, ['cps']).toLowerCase();
+      if (filters.cps === 'High') {
+        return c.includes('high') && !c.includes('ultra');
+      }
       return c.includes(filters.cps.toLowerCase());
     });
   }
@@ -1383,7 +1399,13 @@ function renderFutureLevels(list) {
     }
 
     const diffClass = getDifficultyClass(diff);
-    const badgeName = getCleanDifficultyName(diff);
+    let badgeName = getCleanDifficultyName(diff);
+    let diffTooltip = '';
+
+    if (badgeName.includes(' - ')) {
+      diffTooltip = ` title="Скорее всего: ${badgeName}" style="cursor: help;"`;
+      badgeName = 'Неизвестно';
+    }
 
     let statusColor = 'var(--text-primary)';
     const sLower = status.toLowerCase();
@@ -1412,7 +1434,7 @@ function renderFutureLevels(list) {
       
       <div class="future-detail-item">
         <span class="future-detail-label" style="color: var(--text-secondary);">Сложность:</span>
-        <span class="badge ${diffClass}" style="padding: 2px 6px; font-size: 0.7rem; white-space: nowrap;">${badgeName}</span>
+        <span class="badge ${diffClass}" style="padding: 2px 6px; font-size: 0.7rem; white-space: nowrap;"${diffTooltip}>${badgeName}</span>
       </div>
       
       <div class="future-detail-item" style="margin-top: 8px;">
@@ -1975,8 +1997,6 @@ function getDifficultyClass(diff) {
 
 function getCleanDifficultyName(diff) {
   if (!diff || diff.trim() === '' || diff.trim() === '-') return 'Неизвестно';
-  // If the difficulty contains a dash (range like "Hard - Extreme"), show unknown
-  if (diff.includes(' - ')) return 'Неизвестно';
   return diff.trim();
 }
 
@@ -2040,6 +2060,16 @@ function renderCllList(list) {
       const nameA = getProp(a, ['name']).toLowerCase();
       const nameB = getProp(b, ['name']).toLowerCase();
       return nameA.localeCompare(nameB, 'ru');
+    }
+    if (filters.sort === 'points-desc') {
+      const ptsA = parseFloat((getProp(a, ['challenge point']) || '0').replace(',', '.')) || 0;
+      const ptsB = parseFloat((getProp(b, ['challenge point']) || '0').replace(',', '.')) || 0;
+      return ptsB - ptsA;
+    }
+    if (filters.sort === 'points-asc') {
+      const ptsA = parseFloat((getProp(a, ['challenge point']) || '0').replace(',', '.')) || 0;
+      const ptsB = parseFloat((getProp(b, ['challenge point']) || '0').replace(',', '.')) || 0;
+      return ptsA - ptsB;
     }
     return rankA - rankB;
   });
