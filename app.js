@@ -4,7 +4,7 @@ const SHEET_URLS = {
   slayers: 'https://docs.google.com/spreadsheets/d/1lHXJiXSz74-U1Z69bnjJa0oRfRw29MGh40Z2dIv6M6w/export?format=csv',
   future: 'https://docs.google.com/spreadsheets/d/1HGWdQNAh3-AloKXXra2Tbmi-5kdEq2dFa68TeJi_fpI/export?format=csv',
   silent: 'https://docs.google.com/spreadsheets/d/1bTxdDTD2k-Ady3s6ucG2ZmmSZ57QqPLukyE5d4rhmbw/export?format=csv',
-  cll: 'https://docs.google.com/spreadsheets/d/1Vxb9HJdapphMRACNcUGHuvGTiY_vfyCq04ie_BX5bUU/export?format=csv'
+  cll: 'https://docs.google.com/spreadsheets/d/1J9I4MSbHQPGgfIyQC7VKOs94pX27hzvhAV2U3bVbEw0/export?format=csv'
 };
 
 const LEVEL_WARNINGS = {
@@ -1698,26 +1698,26 @@ function renderUpdatesList() {
   listsToTrack.forEach(listInfo => {
     const currentList = STATE.data[listInfo.key] || [];
     const fallbackList = FALLBACK_DATA[listInfo.key] || [];
-    
+
     const fallbackMap = new Map();
     fallbackList.forEach((item, idx) => {
       const name = getProp(item, listInfo.nameField);
       if (name) fallbackMap.set(name.toLowerCase().trim(), { rank: idx + 1, item });
     });
-    
+
     currentList.forEach((item, idx) => {
       const name = getProp(item, listInfo.nameField);
       if (!name) return;
-      
+
       const currentRank = idx + 1;
       const oldData = fallbackMap.get(name.toLowerCase().trim());
-      
+
       const getAboveBelow = (index) => {
         const above = index > 0 ? getProp(currentList[index - 1], listInfo.nameField) : null;
         const below = index < currentList.length - 1 ? getProp(currentList[index + 1], listInfo.nameField) : null;
         return { above, below };
       };
-      
+
       if (!oldData) {
         liveUpdates.push({ type: 'add', list: listInfo.name, name, newRank: currentRank, date: 'ТЕКУЩИЕ ИЗМЕНЕНИЯ', ...getAboveBelow(idx) });
       } else {
@@ -1748,19 +1748,19 @@ function renderUpdatesList() {
 
   let html = '';
   let currentDate = null;
-  
+
   allUpdates.forEach(up => {
     if (up.date !== currentDate) {
       currentDate = up.date;
       html += '<div class="timeline-date-divider"><span>' + currentDate + '</span></div>';
     }
-    
+
     let iconHtml = '';
     let textHtml = '';
-    
+
     const aboveStr = up.above ? `, выше <span class="level-ref">${up.above}</span>` : '';
     const belowStr = up.below ? `, ниже <span class="level-ref">${up.below}</span>` : '';
-    
+
     if (up.type === 'add') {
       iconHtml = '<div class="timeline-icon place"><div class="inner-dot"></div></div>';
       textHtml = '<span class="level-name">' + up.name + '</span> добавлен на #' + up.newRank + ' (' + up.list + ')' + aboveStr + belowStr;
@@ -1771,7 +1771,7 @@ function renderUpdatesList() {
       iconHtml = '<div class="timeline-icon move-down"><svg viewBox="0 0 24 24"><path d="M12 4V20M6 14L12 20L18 14" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></div>';
       textHtml = '<span class="level-name">' + up.name + '</span> #' + up.oldRank + ' &rarr; #' + up.newRank + ' (' + up.list + ')' + aboveStr + belowStr;
     }
-    
+
     html += `
       <div class="timeline-item">
         ${iconHtml}
@@ -1779,7 +1779,7 @@ function renderUpdatesList() {
       </div>
     `;
   });
-  
+
   updatesContainer.innerHTML = html;
 }
 
