@@ -42,6 +42,11 @@
       <path d="M4 14h4v-4H4v4zm0 5h4v-4H4v4zM4 9h4V5H4v4zm5 5h12v-4H9v4zm0 5h12v-4H9v4zM9 5v4h12V5H9z"
         fill="currentColor" />
     </symbol>
+    <symbol id="icon-support" viewBox="0 0 24 24">
+      <path
+        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"
+        fill="currentColor" />
+    </symbol>
     <symbol id="icon-trophy" viewBox="0 0 24 24">
       <path
         d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v3c0 2.44 1.72 4.48 4 4.81V17c0 .55.45 1 1 1h4v2H9c-.55 0-1 .45-1 1s.45 1 1 1h6c.55 0 1-.45 1-1s-.45-1-1-1h-3v-2h4c.55 0 1-.45 1-1v-2.19c2.28-.33 4-2.37 4-4.81V7c0-1.1-.9-2-2-2zM5 10V7h2v3H5zm14 0h-2V7h2v3z"
@@ -105,6 +110,12 @@
           <a class="nav-link" data-target="silent">Silent List</a>
           <a class="nav-link" data-target="cll">Challange List</a>
           <a class="nav-link" data-target="rules">Правила</a>
+          <button class="support-nav-btn" id="support-nav-btn" aria-label="Обратная связь">
+            <svg width="16" height="16" viewBox="0 0 24 24">
+              <use href="#icon-support" />
+            </svg>
+            Поддержка
+          </button>
           <a class="discord-btn" href="https://discord.gg/vBkthNt2N" target="_blank">
             <svg width="16" height="16" viewBox="0 0 24 24">
               <use href="#icon-discord" />
@@ -252,8 +263,12 @@
               <div class="updates-timeline" id="home-updates-list">
                 <div class="timeline-date-divider"><span>СИНХРОНИЗАЦИЯ</span></div>
                 <div class="timeline-item" style="opacity: 0.7;">
-                  <div class="timeline-icon place" style="border-color: rgba(255,255,255,0.1); background: transparent;">
-                    <svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                  <div class="timeline-icon place"
+                    style="border-color: rgba(255,255,255,0.1); background: transparent;">
+                    <svg viewBox="0 0 24 24">
+                      <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                        stroke-linejoin="round" fill="none" />
+                    </svg>
                   </div>
                   <div class="timeline-content">Синхронизация с базой данных...</div>
                 </div>
@@ -663,6 +678,83 @@
         </div>
       </div>
     </div>
+
+    <div class="modal-overlay" id="support-modal">
+      <div class="modal-window" style="max-width: 480px;">
+        <button class="modal-close" id="support-modal-close" aria-label="Закрыть">&times;</button>
+        <div style="padding: 8px 0 0;">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px;">
+            <div
+              style="width: 36px; height: 36px; border-radius: 10px; background: rgba(13,148,136,0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <svg width="20" height="20" viewBox="0 0 24 24" style="fill: var(--accent-cyan);">
+                <use href="#icon-support" />
+              </svg>
+            </div>
+            <div>
+              <h2 style="font-family: var(--font-title); font-size: 1.3rem; font-weight: 700; margin: 0;">Обратная связь
+              </h2>
+              <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 2px 0 0;">Сообщите об ошибке или
+                задайте вопрос</p>
+            </div>
+          </div>
+
+          <div id="support-success" style="display:none; text-align:center; padding: 30px 0;">
+            <div style="font-size: 2.5rem; margin-bottom: 12px;">✅</div>
+            <div style="font-family: var(--font-title); font-size: 1.1rem; font-weight: 700; margin-bottom: 6px;">
+              Сообщение отправлено!</div>
+            <div style="color: var(--text-secondary); font-size: 0.88rem;">Мы постараемся ответить как можно скорее.
+            </div>
+          </div>
+
+          <form id="support-form" action="https://formspree.io/f/mlgqoqyo" method="POST" style="margin-top: 20px;">
+            <div style="margin-bottom: 14px;">
+              <label
+                style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;">Ваш
+                никнейм</label>
+              <input type="text" name="name" required placeholder="Ваш никнейм в игре" id="support-name"
+                style="width: 100%; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 8px; padding: 10px 12px; color: var(--text-primary); font-size: 0.9rem; font-family: inherit; box-sizing: border-box; transition: border-color 0.2s;" />
+            </div>
+            <div style="margin-bottom: 14px;">
+              <label
+                style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;">Email
+                для ответа</label>
+              <input type="email" name="email" placeholder="Необязательно" id="support-email"
+                style="width: 100%; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 8px; padding: 10px 12px; color: var(--text-primary); font-size: 0.9rem; font-family: inherit; box-sizing: border-box; transition: border-color 0.2s;" />
+            </div>
+            <div style="margin-bottom: 14px;">
+              <label
+                style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;">Тип
+                обращения</label>
+              <select name="type" id="support-type"
+                style="width: 100%; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 8px; padding: 10px 12px; color: var(--text-primary); font-size: 0.9rem; font-family: inherit; box-sizing: border-box; appearance: none; cursor: pointer;">
+                <option value="bug">🐞 Ошибка на сайте</option>
+                <option value="wrong-data">📊 Неверные данные в списке</option>
+                <option value="record">🏆 Вопрос по рекорду</option>
+                <option value="suggest">💡 Предложение</option>
+                <option value="other">✉️ Другое</option>
+              </select>
+            </div>
+            <div style="margin-bottom: 20px;">
+              <label
+                style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;">Сообщение</label>
+              <textarea name="message" required rows="4" placeholder="Опишите проблему или вопрос подробно..."
+                id="support-message"
+                style="width: 100%; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 8px; padding: 10px 12px; color: var(--text-primary); font-size: 0.9rem; font-family: inherit; box-sizing: border-box; resize: vertical; min-height: 100px; transition: border-color 0.2s;"></textarea>
+            </div>
+            <button type="submit" id="support-submit"
+              style="width: 100%; padding: 12px; background: var(--accent-gradient); color: white; border: none; border-radius: 8px; font-size: 0.95rem; font-weight: 700; font-family: inherit; cursor: pointer; transition: filter 0.2s;">
+              Отправить сообщение
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <button class="support-fab" id="support-fab" aria-label="Поддержка">
+      <svg width="22" height="22" viewBox="0 0 24 24">
+        <use href="#icon-support" />
+      </svg>
+    </button>
 
     <footer class="footer">
       <div class="footer-inner">

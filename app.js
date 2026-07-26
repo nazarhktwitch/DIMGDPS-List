@@ -662,9 +662,71 @@ document.addEventListener('DOMContentLoaded', () => {
   setupNavigation();
   setupFilterListeners();
   setupMobileModal();
+  setupSupport();
   loadAllData();
   window.addEventListener('hashchange', handleRouting);
 });
+
+function setupSupport() {
+  const modal = document.getElementById('support-modal');
+  const form = document.getElementById('support-form');
+  const successDiv = document.getElementById('support-success');
+  const submitBtn = document.getElementById('support-submit');
+
+  function openModal() {
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('support-nav-btn').addEventListener('click', openModal);
+  document.getElementById('support-fab').addEventListener('click', openModal);
+  document.getElementById('support-modal-close').addEventListener('click', closeModal);
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    submitBtn.textContent = 'Отправка...';
+    submitBtn.disabled = true;
+
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        form.style.display = 'none';
+        successDiv.style.display = 'block';
+        setTimeout(closeModal, 3000);
+        // Reset for next time
+        setTimeout(() => {
+          form.reset();
+          form.style.display = 'block';
+          successDiv.style.display = 'none';
+          submitBtn.textContent = 'Отправить сообщение';
+          submitBtn.disabled = false;
+        }, 3200);
+      } else {
+        throw new Error('Server error');
+      }
+    } catch (err) {
+      submitBtn.textContent = 'Ошибка. Попробуйте ещё раз';
+      submitBtn.disabled = false;
+      setTimeout(() => {
+        submitBtn.textContent = 'Отправить сообщение';
+      }, 3000);
+    }
+  });
+}
 
 function handleRouting() {
   const hash = window.location.hash || '#home';

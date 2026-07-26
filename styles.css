@@ -117,13 +117,15 @@ textarea {
   gap: 10px;
   font-family: var(--font-title);
   font-weight: 800;
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   letter-spacing: 1px;
   background: var(--accent-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   cursor: pointer;
   transition: transform 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .logo:hover {
@@ -134,6 +136,8 @@ textarea {
   display: flex;
   align-items: center;
   gap: 8px;
+  flex-wrap: nowrap;
+  white-space: nowrap;
 }
 
 .nav-link {
@@ -145,6 +149,7 @@ textarea {
   transition: all 0.2s ease;
   cursor: pointer;
   border: 1px solid transparent;
+  white-space: nowrap;
 }
 
 .nav-link:hover {
@@ -183,6 +188,62 @@ textarea {
 
 .discord-btn:hover {
   background: #4752c4;
+}
+
+.support-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  background: rgba(13, 148, 136, 0.1);
+  color: var(--accent-cyan);
+  border: 1px solid rgba(13, 148, 136, 0.25);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+.support-nav-btn svg {
+  fill: var(--accent-cyan);
+  flex-shrink: 0;
+}
+
+.support-nav-btn:hover {
+  background: rgba(13, 148, 136, 0.2);
+  border-color: rgba(13, 148, 136, 0.5);
+}
+
+.support-fab {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--accent-gradient);
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(13, 148, 136, 0.4);
+  transition: all 0.2s ease;
+  z-index: 900;
+}
+
+.support-fab svg {
+  fill: white;
+}
+
+.support-fab:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 28px rgba(13, 148, 136, 0.6);
 }
 
 .menu-toggle {
