@@ -389,6 +389,20 @@ textarea {
   gap: 22px;
 }
 
+.home-sidebar {
+  display: flex;
+  flex-direction: column;
+}
+
+.home-main {
+  display: flex;
+  flex-direction: column;
+}
+
+.home-main > .section-card:last-child {
+  margin-bottom: 0;
+}
+
 .section-card {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
@@ -511,7 +525,9 @@ textarea {
 .recent-changes-card {
   display: flex;
   flex-direction: column;
-  max-height: 480px;
+  flex: 1;
+  margin-bottom: 0;
+  min-height: 0;
 }
 
 .recent-changes-card .section-title {
