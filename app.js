@@ -1151,11 +1151,6 @@ function renderDemonlist(list) {
       const nameB = getProp(b, ['level', 'name']).toLowerCase();
       return nameA.localeCompare(nameB, 'ru');
     }
-    if (filters.sort === 'points-asc') {
-      const ptsA = parseFloat(getProp(a, ['points', 'pts'])) || 0;
-      const ptsB = parseFloat(getProp(b, ['points', 'pts'])) || 0;
-      return ptsA - ptsB;
-    }
     return rankA - rankB;
   });
 
@@ -1402,7 +1397,7 @@ function renderFutureLevels(list) {
     let badgeName = getCleanDifficultyName(diff);
     let diffTooltip = '';
 
-    if (badgeName.includes(' - ')) {
+    if (badgeName.includes(' - ') || badgeName.includes('/')) {
       diffTooltip = ` title="Скорее всего: ${badgeName}" style="cursor: help;"`;
       badgeName = 'Неизвестно';
     }
@@ -2060,16 +2055,6 @@ function renderCllList(list) {
       const nameA = getProp(a, ['name']).toLowerCase();
       const nameB = getProp(b, ['name']).toLowerCase();
       return nameA.localeCompare(nameB, 'ru');
-    }
-    if (filters.sort === 'points-desc') {
-      const ptsA = parseFloat((getProp(a, ['challenge point']) || '0').replace(',', '.')) || 0;
-      const ptsB = parseFloat((getProp(b, ['challenge point']) || '0').replace(',', '.')) || 0;
-      return ptsB - ptsA;
-    }
-    if (filters.sort === 'points-asc') {
-      const ptsA = parseFloat((getProp(a, ['challenge point']) || '0').replace(',', '.')) || 0;
-      const ptsB = parseFloat((getProp(b, ['challenge point']) || '0').replace(',', '.')) || 0;
-      return ptsA - ptsB;
     }
     return rankA - rankB;
   });
