@@ -1211,7 +1211,7 @@ function renderSlayers(list) {
     const points = getProp(item, ['points', 'очки']) || '0';
     const cllPoints = getProp(item, ['challenge point', 'challenge points', 'cll points', 'challenge']) || '0';
 
-    let rankClass = '';
+    let rankClass = 'cell-rank-normal';
     if (rank === 1) rankClass = 'cell-rank-gold';
     else if (rank === 2) rankClass = 'cell-rank-silver';
     else if (rank === 3) rankClass = 'cell-rank-bronze';

@@ -850,6 +850,16 @@ textarea {
   color: var(--color-bronze);
 }
 
+.cell-rank-normal {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 800;
+  border: 1px solid transparent;
+}
+
 .cell-rank-badge {
   display: inline-flex;
   align-items: center;
