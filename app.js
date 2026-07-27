@@ -821,7 +821,7 @@ function handleDeepLink(tabName, levelName) {
   if (!list) return;
 
   const levelObj = list.find(item => {
-    const name = (item.Level || item.Levels || '').trim().toLowerCase();
+    const name = getProp(item, ['level', 'levels', 'name', 'slayers', 'slayer', 'player']).trim().toLowerCase();
     return name === levelName.trim().toLowerCase();
   });
 
@@ -1527,6 +1527,30 @@ function selectLevel(tabName, item, updateUrl = true) {
   } else {
     updateSidebar(tabName, item);
   }
+
+  // Highlight the active row if opened via url parameter
+  const tableIds = {
+    demonlist: 'demonlist-table',
+    impossible: 'impossible-table',
+    slayers: 'slayers-table',
+    silent: 'silent-table',
+    cll: 'cll-table',
+    future: null
+  };
+  const tableId = tableIds[tabName];
+  if (tableId) {
+    const table = document.getElementById(tableId);
+    if (table) {
+      table.querySelectorAll('.leaderboard-row').forEach(row => {
+        row.classList.remove('active');
+        const rowName = row.querySelector('.cell-name');
+        if (rowName && rowName.textContent.trim().toLowerCase() === levelName.trim().toLowerCase()) {
+          row.classList.add('active');
+          row.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+        }
+      });
+    }
+  }
 }
 
 function updateSidebar(tabName, item) {
@@ -2081,9 +2105,9 @@ function renderCllList(list) {
       <div class="cell-rank">#${rank}</div>
       <div class="cell-name">${levelName}</div>
       <div class="cell-author cell-sub">${author}</div>
-      <div class="cell-author cell-sub">${verifier}</div>
-      <div class="cell-points" style="color: #a855f7;">${cps}</div>
-      <div class="cell-sub">${fps}</div>
+      <div class="cell-verifier cell-sub">${verifier}</div>
+      <div class="cell-cps" style="color: #a855f7;">${cps}</div>
+      <div class="cell-fps cell-sub">${fps}</div>
       <div class="cell-points" style="font-weight: 600; color: var(--accent-cyan);">${points}</div>
     `;
 

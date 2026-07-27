@@ -1389,6 +1389,9 @@ textarea {
   align-items: center;
   justify-content: center;
   padding: 20px;
+  height: 100dvh;
+  width: 100vw;
+  box-sizing: border-box;
   animation: fadeInModal 0.2s ease forwards;
 }
 
@@ -1404,6 +1407,9 @@ textarea {
   max-width: 500px;
   padding: 30px;
   position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+  margin: auto;
   animation: scaleInModal 0.2s ease forwards;
 }
 
@@ -1422,6 +1428,7 @@ textarea {
   align-items: center;
   justify-content: center;
   border-radius: 50%;
+  z-index: 10;
   transition: background 0.2s ease;
 }
 
@@ -1478,6 +1485,8 @@ textarea {
 
 .footer-links {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 20px;
   font-size: 0.85rem;
   color: var(--text-secondary);
@@ -1505,56 +1514,6 @@ textarea {
   }
 
   .rules-layout {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 768px) {
-  .header {
-    justify-content: space-between;
-  }
-
-  .nav {
-    display: none;
-    position: fixed;
-    top: var(--header-height);
-    left: 0;
-    right: 0;
-    background: var(--bg-secondary);
-    border-bottom: 1px solid var(--border-color);
-    flex-direction: column;
-    padding: 20px;
-    gap: 10px;
-  }
-
-  .nav.active {
-    display: flex;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
-
-  .nav .discord-btn {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-  }
-
-  .hero-section {
-    padding: 40px 20px;
-    min-height: auto;
-  }
-
-  .hero-title {
-    font-size: 2.2rem;
-  }
-
-  .stats-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .top3-showcase {
     grid-template-columns: 1fr;
   }
 
@@ -1586,7 +1545,7 @@ textarea {
   }
 
   .grid-slayers {
-    grid-template-columns: 50px 1fr 60px;
+    grid-template-columns: 40px 1fr 50px 50px;
   }
 
   .grid-silent {
@@ -1600,9 +1559,75 @@ textarea {
     display: none;
   }
 
+  .grid-cll {
+    grid-template-columns: 50px 1fr 80px;
+  }
+
+  .grid-cll .cell-author,
+  .grid-cll .cell-verifier,
+  .grid-cll .cell-cps,
+  .grid-cll .cell-fps {
+    display: none;
+  }
+
+  .modal-window {
+    padding: 20px;
+  }
+
   .footer-inner {
     flex-direction: column;
     text-align: center;
     align-items: center;
+  }
+
+  .hero-section {
+    padding: 40px 20px;
+    min-height: auto;
+  }
+
+  .hero-title {
+    font-size: 2.2rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .top3-showcase {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 1280px) {
+  .header {
+    justify-content: space-between;
+  }
+
+  .nav {
+    display: none;
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    right: 0;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+    flex-direction: column;
+    padding: 20px;
+    gap: 10px;
+    z-index: 999;
+  }
+
+  .nav.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav .discord-btn {
+    display: flex;
+    justify-content: center;
+    width: 100%;
   }
 }
