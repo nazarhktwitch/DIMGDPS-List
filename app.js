@@ -600,6 +600,7 @@ const FALLBACK_DATA = {
       "FPS": "Any",
       "Challenge point": "1000",
       "Challenge point Record": "500",
+      "Challenge point Record 1": ">60%",
       "Records": "No"
     },
     {
@@ -611,6 +612,7 @@ const FALLBACK_DATA = {
       "FPS": "Any",
       "Challenge point": "950",
       "Challenge point Record": "-",
+      "Challenge point Record 1": "-",
       "Records": "No"
     }
   ]
@@ -971,11 +973,18 @@ function parseCSV(text) {
     if (values.length === 1 && values[0].trim() === '') continue;
 
     const obj = {};
+    let prevNonEmptyHeader = '';
+    let subColCount = 0;
     for (let j = 0; j < headers.length; j++) {
       const header = headers[j];
       const val = values[j] !== undefined ? values[j].trim() : '';
       if (header) {
+        prevNonEmptyHeader = header;
+        subColCount = 0;
         obj[header] = val;
+      } else if (prevNonEmptyHeader) {
+        subColCount++;
+        obj[`${prevNonEmptyHeader} ${subColCount}`] = val;
       }
     }
     data.push(obj);
@@ -1732,8 +1741,12 @@ function getDetailsHTML(tabName, item) {
     const fps = getProp(item, ['fps']);
     const points = getProp(item, ['challenge point']);
     const recordPoints = getProp(item, ['challenge point record']);
-    const recordPct = getProp(item, ['challenge point record']);
+    const recordPct = getProp(item, ['challenge point record 1']);
     const record = getProp(item, ['records', 'рекорд']);
+
+    const recordPtsDisplay = (recordPoints && recordPoints !== '-' && recordPoints !== '')
+      ? `<span class="detail-meta-val" style="color: var(--color-silver); font-weight: 700;">${recordPoints} pts</span>`
+      : `<span style="color: var(--text-muted);">-</span>`;
 
     const recordPctDisplay = (recordPct && recordPct !== '-' && recordPct !== '')
       ? `<span class="detail-meta-val" style="color: var(--accent-purple); font-weight: 700;">${recordPct}</span>`
@@ -1765,6 +1778,10 @@ function getDetailsHTML(tabName, item) {
         <div class="detail-meta-item">
           <span class="detail-meta-label">Очки</span>
           <span class="detail-meta-val" style="color: var(--accent-cyan); font-weight: 700;">${points} pts</span>
+        </div>
+        <div class="detail-meta-item">
+          <span class="detail-meta-label">Очки (рекорд)</span>
+          ${recordPtsDisplay}
         </div>
         <div class="detail-meta-item">
           <span class="detail-meta-label">Record %</span>
@@ -2124,6 +2141,7 @@ function renderCllList(list) {
     const fps = getProp(item, ['fps']);
     const points = getProp(item, ['challenge point']);
     const recordPoints = getProp(item, ['challenge point record']) || '-';
+    const recordPct = getProp(item, ['challenge point record 1']) || '-';
 
     const isActive = STATE.selectedLevel.cll && getProp(STATE.selectedLevel.cll, ['name']) === levelName;
     const row = document.createElement('div');
@@ -2136,7 +2154,7 @@ function renderCllList(list) {
       <div class="cell-cps" style="color: #a855f7;">${cps}</div>
       <div class="cell-fps cell-sub">${fps}</div>
       <div class="cell-points" style="font-weight: 600; color: var(--accent-cyan);">${points}</div>
-      <div class="cell-record" style="font-weight: 600; color: var(--accent-purple);">${recordPoints !== '-' && recordPoints !== '' ? recordPoints : '<span style="color: var(--text-muted);">-</span>'}</div>
+      <div class="cell-record" style="font-weight: 600; color: var(--accent-purple);">${recordPct !== '-' && recordPct !== '' ? recordPct : '<span style="color: var(--text-muted);">-</span>'}</div>
     `;
 
     row.addEventListener('click', () => {
