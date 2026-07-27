@@ -457,7 +457,7 @@ const FALLBACK_DATA = {
       "Slayers": "techopro9",
       "Tops": "3",
       "Points": "87,31",
-      "Challenge point": "950"
+      "Challenge point": "1850"
     },
     {
       "Slayers": "NazarHK",
@@ -604,13 +604,25 @@ const FALLBACK_DATA = {
       "Records": "No"
     },
     {
-      "Name": "i gonna give you up",
+      "Name": "Parallelogram",
       "Top": "2",
+      "Author": "NazarHK",
+      "Verifier": "techopro9",
+      "CPS": "4-5",
+      "FPS": "Any",
+      "Challenge point": "950",
+      "Challenge point Record": "475",
+      "Challenge point Record 1": ">56%",
+      "Records": "No"
+    },
+    {
+      "Name": "i gonna give you up",
+      "Top": "3",
       "Author": "techopro9",
       "Verifier": "techopro9",
       "CPS": "5-6",
       "FPS": "Any",
-      "Challenge point": "950",
+      "Challenge point": "900",
       "Challenge point Record": "-",
       "Challenge point Record 1": "-",
       "Records": "No"
@@ -619,6 +631,25 @@ const FALLBACK_DATA = {
 };
 
 const CHANGELOG = [
+  {
+    "type": "add",
+    "list": "Challenge List",
+    "name": "Parallelogram",
+    "newRank": 2,
+    "above": "Tunnel of Hell",
+    "below": "i gonna give you up",
+    "date": "27 ИЮЛЯ, 2026"
+  },
+  {
+    "type": "down",
+    "list": "Challenge List",
+    "name": "i gonna give you up",
+    "oldRank": 2,
+    "newRank": 3,
+    "above": "Parallelogram",
+    "below": null,
+    "date": "27 ИЮЛЯ, 2026"
+  },
   {
     "type": "up",
     "list": "Demonlist",
@@ -982,7 +1013,7 @@ function parseCSV(text) {
         prevNonEmptyHeader = header;
         subColCount = 0;
         obj[header] = val;
-      } else if (prevNonEmptyHeader) {
+      } else if (prevNonEmptyHeader === 'Challenge point Record') {
         subColCount++;
         obj[`${prevNonEmptyHeader} ${subColCount}`] = val;
       }

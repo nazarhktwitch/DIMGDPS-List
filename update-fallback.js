@@ -77,11 +77,18 @@ function parseCSV(text) {
     if (values.length === 1 && values[0].trim() === '') continue;
 
     const obj = {};
+    let prevNonEmptyHeader = '';
+    let subColCount = 0;
     for (let j = 0; j < headers.length; j++) {
       const header = headers[j];
       const val = values[j] !== undefined ? values[j].trim() : '';
       if (header) {
+        prevNonEmptyHeader = header;
+        subColCount = 0;
         obj[header] = val;
+      } else if (prevNonEmptyHeader === 'Challenge point Record') {
+        subColCount++;
+        obj[`${prevNonEmptyHeader} ${subColCount}`] = val;
       }
     }
     data.push(obj);
@@ -107,7 +114,8 @@ function generateUpdates(oldData, newData) {
   const updates = [];
   const listsToTrack = [
     { key: 'demonlist', name: 'Demonlist', nameField: ['level', 'name'] },
-    { key: 'impossible', name: 'Impossible', nameField: ['levels', 'level', 'name'] }
+    { key: 'impossible', name: 'Impossible', nameField: ['levels', 'level', 'name'] },
+    { key: 'cll', name: 'Challenge List', nameField: ['name'] }
   ];
 
   listsToTrack.forEach(listInfo => {
