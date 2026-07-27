@@ -906,7 +906,7 @@ textarea {
 }
 
 .grid-cll {
-  grid-template-columns: 80px 2fr 1.5fr 1.5fr 80px 80px 100px;
+  grid-template-columns: 80px 2fr 1.5fr 1.5fr 80px 80px 100px 90px;
 }
 
 .cell-rank {
@@ -1566,7 +1566,8 @@ textarea {
   .grid-cll .cell-author,
   .grid-cll .cell-verifier,
   .grid-cll .cell-cps,
-  .grid-cll .cell-fps {
+  .grid-cll .cell-fps,
+  .grid-cll .cell-record {
     display: none;
   }
 

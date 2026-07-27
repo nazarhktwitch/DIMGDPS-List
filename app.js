@@ -1732,7 +1732,12 @@ function getDetailsHTML(tabName, item) {
     const fps = getProp(item, ['fps']);
     const points = getProp(item, ['challenge point']);
     const recordPoints = getProp(item, ['challenge point record']);
+    const recordPct = getProp(item, ['challenge point record']);
     const record = getProp(item, ['records', 'рекорд']);
+
+    const recordPctDisplay = (recordPct && recordPct !== '-' && recordPct !== '')
+      ? `<span class="detail-meta-val" style="color: var(--accent-purple); font-weight: 700;">${recordPct}</span>`
+      : `<span style="color: var(--text-muted);">-</span>`;
 
     return `
       <div class="detail-title-wrapper">
@@ -1761,12 +1766,10 @@ function getDetailsHTML(tabName, item) {
           <span class="detail-meta-label">Очки</span>
           <span class="detail-meta-val" style="color: var(--accent-cyan); font-weight: 700;">${points} pts</span>
         </div>
-        ${recordPoints && recordPoints !== '-' ? `
         <div class="detail-meta-item">
-          <span class="detail-meta-label">Очки (рекорд)</span>
-          <span class="detail-meta-val" style="color: var(--color-silver); font-weight: 700;">${recordPoints} pts</span>
+          <span class="detail-meta-label">Record %</span>
+          ${recordPctDisplay}
         </div>
-        ` : ''}
       </div>
       
       <div class="detail-progress-section">
@@ -2120,6 +2123,7 @@ function renderCllList(list) {
     const cps = getProp(item, ['cps']);
     const fps = getProp(item, ['fps']);
     const points = getProp(item, ['challenge point']);
+    const recordPoints = getProp(item, ['challenge point record']) || '-';
 
     const isActive = STATE.selectedLevel.cll && getProp(STATE.selectedLevel.cll, ['name']) === levelName;
     const row = document.createElement('div');
@@ -2132,6 +2136,7 @@ function renderCllList(list) {
       <div class="cell-cps" style="color: #a855f7;">${cps}</div>
       <div class="cell-fps cell-sub">${fps}</div>
       <div class="cell-points" style="font-weight: 600; color: var(--accent-cyan);">${points}</div>
+      <div class="cell-record" style="font-weight: 600; color: var(--accent-purple);">${recordPoints !== '-' && recordPoints !== '' ? recordPoints : '<span style="color: var(--text-muted);">-</span>'}</div>
     `;
 
     row.addEventListener('click', () => {
