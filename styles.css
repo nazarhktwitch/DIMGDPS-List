@@ -460,7 +460,7 @@ textarea {
   flex-direction: column;
 }
 
-.home-main > .section-card:last-child {
+.home-main>.section-card:last-child {
   margin-bottom: 0;
 }
 
@@ -602,6 +602,8 @@ textarea {
   max-height: 350px;
   overflow-y: auto;
   padding-right: 8px;
+  padding-left: 13px;
+  margin-left: -13px;
   margin-right: -8px;
   flex: 1;
 }
@@ -609,12 +611,14 @@ textarea {
 .updates-timeline::-webkit-scrollbar {
   width: 6px;
 }
+
 .updates-timeline::-webkit-scrollbar-track {
-  background: rgba(255,255,255,0.02);
+  background: rgba(255, 255, 255, 0.02);
   border-radius: 4px;
 }
+
 .updates-timeline::-webkit-scrollbar-thumb {
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 4px;
 }
 
@@ -629,18 +633,22 @@ textarea {
   text-transform: uppercase;
   margin: 16px 0 10px 0;
 }
+
 .timeline-date-divider:first-child {
   margin-top: 0;
 }
+
 .timeline-date-divider::before,
 .timeline-date-divider::after {
   content: '';
   flex: 1;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
+
 .timeline-date-divider:not(:empty)::before {
   margin-right: 12px;
 }
+
 .timeline-date-divider:not(:empty)::after {
   margin-left: 12px;
 }

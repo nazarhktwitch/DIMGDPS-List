@@ -2021,19 +2021,27 @@ function renderUpdatesList() {
     let iconHtml = '';
     let textHtml = '';
 
-    // This is somehow reversed so it works
-    const aboveStr = up.above ? `, ниже <span class="level-ref">${up.above}</span>` : '';
-    const belowStr = up.below ? `, выше <span class="level-ref">${up.below}</span>` : '';
+    const isTop1 = up.newRank === 1 && (up.type === 'add' || up.type === 'up');
 
-    if (up.type === 'add') {
-      iconHtml = '<div class="timeline-icon place"><div class="inner-dot"></div></div>';
-      textHtml = '<span class="level-name">' + up.name + '</span> добавлен на #' + up.newRank + ' (' + up.list + ')' + aboveStr + belowStr;
-    } else if (up.type === 'up') {
-      iconHtml = '<div class="timeline-icon move-up"><svg viewBox="0 0 24 24"><path d="M12 20V4M6 10L12 4L18 10" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></div>';
-      textHtml = '<span class="level-name">' + up.name + '</span> #' + up.oldRank + ' &rarr; #' + up.newRank + ' (' + up.list + ')' + aboveStr + belowStr;
-    } else if (up.type === 'down') {
-      iconHtml = '<div class="timeline-icon move-down"><svg viewBox="0 0 24 24"><path d="M12 4V20M6 14L12 20L18 14" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></div>';
-      textHtml = '<span class="level-name">' + up.name + '</span> #' + up.oldRank + ' &rarr; #' + up.newRank + ' (' + up.list + ')' + aboveStr + belowStr;
+    if (isTop1) {
+      const top1BelowStr = up.below ? `, выше <span class="level-ref" style="color: #cbd5e1;">${up.below}</span>` : '';
+      iconHtml = '<div class="timeline-icon" style="border-color: #fbbf24; color: #fbbf24; box-shadow: 0 0 15px rgba(251, 191, 36, 0.4); background: rgba(251, 191, 36, 0.1);"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>';
+      textHtml = `<span class="level-name" style="color: #fbbf24; font-weight: 700; text-shadow: 0 0 8px rgba(251, 191, 36, 0.4);">${up.name}</span> <span style="color: #fbbf24;">стал новым Топ 1</span> (${up.list})${top1BelowStr}`;
+    } else {
+      // This is somehow reversed so it works
+      const aboveStr = up.above ? `, ниже <span class="level-ref">${up.above}</span>` : '';
+      const belowStr = up.below ? `, выше <span class="level-ref">${up.below}</span>` : '';
+
+      if (up.type === 'add') {
+        iconHtml = '<div class="timeline-icon place"><div class="inner-dot"></div></div>';
+        textHtml = '<span class="level-name">' + up.name + '</span> добавлен на #' + up.newRank + ' (' + up.list + ')' + aboveStr + belowStr;
+      } else if (up.type === 'up') {
+        iconHtml = '<div class="timeline-icon move-up"><svg viewBox="0 0 24 24"><path d="M12 20V4M6 10L12 4L18 10" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></div>';
+        textHtml = '<span class="level-name">' + up.name + '</span> #' + up.oldRank + ' &rarr; #' + up.newRank + ' (' + up.list + ')' + aboveStr + belowStr;
+      } else if (up.type === 'down') {
+        iconHtml = '<div class="timeline-icon move-down"><svg viewBox="0 0 24 24"><path d="M12 4V20M6 14L12 20L18 14" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></div>';
+        textHtml = '<span class="level-name">' + up.name + '</span> #' + up.oldRank + ' &rarr; #' + up.newRank + ' (' + up.list + ')' + aboveStr + belowStr;
+      }
     }
 
     html += `
