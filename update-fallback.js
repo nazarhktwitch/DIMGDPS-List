@@ -122,6 +122,48 @@ function generateUpdates(oldData, newData) {
     const currentList = newData[listInfo.key] || [];
     const fallbackList = oldData[listInfo.key] || [];
 
+    const oldNames = fallbackList.map(item => getProp(item, listInfo.nameField)?.toLowerCase().trim()).filter(Boolean);
+    const newNames = currentList.map(item => getProp(item, listInfo.nameField)?.toLowerCase().trim()).filter(Boolean);
+    
+    const sequence = [];
+    newNames.forEach(name => {
+      const oldIdx = oldNames.indexOf(name);
+      if (oldIdx !== -1) {
+        sequence.push(oldIdx);
+      }
+    });
+
+    let lisOldIndices = new Set();
+    if (sequence.length > 0) {
+      const tails = [];
+      const parent = new Array(sequence.length).fill(-1);
+      
+      for (let i = 0; i < sequence.length; i++) {
+        const x = sequence[i];
+        let left = 0, right = tails.length;
+        while (left < right) {
+          const mid = Math.floor((left + right) / 2);
+          if (sequence[tails[mid]] < x) {
+            left = mid + 1;
+          } else {
+            right = mid;
+          }
+        }
+        if (left > 0) parent[i] = tails[left - 1];
+        if (left === tails.length) {
+          tails.push(i);
+        } else {
+          tails[left] = i;
+        }
+      }
+      
+      let curr = tails[tails.length - 1];
+      while (curr !== -1) {
+        lisOldIndices.add(sequence[curr]);
+        curr = parent[curr];
+      }
+    }
+
     const fallbackMap = new Map();
     fallbackList.forEach((item, idx) => {
       const name = getProp(item, listInfo.nameField);
@@ -133,7 +175,8 @@ function generateUpdates(oldData, newData) {
       if (!name) return;
 
       const currentRank = idx + 1;
-      const oldItem = fallbackMap.get(name.toLowerCase().trim());
+      const lowerName = name.toLowerCase().trim();
+      const oldItem = fallbackMap.get(lowerName);
 
       const getAboveBelow = (index) => {
         const above = index > 0 ? getProp(currentList[index - 1], listInfo.nameField) : null;
@@ -145,10 +188,14 @@ function generateUpdates(oldData, newData) {
         updates.push({ type: 'add', list: listInfo.name, name, newRank: currentRank, ...getAboveBelow(idx) });
       } else {
         const oldRank = oldItem.rank;
-        if (currentRank < oldRank) {
-          updates.push({ type: 'up', list: listInfo.name, name, oldRank, newRank: currentRank, ...getAboveBelow(idx) });
-        } else if (currentRank > oldRank) {
-          updates.push({ type: 'down', list: listInfo.name, name, oldRank, newRank: currentRank, ...getAboveBelow(idx) });
+        const oldIdx = oldRank - 1;
+        
+        if (!lisOldIndices.has(oldIdx)) {
+          if (currentRank < oldRank) {
+            updates.push({ type: 'up', list: listInfo.name, name, oldRank, newRank: currentRank, ...getAboveBelow(idx) });
+          } else if (currentRank > oldRank) {
+            updates.push({ type: 'down', list: listInfo.name, name, oldRank, newRank: currentRank, ...getAboveBelow(idx) });
+          }
         }
       }
     });

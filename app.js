@@ -641,16 +641,6 @@ const CHANGELOG = [
     "date": "27 ИЮЛЯ, 2026"
   },
   {
-    "type": "down",
-    "list": "Challenge List",
-    "name": "i gonna give you up",
-    "oldRank": 2,
-    "newRank": 3,
-    "above": "Parallelogram",
-    "below": null,
-    "date": "27 ИЮЛЯ, 2026"
-  },
-  {
     "type": "up",
     "list": "Demonlist",
     "name": "Vantus Processing",
