@@ -1,7 +1,7 @@
 const SHEET_URLS = {
   demonlist: 'https://docs.google.com/spreadsheets/d/1AAgQXerA78YgH-LzbJ4Eq2MUO9UnPl0R_aU8S--ZIQ4/export?format=csv',
   impossible: 'https://docs.google.com/spreadsheets/d/1R4Euoc5fVRknKKlJkyCjZbgCvOrqXPkM59ufcrYlBsQ/export?format=csv',
-  slayers: 'https://docs.google.com/spreadsheets/d/1lHXJiXSz74-U1Z69bnjJa0oRfRw29MGh40Z2dIv6M6w/export?format=csv',
+  slayers: 'https://docs.google.com/spreadsheets/d/1VbZUTOUBHyddh1Wt2fsiNwVE6Ai1oDDt2QQ0FEWHz3Y/export?format=csv',
   future: 'https://docs.google.com/spreadsheets/d/1HGWdQNAh3-AloKXXra2Tbmi-5kdEq2dFa68TeJi_fpI/export?format=csv',
   silent: 'https://docs.google.com/spreadsheets/d/1bTxdDTD2k-Ady3s6ucG2ZmmSZ57QqPLukyE5d4rhmbw/export?format=csv',
   cll: 'https://docs.google.com/spreadsheets/d/1J9I4MSbHQPGgfIyQC7VKOs94pX27hzvhAV2U3bVbEw0/export?format=csv'
