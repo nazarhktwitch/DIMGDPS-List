@@ -652,7 +652,7 @@ const STATE = {
   filters: {
     demonlist: { search: '', difficulty: 'all', sort: 'rank-asc' },
     impossible: { search: '', cps: 'all', tps: 'all', sort: 'rank-asc' },
-    slayers: { search: '' },
+    slayers: { search: '', sort: 'rank-asc' },
     future: { search: '', difficulty: 'all' },
     silent: { search: '', sort: 'rank-asc' },
     cll: { search: '', sort: 'rank-asc' }
@@ -1043,6 +1043,14 @@ function setupFilterListeners() {
     renderList('slayers');
   });
 
+  const slaySort = document.getElementById('slayers-sort');
+  if (slaySort) {
+    slaySort.addEventListener('change', (e) => {
+      STATE.filters.slayers.sort = e.target.value;
+      renderList('slayers');
+    });
+  }
+
   const futSearch = document.getElementById('future-search');
   const futDiff = document.getElementById('future-filter-diff');
 
@@ -1297,10 +1305,25 @@ function renderSlayers(list) {
     });
   }
 
+  const slayersSort = STATE.filters.slayers.sort || 'rank-asc';
   filtered.sort((a, b) => {
     const ptsA = parseFloat((getProp(a, ['points', 'очки']) || '0').replace(',', '.')) || 0;
     const ptsB = parseFloat((getProp(b, ['points', 'очки']) || '0').replace(',', '.')) || 0;
-    return ptsB - ptsA;
+    const cllA = parseFloat((getProp(a, ['challenge point', 'challenge points', 'cll points', 'challenge']) || '0').replace(',', '.')) || 0;
+    const cllB = parseFloat((getProp(b, ['challenge point', 'challenge points', 'cll points', 'challenge']) || '0').replace(',', '.')) || 0;
+    const rankA = parseInt(getProp(a, ['tops', 'top', 'rank'])) || 9999;
+    const rankB = parseInt(getProp(b, ['tops', 'top', 'rank'])) || 9999;
+
+    if (slayersSort === 'rank-asc') return rankA - rankB;
+    if (slayersSort === 'rank-desc') return rankB - rankA;
+    if (slayersSort === 'cll-desc') return cllB - cllA;
+    if (slayersSort === 'cll-asc') return cllA - cllB;
+    if (slayersSort === 'name-asc') {
+      const nameA = getProp(a, ['slayers', 'slayer', 'player']).toLowerCase();
+      const nameB = getProp(b, ['slayers', 'slayer', 'player']).toLowerCase();
+      return nameA.localeCompare(nameB, 'ru');
+    }
+    return rankA - rankB;
   });
 
   if (filtered.length === 0) {
