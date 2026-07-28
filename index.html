@@ -472,36 +472,56 @@
       </section>
 
       <section class="page-section" id="page-silent">
-        <div style="max-width: 900px; margin: 0 auto;">
+        <div class="list-layout">
 
-          <div class="search-filter-bar">
-            <div class="search-wrapper" style="flex: 1;">
-              <svg class="search-icon" viewBox="0 0 24 24">
-                <use href="#icon-search" />
-              </svg>
-              <input type="text" class="search-input" id="silent-search" placeholder="Поиск по названию уровня...">
+          <div class="list-main">
+            <div class="search-filter-bar">
+              <div class="search-wrapper" style="flex: 1;">
+                <svg class="search-icon" viewBox="0 0 24 24">
+                  <use href="#icon-search" />
+                </svg>
+                <input type="text" class="search-input" id="silent-search" placeholder="Поиск по названию уровня...">
+              </div>
+
+              <select class="filter-select" id="silent-sort">
+                <option value="rank-asc">Позиция (по возрастанию)</option>
+                <option value="rank-desc">Позиция (по убыванию)</option>
+                <option value="name-asc">Название (А-Я)</option>
+                <option value="cps-desc">CPS (по убыванию)</option>
+                <option value="cps-asc">CPS (по возрастанию)</option>
+                <option value="fps-desc">FPS (по убыванию)</option>
+                <option value="fps-asc">FPS (по возрастанию)</option>
+                <option value="tps-desc">TPS (по убыванию)</option>
+                <option value="tps-asc">TPS (по возрастанию)</option>
+              </select>
             </div>
 
-            <select class="filter-select" id="silent-sort">
-              <option value="rank-asc">Позиция (по возрастанию)</option>
-              <option value="rank-desc">Позиция (по убыванию)</option>
-              <option value="name-asc">Название (А-Я)</option>
-            </select>
+            <div class="leaderboard-container">
+              <div class="leaderboard-header grid-silent">
+                <div>Топ</div>
+                <div>Название</div>
+                <div>Автор</div>
+                <div>FPS</div>
+                <div>TPS</div>
+                <div>CPS</div>
+              </div>
+              <div class="leaderboard-list" id="silent-table">
+                <div class="skeleton-row"></div>
+                <div class="skeleton-row"></div>
+                <div class="skeleton-row"></div>
+              </div>
+            </div>
           </div>
 
-          <div class="leaderboard-container">
-            <div class="leaderboard-header grid-silent">
-              <div>Топ</div>
-              <div>Название</div>
-              <div>Автор</div>
-              <div>FPS</div>
-              <div>TPS</div>
-              <div>CPS</div>
+          <div class="details-sidebar" id="silent-details-sidebar">
+            <div class="details-placeholder" id="silent-details-placeholder">
+              <svg viewBox="0 0 24 24">
+                <use href="#icon-info" />
+              </svg>
+              <p>Выберите уровень из списка для просмотра подробной информации</p>
             </div>
-            <div class="leaderboard-list" id="silent-table">
-              <div class="skeleton-row"></div>
-              <div class="skeleton-row"></div>
-              <div class="skeleton-row"></div>
+
+            <div id="silent-details-content" style="display: none;">
             </div>
           </div>
 

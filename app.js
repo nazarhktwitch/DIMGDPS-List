@@ -683,6 +683,7 @@ const STATE = {
   selectedLevel: {
     demonlist: null,
     impossible: null,
+    silent: null,
     cll: null
   },
   loading: {
@@ -1178,17 +1179,39 @@ function renderDemonlist(list) {
     });
   }
 
-  filtered.sort((a, b) => {
+filtered.sort((a, b) => {
     const rankA = parseInt(getProp(a, ['top', 'rank'])) || 9999;
     const rankB = parseInt(getProp(b, ['top', 'rank'])) || 9999;
 
     if (filters.sort === 'rank-asc') return rankA - rankB;
     if (filters.sort === 'rank-desc') return rankB - rankA;
     if (filters.sort === 'name-asc') {
-      const nameA = getProp(a, ['level', 'name']).toLowerCase();
-      const nameB = getProp(b, ['level', 'name']).toLowerCase();
+      const nameA = getProp(a, ['name']).toLowerCase();
+      const nameB = getProp(b, ['name']).toLowerCase();
       return nameA.localeCompare(nameB, 'ru');
     }
+
+    const parseNum = (val) => {
+      const n = parseInt(val);
+      return isNaN(n) ? -1 : n;
+    };
+
+    if (filters.sort === 'cps-desc' || filters.sort === 'cps-asc') {
+      const cpsA = parseNum(getProp(a, ['cps']));
+      const cpsB = parseNum(getProp(b, ['cps']));
+      return filters.sort === 'cps-desc' ? cpsB - cpsA : cpsA - cpsB;
+    }
+    if (filters.sort === 'fps-desc' || filters.sort === 'fps-asc') {
+      const fpsA = parseNum(getProp(a, ['fps']));
+      const fpsB = parseNum(getProp(b, ['fps']));
+      return filters.sort === 'fps-desc' ? fpsB - fpsA : fpsA - fpsB;
+    }
+    if (filters.sort === 'tps-desc' || filters.sort === 'tps-asc') {
+      const tpsA = parseNum(getProp(a, ['tps']));
+      const tpsB = parseNum(getProp(b, ['tps']));
+      return filters.sort === 'tps-desc' ? tpsB - tpsA : tpsA - tpsB;
+    }
+
     return rankA - rankB;
   });
 
@@ -1534,6 +1557,25 @@ function renderSilentList(list) {
       const nameB = getProp(b, ['name']).toLowerCase();
       return nameA.localeCompare(nameB, 'ru');
     }
+
+    const sv = (v) => { const n = parseInt(v); return isNaN(n) ? -1 : n; };
+
+    if (filters.sort === 'cps-desc' || filters.sort === 'cps-asc') {
+      const cpsA = sv(getProp(a, ['cps']));
+      const cpsB = sv(getProp(b, ['cps']));
+      return filters.sort === 'cps-desc' ? cpsB - cpsA : cpsA - cpsB;
+    }
+    if (filters.sort === 'fps-desc' || filters.sort === 'fps-asc') {
+      const fpsA = sv(getProp(a, ['fps']));
+      const fpsB = sv(getProp(b, ['fps']));
+      return filters.sort === 'fps-desc' ? fpsB - fpsA : fpsA - fpsB;
+    }
+    if (filters.sort === 'tps-desc' || filters.sort === 'tps-asc') {
+      const tpsA = sv(getProp(a, ['tps']));
+      const tpsB = sv(getProp(b, ['tps']));
+      return filters.sort === 'tps-desc' ? tpsB - tpsA : tpsA - tpsB;
+    }
+
     return rankA - rankB;
   });
 
@@ -1561,6 +1603,7 @@ function renderSilentList(list) {
       <div class="cell-tps">${tps}</div>
       <div class="cell-cps" style="font-weight: 600; color: var(--accent-purple);">${cps}</div>
     `;
+    row.addEventListener('click', () => selectLevel('silent', item));
 
     container.appendChild(row);
   });
@@ -1824,6 +1867,42 @@ function getDetailsHTML(tabName, item) {
       <a class="btn btn-secondary" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;" href="https://discord.gg/u4wjPv3ggH" target="_blank">
         <svg width="16" height="16" viewBox="0 0 24 24"><use href="#icon-discord"/></svg>
         Подать рекорд
+      </a>
+    `;
+  } else if (tabName === 'silent') {
+    const rawRank = getProp(item, ['top', 'rank']);
+    const fps = getProp(item, ['fps']);
+    const tps = getProp(item, ['tps']);
+    const cps = getProp(item, ['cps']);
+
+    return `
+      <div class="detail-title-wrapper">
+        <div class="detail-rank">Silent Топ #${rawRank}</div>
+        <h2 class="detail-title">${levelName}</h2>
+      </div>
+
+      <div class="detail-meta-list">
+        <div class="detail-meta-item">
+          <span class="detail-meta-label">Создатель</span>
+          <span class="detail-meta-val">${author}</span>
+        </div>
+        <div class="detail-meta-item">
+          <span class="detail-meta-label">FPS</span>
+          <span class="detail-meta-val" style="color: var(--accent-cyan); font-weight: 700;">${fps}</span>
+        </div>
+        <div class="detail-meta-item">
+          <span class="detail-meta-label">TPS</span>
+          <span class="detail-meta-val">${tps}</span>
+        </div>
+        <div class="detail-meta-item">
+          <span class="detail-meta-label">CPS</span>
+          <span class="detail-meta-val" style="color: var(--accent-purple); font-weight: 700;">${cps}</span>
+        </div>
+      </div>
+
+      <a class="btn btn-secondary" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;" href="https://discord.gg/u4wjPv3ggH" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24"><use href="#icon-discord"/></svg>
+        Обсудить в Discord
       </a>
     `;
   }
