@@ -144,7 +144,7 @@ const FALLBACK_DATA = {
       "Top": "15",
       "Author": "pro100nubickl",
       "Verifer": "techopro9",
-      "Level Difficulty": "Easiest Extreme Demon",
+      "Level Difficulty": "Cruel Insane Demon",
       "Progresses": "No",
       "Points": "40"
     },
@@ -479,21 +479,21 @@ const FALLBACK_DATA = {
       "Author": "techopro9",
       "Verifier": "techopro9",
       "Difficulty": "Hell Extreme Demon",
-      "Progress": "50%",
+      "Progress": "75%",
       "Status": "In progress"
     },
     {
       "Levels": "Silent Every End",
-      "Upcoming Top": "Top 1",
+      "Upcoming Top": "Top ?",
       "Author": "pro100nubickl",
       "Verifier": "pro100nubikcl",
       "Difficulty": "Melted Extreme Demon",
       "Progress": "100%",
-      "Status": "Paused"
+      "Status": "Rework"
     },
     {
       "Levels": "Every Start",
-      "Upcoming Top": "Top 14-16",
+      "Upcoming Top": "Top 22-25",
       "Author": "techopro9",
       "Verifier": "pro100nubickl",
       "Difficulty": "Hard Demon - Moderate Hard Demon",
@@ -502,21 +502,12 @@ const FALLBACK_DATA = {
     },
     {
       "Levels": "Every End",
-      "Upcoming Top": "Top 4-5",
+      "Upcoming Top": "Top 10-12",
       "Author": "techopro9, ?????",
       "Verifier": "pro100nubickl",
       "Difficulty": "Brutal Extreme Demon",
       "Progress": "0%",
       "Status": "Not start"
-    },
-    {
-      "Levels": "Pig Buff Base",
-      "Upcoming Top": "Top 1",
-      "Author": "AngryBanana1212",
-      "Verifier": "AngryBanana1212",
-      "Difficulty": "Solid Extreme Demon",
-      "Progress": "100%",
-      "Status": "Paused"
     },
     {
       "Levels": "Loneliness",
@@ -525,7 +516,7 @@ const FALLBACK_DATA = {
       "Verifier": "????",
       "Difficulty": "Frozen Extreme Demon",
       "Progress": "8%",
-      "Status": "In Progress"
+      "Status": "Rework"
     },
     {
       "Levels": "Asankhyeya",
@@ -535,15 +526,6 @@ const FALLBACK_DATA = {
       "Difficulty": "Hell Extreme Demon",
       "Progress": "100%",
       "Status": "Paused"
-    },
-    {
-      "Levels": "Swinopowal",
-      "Upcoming Top": "Top 3-6",
-      "Author": "AngryBanana1212",
-      "Verifier": "AngryBanana1212",
-      "Difficulty": "Hell Extreme Demon - Bizarre Extreme Demon",
-      "Progress": "100%",
-      "Status": "In Progress"
     },
     {
       "Levels": "Disconnection",
@@ -562,32 +544,50 @@ const FALLBACK_DATA = {
       "Difficulty": "Insane Demon",
       "Progress": "75%",
       "Status": "In Progress"
+    },
+    {
+      "Levels": "Gazoparazit Circles",
+      "Upcoming Top": "Top 12-14",
+      "Author": "techopro9",
+      "Verifier": "techopro9",
+      "Difficulty": "Easy Extreme Demon",
+      "Progress": "100%",
+      "Status": "Verifying"
+    },
+    {
+      "Levels": "Dnyami nochami buffdate",
+      "Upcoming Top": "Top 12-13",
+      "Author": "pro100nubickl",
+      "Verifier": "pro100nubikcl",
+      "Difficulty": "Easy Extreme Demon",
+      "Progress": "100%",
+      "Status": "Verifying"
     }
   ],
   "silent": [
     {
-      "Name": "Abomination",
-      "Top": "1",
-      "FPS": "2400",
-      "TPS": "960",
-      "CPS": "31463",
-      "Author": "pro100nubickl"
-    },
-    {
-      "Name": "Stereo madness copy",
-      "Top": "2",
-      "FPS": "2400",
-      "TPS": "960",
-      "CPS": "33524",
-      "Author": "pro100nubickl"
-    },
-    {
       "Name": "Hierodule",
-      "Top": "3",
+      "Top": "1",
       "FPS": "240",
       "TPS": "no",
       "CPS": "240",
       "Author": "NazarHK"
+    },
+    {
+      "Name": "Abomination",
+      "Top": "2",
+      "FPS": "2400",
+      "TPS": "960",
+      "CPS": "?",
+      "Author": "pro100nubickl"
+    },
+    {
+      "Name": "Stereo madness copy",
+      "Top": "3",
+      "FPS": "2400",
+      "TPS": "960",
+      "CPS": "?",
+      "Author": "pro100nubickl"
     }
   ],
   "cll": [
