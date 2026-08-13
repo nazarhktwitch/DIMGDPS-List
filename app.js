@@ -340,8 +340,18 @@ const FALLBACK_DATA = {
   ],
   "impossible": [
     {
-      "Levels": "sakupen dih",
+      "Levels": "silent sakupen lvl3",
       "Top Impossible": "top 1",
+      "Author": "pro100nubikcl",
+      "CPS": "Ultra High",
+      "ID": "313",
+      "Использование Tps bypass": "Разрешено",
+      "Рекорд сервера": "No",
+      "Low cps - <5 cps": ""
+    },
+    {
+      "Levels": "sakupen dih",
+      "Top Impossible": "top 2",
       "Author": "NazarHK",
       "CPS": "High",
       "ID": "183",
@@ -351,57 +361,57 @@ const FALLBACK_DATA = {
     },
     {
       "Levels": "help god",
-      "Top Impossible": "top 2",
+      "Top Impossible": "top 3",
       "Author": "techopro9",
       "CPS": "High",
       "ID": "224",
       "Использование Tps bypass": "Запрещено",
       "Рекорд сервера": "No",
-      "Low cps - <5 cps": ""
+      "Low cps - <5 cps": "Medium cps 5-10 cps"
     },
     {
       "Levels": "silent sakupen lvl2",
-      "Top Impossible": "top 3",
+      "Top Impossible": "top 4",
       "Author": "TheUNrealKorben(pro100nubikcl)",
       "CPS": "Ultra High",
       "ID": "165",
       "Использование Tps bypass": "Запрещено",
       "Рекорд сервера": "TheUNrealkorben - 5.67%",
-      "Low cps - <5 cps": "Medium cps 5-10 cps"
+      "Low cps - <5 cps": ""
     },
     {
       "Levels": "silent denouement",
-      "Top Impossible": "top 4",
+      "Top Impossible": "top 5",
       "Author": "techopro9",
       "CPS": "High",
       "ID": "167",
       "Использование Tps bypass": "Запрещено",
       "Рекорд сервера": "No",
-      "Low cps - <5 cps": ""
+      "Low cps - <5 cps": "High cps - 10-15 cps"
     },
     {
       "Levels": "ton 67",
-      "Top Impossible": "top 5",
+      "Top Impossible": "top 6",
       "Author": "NazarHK",
       "CPS": "High",
       "ID": "164",
       "Использование Tps bypass": "Разрешено",
       "Рекорд сервера": "NazarHK - 30%",
-      "Low cps - <5 cps": "High cps - 10-15 cps"
+      "Low cps - <5 cps": "Ultra High - 15 cps only"
     },
     {
       "Levels": "Asmarin",
-      "Top Impossible": "top 6",
+      "Top Impossible": "top 7",
       "Author": "techopro9",
       "CPS": "High",
       "ID": "163",
       "Использование Tps bypass": "Запрещено",
       "Рекорд сервера": "techopro9 - 40%",
-      "Low cps - <5 cps": "Ultra High - 15 cps only"
+      "Low cps - <5 cps": ""
     },
     {
       "Levels": "sakupen pig",
-      "Top Impossible": "top 7",
+      "Top Impossible": "top 8",
       "Author": "TheUNrealKorben(pro100nubikcl)",
       "CPS": "High",
       "ID": "160",
@@ -411,7 +421,7 @@ const FALLBACK_DATA = {
     },
     {
       "Levels": "Snowflake (UNNERFIED)",
-      "Top Impossible": "top 8",
+      "Top Impossible": "top 9",
       "Author": "NazarHK",
       "CPS": "Medium",
       "ID": "147",
@@ -421,7 +431,7 @@ const FALLBACK_DATA = {
     },
     {
       "Levels": "Evil Parallelogram",
-      "Top Impossible": "top 9",
+      "Top Impossible": "top 10",
       "Author": "techopro9",
       "CPS": "Medium",
       "ID": "209",
@@ -431,7 +441,7 @@ const FALLBACK_DATA = {
     },
     {
       "Levels": "lose arrival pig",
-      "Top Impossible": "top 10",
+      "Top Impossible": "top 11",
       "Author": "TheUNrealKorben(pro100nubikcl)",
       "CPS": "Low",
       "ID": "151",
@@ -631,6 +641,15 @@ const FALLBACK_DATA = {
 };
 
 const CHANGELOG = [
+  {
+    "type": "add",
+    "list": "Impossible",
+    "name": "silent sakupen lvl3",
+    "newRank": 1,
+    "above": null,
+    "below": "sakupen dih",
+    "date": "13 АВГУСТА, 2026"
+  },
   {
     "type": "add",
     "list": "Challenge List",
@@ -2047,6 +2066,48 @@ function renderUpdatesList() {
       if (name) fallbackMap.set(name.toLowerCase().trim(), { rank: idx + 1, item });
     });
 
+    const oldNames = fallbackList.map(item => getProp(item, listInfo.nameField)?.toLowerCase().trim()).filter(Boolean);
+    const newNames = currentList.map(item => getProp(item, listInfo.nameField)?.toLowerCase().trim()).filter(Boolean);
+    
+    const sequence = [];
+    newNames.forEach(name => {
+      const oldIdx = oldNames.indexOf(name);
+      if (oldIdx !== -1) {
+        sequence.push(oldIdx);
+      }
+    });
+
+    let lisOldIndices = new Set();
+    if (sequence.length > 0) {
+      const tails = [];
+      const parent = new Array(sequence.length).fill(-1);
+      
+      for (let i = 0; i < sequence.length; i++) {
+        const x = sequence[i];
+        let left = 0, right = tails.length;
+        while (left < right) {
+          const mid = Math.floor((left + right) / 2);
+          if (sequence[tails[mid]] < x) {
+            left = mid + 1;
+          } else {
+            right = mid;
+          }
+        }
+        if (left > 0) parent[i] = tails[left - 1];
+        if (left === tails.length) {
+          tails.push(i);
+        } else {
+          tails[left] = i;
+        }
+      }
+      
+      let curr = tails[tails.length - 1];
+      while (curr !== -1) {
+        lisOldIndices.add(sequence[curr]);
+        curr = parent[curr];
+      }
+    }
+
     currentList.forEach((item, idx) => {
       const name = getProp(item, listInfo.nameField);
       if (!name) return;
@@ -2064,10 +2125,13 @@ function renderUpdatesList() {
         liveUpdates.push({ type: 'add', list: listInfo.name, name, newRank: currentRank, date: 'ТЕКУЩИЕ ИЗМЕНЕНИЯ', ...getAboveBelow(idx) });
       } else {
         const oldRank = oldData.rank;
-        if (currentRank < oldRank) {
-          liveUpdates.push({ type: 'up', list: listInfo.name, name, oldRank, newRank: currentRank, date: 'ТЕКУЩИЕ ИЗМЕНЕНИЯ', ...getAboveBelow(idx) });
-        } else if (currentRank > oldRank) {
-          liveUpdates.push({ type: 'down', list: listInfo.name, name, oldRank, newRank: currentRank, date: 'ТЕКУЩИЕ ИЗМЕНЕНИЯ', ...getAboveBelow(idx) });
+        const oldIdx = oldRank - 1;
+        if (!lisOldIndices.has(oldIdx)) {
+          if (currentRank < oldRank) {
+            liveUpdates.push({ type: 'up', list: listInfo.name, name, oldRank, newRank: currentRank, date: 'ТЕКУЩИЕ ИЗМЕНЕНИЯ', ...getAboveBelow(idx) });
+          } else if (currentRank > oldRank) {
+            liveUpdates.push({ type: 'down', list: listInfo.name, name, oldRank, newRank: currentRank, date: 'ТЕКУЩИЕ ИЗМЕНЕНИЯ', ...getAboveBelow(idx) });
+          }
         }
       }
     });
