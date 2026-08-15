@@ -115,7 +115,8 @@ function generateUpdates(oldData, newData) {
   const listsToTrack = [
     { key: 'demonlist', name: 'Demonlist', nameField: ['level', 'name'] },
     { key: 'impossible', name: 'Impossible', nameField: ['levels', 'level', 'name'] },
-    { key: 'cll', name: 'Challenge List', nameField: ['name'] }
+    { key: 'cll', name: 'Challenge List', nameField: ['name'] },
+    { key: 'silent', name: 'Silent List', nameField: ['name'] }
   ];
 
   listsToTrack.forEach(listInfo => {

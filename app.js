@@ -343,7 +343,7 @@ const FALLBACK_DATA = {
       "Levels": "silent sakupen lvl3",
       "Top Impossible": "top 1",
       "Author": "pro100nubikcl",
-      "CPS": "Ultra High",
+      "CPS": "High",
       "ID": "313",
       "Использование Tps bypass": "Разрешено",
       "Рекорд сервера": "No",
@@ -373,7 +373,7 @@ const FALLBACK_DATA = {
       "Levels": "silent sakupen lvl2",
       "Top Impossible": "top 4",
       "Author": "TheUNrealKorben(pro100nubikcl)",
-      "CPS": "Ultra High",
+      "CPS": "High",
       "ID": "165",
       "Использование Tps bypass": "Запрещено",
       "Рекорд сервера": "TheUNrealkorben - 5.67%",
@@ -649,6 +649,36 @@ const CHANGELOG = [
     "above": null,
     "below": "sakupen dih",
     "date": "13 АВГУСТА, 2026"
+  },
+  {
+    "type": "up",
+    "list": "Silent List",
+    "name": "Hierodule",
+    "oldRank": 3,
+    "newRank": 1,
+    "above": null,
+    "below": "Abomination",
+    "date": "6 АВГУСТА, 2026"
+  },
+  {
+    "type": "down",
+    "list": "Silent List",
+    "name": "Abomination",
+    "oldRank": 1,
+    "newRank": 2,
+    "above": "Hierodule",
+    "below": "Stereo madness copy",
+    "date": "6 АВГУСТА, 2026"
+  },
+  {
+    "type": "down",
+    "list": "Silent List",
+    "name": "Stereo madness copy",
+    "oldRank": 2,
+    "newRank": 3,
+    "above": "Abomination",
+    "below": null,
+    "date": "6 АВГУСТА, 2026"
   },
   {
     "type": "add",
@@ -1198,7 +1228,7 @@ function renderDemonlist(list) {
     });
   }
 
-filtered.sort((a, b) => {
+  filtered.sort((a, b) => {
     const rankA = parseInt(getProp(a, ['top', 'rank'])) || 9999;
     const rankB = parseInt(getProp(b, ['top', 'rank'])) || 9999;
 
@@ -2053,7 +2083,9 @@ function renderUpdatesList() {
   const liveUpdates = [];
   const listsToTrack = [
     { key: 'demonlist', name: 'Demonlist', nameField: ['level', 'name'] },
-    { key: 'impossible', name: 'Impossible List', nameField: ['levels', 'level', 'name'] }
+    { key: 'impossible', name: 'Impossible', nameField: ['levels', 'level', 'name'] },
+    { key: 'cll', name: 'Challenge List', nameField: ['name'] },
+    { key: 'silent', name: 'Silent List', nameField: ['name'] }
   ];
 
   listsToTrack.forEach(listInfo => {
@@ -2068,7 +2100,7 @@ function renderUpdatesList() {
 
     const oldNames = fallbackList.map(item => getProp(item, listInfo.nameField)?.toLowerCase().trim()).filter(Boolean);
     const newNames = currentList.map(item => getProp(item, listInfo.nameField)?.toLowerCase().trim()).filter(Boolean);
-    
+
     const sequence = [];
     newNames.forEach(name => {
       const oldIdx = oldNames.indexOf(name);
@@ -2081,7 +2113,7 @@ function renderUpdatesList() {
     if (sequence.length > 0) {
       const tails = [];
       const parent = new Array(sequence.length).fill(-1);
-      
+
       for (let i = 0; i < sequence.length; i++) {
         const x = sequence[i];
         let left = 0, right = tails.length;
@@ -2100,7 +2132,7 @@ function renderUpdatesList() {
           tails[left] = i;
         }
       }
-      
+
       let curr = tails[tails.length - 1];
       while (curr !== -1) {
         lisOldIndices.add(sequence[curr]);
