@@ -1454,6 +1454,13 @@ function renderSlayers(list) {
       <div class="cell-points" style="font-weight: 600; color: var(--accent-purple);">${cllPoints}</div>
     `;
 
+    row.addEventListener('click', () => {
+      const isMobile = window.innerWidth <= 1024;
+      if (isMobile) {
+        openMobileModal('slayers', item);
+      }
+    });
+
     container.appendChild(row);
   });
 }
@@ -1953,6 +1960,28 @@ function getDetailsHTML(tabName, item) {
         <svg width="16" height="16" viewBox="0 0 24 24"><use href="#icon-discord"/></svg>
         Обсудить в Discord
       </a>
+    `;
+  } else if (tabName === 'slayers') {
+    const nickname = getProp(item, ['slayers', 'slayer', 'player']);
+    const points = getProp(item, ['points', 'очки']) || '0';
+    const cllPoints = getProp(item, ['challenge point', 'challenge points', 'cll points', 'challenge']) || '0';
+
+    return `
+      <div class="detail-title-wrapper">
+        <div class="detail-rank">Информация об игроке</div>
+        <h2 class="detail-title">${nickname}</h2>
+      </div>
+
+      <div class="detail-meta-list">
+        <div class="detail-meta-item">
+          <span class="detail-meta-label">List Points</span>
+          <span class="detail-meta-val" style="color: var(--accent-cyan); font-weight: 700;">${points} pts</span>
+        </div>
+        <div class="detail-meta-item">
+          <span class="detail-meta-label">Challenge Points</span>
+          <span class="detail-meta-val" style="color: var(--accent-purple); font-weight: 700;">${cllPoints} pts</span>
+        </div>
+      </div>
     `;
   }
   return '';
