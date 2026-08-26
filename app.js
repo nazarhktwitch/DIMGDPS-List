@@ -760,6 +760,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setupFilterListeners();
   setupMobileModal();
   setupSupport();
+  setupArchiveModal();
   loadAllData();
   window.addEventListener('hashchange', handleRouting);
 
@@ -772,9 +773,39 @@ document.addEventListener('DOMContentLoaded', () => {
         supportModal.classList.remove('active');
         document.body.style.overflow = '';
       }
+      const archiveModal = document.getElementById('archive-modal');
+      if (archiveModal && archiveModal.classList.contains('active')) {
+        archiveModal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
     }
   });
 });
+
+function setupArchiveModal() {
+  const modal = document.getElementById('archive-modal');
+  const openBtn = document.getElementById('open-archive-modal-btn');
+  const closeBtn = document.getElementById('archive-modal-close');
+
+  if (!modal || !openBtn || !closeBtn) return;
+
+  openBtn.addEventListener('click', () => {
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  });
+
+  closeBtn.addEventListener('click', () => {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  });
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
+}
 
 function setupSupport() {
   const modal = document.getElementById('support-modal');

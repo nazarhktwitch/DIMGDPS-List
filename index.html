@@ -285,6 +285,20 @@
         <div class="list-layout">
 
           <div class="list-main">
+            <div
+              style="background: rgba(239, 68, 68, 0.1); border-left: 3px solid #ef4444; border-radius: 4px; padding: 16px; margin-bottom: 20px; font-size: 0.9rem;">
+              <div style="margin-bottom: 12px; line-height: 1.5;"><strong>Архив демонлиста 26.08.2026:</strong> игрок
+                Angrybanana1212 ушел в инактив, и все уровни верифнутые ним с этого дня не учитываются в листе, и он был
+                удален из слееров по этой же причине.</div>
+              <button id="open-archive-modal-btn" class="btn btn-secondary"
+                style="font-size: 0.85rem; padding: 8px 16px; display: inline-flex; align-items: center; gap: 8px;">
+                <svg width="16" height="16" viewBox="0 0 24 24">
+                  <use href="#icon-list" />
+                </svg>
+                Посмотреть архив 26.08.2026 демонлиста
+              </button>
+            </div>
+
             <div class="search-filter-bar">
               <div class="search-wrapper">
                 <svg class="search-icon" viewBox="0 0 24 24">
@@ -595,6 +609,8 @@
               <h2><span>#</span>Правила подачи рекорда в Demonlist</h2>
               <ul class="rules-list">
                 <li>Лист процент на каждом лвле - <strong>50%</strong></li>
+                <li>Рекорд на <strong>Изи - Хард демонах</strong> обязательно только <strong>100%</strong>, прогресс
+                  меньше не принимаем</li>
               </ul>
               <p style="margin-top: 15px; font-weight: 600; color: var(--text-primary);">Для рекордов в уровнях легче
                 Топ 10 необходимо:</p>
@@ -730,6 +746,36 @@
       </section>
 
     </main>
+
+    <div class="modal-overlay" id="archive-modal" style="z-index: 1100;">
+      <div class="modal-window"
+        style="max-width: 1100px; width: 95vw; height: 90vh; display: flex; flex-direction: column; padding: 0; overflow: hidden;">
+        <div
+          style="display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--border-color); flex-shrink: 0;">
+          <div>
+            <div style="font-family: var(--font-title); font-size: 1.1rem; font-weight: 700;">Архив демонлиста
+              26.08.2026</div>
+            <div style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 2px;">Angrybanana1212 ушел в
+              инактив - верифнутые им уровни не учитываются</div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <a href="https://docs.google.com/spreadsheets/d/1m0nHeo2THOHkzt8gN4rCq5wsiumAOrjhGbqopH0SHKQ/"
+              target="_blank" class="btn btn-secondary"
+              style="font-size: 0.8rem; padding: 6px 12px; display: inline-flex; align-items: center; gap: 6px; text-decoration: none;">
+              <svg width="14" height="14" viewBox="0 0 24 24">
+                <use href="#icon-external" />
+              </svg>
+              Открыть в Google
+            </a>
+            <button class="modal-close" id="archive-modal-close" aria-label="Закрыть"
+              style="position: static; transform: none; top: auto; right: auto;">&times;</button>
+          </div>
+        </div>
+        <iframe src="https://docs.google.com/spreadsheets/d/1m0nHeo2THOHkzt8gN4rCq5wsiumAOrjhGbqopH0SHKQ/preview"
+          style="width: 100%; flex: 1; border: none; background: var(--bg-secondary);"
+          title="Архив демонлиста 26.08.2026" loading="lazy" allow="fullscreen"></iframe>
+      </div>
+    </div>
 
     <div class="modal-overlay" id="details-modal">
       <div class="modal-window">
