@@ -2102,10 +2102,12 @@ function getDetailsHTML(tabName, item) {
         </div>
       </div>
       
+      ${tabName !== 'archive' ? `
       <a class="btn btn-secondary" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;" href="https://discord.gg/u4wjPv3ggH" target="_blank">
         <svg width="16" height="16" viewBox="0 0 24 24"><use href="#icon-discord"/></svg>
         Подать рекорд
       </a>
+      ` : ''}
     `;
 
   } else if (tabName === 'impossible') {
