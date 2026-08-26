@@ -2025,7 +2025,7 @@ function getDetailsHTML(tabName, item) {
   const levelName = getProp(item, ['level', 'levels', 'name']);
   const author = getProp(item, ['author', 'creator']);
 
-  if (tabName === 'demonlist') {
+  if (tabName === 'demonlist' || tabName === 'archive') {
     const rank = getProp(item, ['top', 'rank']);
     const verifier = getProp(item, ['verifier', 'verifer']);
     const points = getProp(item, ['points', 'pts']);
