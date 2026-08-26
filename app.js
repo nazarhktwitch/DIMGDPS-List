@@ -1082,12 +1082,14 @@ function parseQueryParams(hash) {
 }
 
 function handleDeepLink(tabName, levelName) {
-  if (STATE.loading[tabName]) {
+  const dataKey = tabName === 'demonlist-archive' ? 'archive' : tabName;
+
+  if (STATE.loading[dataKey]) {
     setTimeout(() => handleDeepLink(tabName, levelName), 100);
     return;
   }
 
-  const list = STATE.data[tabName];
+  const list = STATE.data[dataKey];
   if (!list) return;
 
   const levelObj = list.find(item => {
@@ -1096,7 +1098,7 @@ function handleDeepLink(tabName, levelName) {
   });
 
   if (levelObj) {
-    selectLevel(tabName, levelObj, false);
+    selectLevel(dataKey, levelObj, false);
   }
 }
 
@@ -1973,7 +1975,8 @@ function selectLevel(tabName, item, updateUrl = true) {
   const levelName = getProp(item, ['level', 'levels', 'name']);
 
   if (updateUrl) {
-    navigateTo(tabName, { level: levelName });
+    const routeName = tabName === 'archive' ? 'demonlist-archive' : tabName;
+    navigateTo(routeName, { level: levelName });
   }
 
   const isMobile = window.innerWidth <= 1024;
@@ -1986,6 +1989,7 @@ function selectLevel(tabName, item, updateUrl = true) {
   // Highlight the active row if opened via url parameter
   const tableIds = {
     demonlist: 'demonlist-table',
+    archive: 'archive-table',
     impossible: 'impossible-table',
     slayers: 'slayers-table',
     silent: 'silent-table',
