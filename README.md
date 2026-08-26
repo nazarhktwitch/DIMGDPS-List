@@ -2,7 +2,9 @@
 
 Официальный сайт списков уровней и рекордов для сообщества DIMGDPS в Geometry Dash.
 
-Статическое веб-приложение, которое в реальном времени загружает, парсит и отображает данные о прохождениях, рекордах и будущих релизах из Google Sheets.
+Ссылка: [https://dimgdps.github.io/DIMGDPS-List/](https://dimgdps.github.io/DIMGDPS-List/)
+
+Связь: [dimgdps@gmail.com](mailto:dimgdps@gmail.com)
 
 ## License
 
