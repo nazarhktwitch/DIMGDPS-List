@@ -4,7 +4,8 @@ const SHEET_URLS = {
   slayers: 'https://docs.google.com/spreadsheets/d/1VbZUTOUBHyddh1Wt2fsiNwVE6Ai1oDDt2QQ0FEWHz3Y/export?format=csv',
   future: 'https://docs.google.com/spreadsheets/d/1HGWdQNAh3-AloKXXra2Tbmi-5kdEq2dFa68TeJi_fpI/export?format=csv',
   silent: 'https://docs.google.com/spreadsheets/d/1bTxdDTD2k-Ady3s6ucG2ZmmSZ57QqPLukyE5d4rhmbw/export?format=csv',
-  cll: 'https://docs.google.com/spreadsheets/d/1J9I4MSbHQPGgfIyQC7VKOs94pX27hzvhAV2U3bVbEw0/export?format=csv'
+  cll: 'https://docs.google.com/spreadsheets/d/1J9I4MSbHQPGgfIyQC7VKOs94pX27hzvhAV2U3bVbEw0/export?format=csv',
+  archive: 'https://docs.google.com/spreadsheets/d/1m0nHeo2THOHkzt8gN4rCq5wsiumAOrjhGbqopH0SHKQ/export?format=csv'
 };
 
 const LEVEL_WARNINGS = {
@@ -719,7 +720,8 @@ const STATE = {
     slayers: [],
     future: [],
     silent: [],
-    cll: []
+    cll: [],
+    archive: []
   },
   filters: {
     demonlist: { search: '', difficulty: 'all', sort: 'rank-asc' },
@@ -727,13 +729,15 @@ const STATE = {
     slayers: { search: '', sort: 'rank-asc' },
     future: { search: '', difficulty: 'all' },
     silent: { search: '', sort: 'rank-asc' },
-    cll: { search: '', sort: 'rank-asc' }
+    cll: { search: '', sort: 'rank-asc' },
+    archive: { search: '', difficulty: 'all', sort: 'rank-asc' }
   },
   selectedLevel: {
     demonlist: null,
     impossible: null,
     silent: null,
-    cll: null
+    cll: null,
+    archive: null
   },
   loading: {
     demonlist: true,
@@ -741,7 +745,8 @@ const STATE = {
     slayers: true,
     future: true,
     silent: true,
-    cll: true
+    cll: true,
+    archive: true
   },
   errors: {
     demonlist: null,
@@ -749,7 +754,8 @@ const STATE = {
     slayers: null,
     future: null,
     silent: null,
-    cll: null
+    cll: null,
+    archive: null
   }
 };
 
@@ -760,7 +766,6 @@ document.addEventListener('DOMContentLoaded', () => {
   setupFilterListeners();
   setupMobileModal();
   setupSupport();
-  setupArchiveModal();
   loadAllData();
   window.addEventListener('hashchange', handleRouting);
 
@@ -773,39 +778,9 @@ document.addEventListener('DOMContentLoaded', () => {
         supportModal.classList.remove('active');
         document.body.style.overflow = '';
       }
-      const archiveModal = document.getElementById('archive-modal');
-      if (archiveModal && archiveModal.classList.contains('active')) {
-        archiveModal.classList.remove('active');
-        document.body.style.overflow = '';
-      }
     }
   });
 });
-
-function setupArchiveModal() {
-  const modal = document.getElementById('archive-modal');
-  const openBtn = document.getElementById('open-archive-modal-btn');
-  const closeBtn = document.getElementById('archive-modal-close');
-
-  if (!modal || !openBtn || !closeBtn) return;
-
-  openBtn.addEventListener('click', () => {
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  });
-
-  closeBtn.addEventListener('click', () => {
-    modal.classList.remove('active');
-    document.body.style.overflow = '';
-  });
-
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
-      modal.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-  });
-}
 
 function setupSupport() {
   const modal = document.getElementById('support-modal');
@@ -873,7 +848,7 @@ function handleRouting() {
   const cleanHash = hash.split('?')[0];
   const params = parseQueryParams(hash);
   const tabName = cleanHash.replace('#', '');
-  const validTabs = ['home', 'demonlist', 'impossible', 'slayers', 'future', 'silent', 'cll', 'rules'];
+  const validTabs = ['home', 'demonlist', 'demonlist-archive', 'impossible', 'slayers', 'future', 'silent', 'cll', 'rules'];
 
   if (!validTabs.includes(tabName)) {
     navigateTo('home');
@@ -960,6 +935,12 @@ function setupNavigation() {
   document.getElementById('home-btn-all-demons').addEventListener('click', () => navigateTo('demonlist'));
   document.getElementById('home-btn-all-impossible').addEventListener('click', () => navigateTo('impossible'));
 
+  const openArchiveBtn = document.getElementById('open-archive-page-btn');
+  if (openArchiveBtn) openArchiveBtn.addEventListener('click', () => navigateTo('demonlist-archive'));
+
+  const backBtn = document.getElementById('archive-back-btn');
+  if (backBtn) backBtn.addEventListener('click', () => navigateTo('demonlist'));
+
   handleRouting();
 }
 
@@ -1009,6 +990,7 @@ async function loadListData(name) {
 
     const validData = parsed.filter(item => {
       if (name === 'demonlist') return !!getProp(item, ['level', 'name']);
+      if (name === 'archive') return !!getProp(item, ['level', 'name']);
       if (name === 'impossible') return !!getProp(item, ['levels', 'level', 'name']);
       if (name === 'slayers') return !!getProp(item, ['slayers', 'slayer', 'player']);
       if (name === 'future') return !!getProp(item, ['levels', 'level', 'name']);
@@ -1200,6 +1182,13 @@ function setupFilterListeners() {
       renderList('cll');
     });
   }
+
+  const archSearch = document.getElementById('archive-search');
+  const archDiff = document.getElementById('archive-filter-diff');
+  const archSort = document.getElementById('archive-sort');
+  if (archSearch) archSearch.addEventListener('input', (e) => { STATE.filters.archive.search = e.target.value; renderList('archive'); });
+  if (archDiff) archDiff.addEventListener('change', (e) => { STATE.filters.archive.difficulty = e.target.value; renderList('archive'); });
+  if (archSort) archSort.addEventListener('change', (e) => { STATE.filters.archive.sort = e.target.value; renderList('archive'); });
 }
 
 function renderList(name) {
@@ -1208,6 +1197,8 @@ function renderList(name) {
 
   if (name === 'demonlist') {
     renderDemonlist(list);
+  } else if (name === 'archive') {
+    renderArchive(list);
   } else if (name === 'impossible') {
     renderImpossibleList(list);
   } else if (name === 'slayers') {
@@ -1332,6 +1323,96 @@ function renderDemonlist(list) {
     row.addEventListener('click', () => {
       selectLevel('demonlist', item);
       document.querySelectorAll('#demonlist-table .leaderboard-row').forEach(r => r.classList.remove('active'));
+      row.classList.add('active');
+    });
+
+    container.appendChild(row);
+  });
+}
+
+function renderArchive(list) {
+  const container = document.getElementById('archive-table');
+  if (!container) return;
+  const diffSelect = document.getElementById('archive-filter-diff');
+
+  if (diffSelect && diffSelect.options.length <= 1) {
+    const difficulties = new Set();
+    list.forEach(item => {
+      const d = getProp(item, ['leveldifficulty', 'difficulty', 'diff']);
+      if (d) difficulties.add(d.trim());
+    });
+    difficulties.forEach(diff => {
+      const opt = document.createElement('option');
+      opt.value = diff;
+      opt.textContent = diff;
+      diffSelect.appendChild(opt);
+    });
+  }
+
+  let filtered = [...list];
+  const filters = STATE.filters.archive;
+
+  if (filters.search) {
+    const q = filters.search.toLowerCase();
+    filtered = filtered.filter(item => {
+      const lvl = getProp(item, ['level', 'name']).toLowerCase();
+      const auth = getProp(item, ['author', 'creator']).toLowerCase();
+      const ver = getProp(item, ['verifier', 'verifer']).toLowerCase();
+      return lvl.includes(q) || auth.includes(q) || ver.includes(q);
+    });
+  }
+
+  if (filters.difficulty && filters.difficulty !== 'all') {
+    filtered = filtered.filter(item => {
+      const d = getProp(item, ['leveldifficulty', 'difficulty', 'diff']);
+      return d.trim() === filters.difficulty;
+    });
+  }
+
+  filtered.sort((a, b) => {
+    const rankA = parseInt(getProp(a, ['top', 'rank'])) || 9999;
+    const rankB = parseInt(getProp(b, ['top', 'rank'])) || 9999;
+    if (filters.sort === 'rank-asc') return rankA - rankB;
+    if (filters.sort === 'rank-desc') return rankB - rankA;
+    if (filters.sort === 'name-asc') {
+      return getProp(a, ['level', 'name']).toLowerCase().localeCompare(getProp(b, ['level', 'name']).toLowerCase(), 'ru');
+    }
+    return rankA - rankB;
+  });
+
+  if (filtered.length === 0) {
+    container.innerHTML = '<div style="padding: 30px; text-align: center; color: var(--text-secondary);">Ничего не найдено</div>';
+    return;
+  }
+
+  container.innerHTML = '';
+  filtered.forEach(item => {
+    const rank = getProp(item, ['top', 'rank']);
+    const levelName = getProp(item, ['level', 'name']);
+    const author = getProp(item, ['author', 'creator']);
+    const verifier = getProp(item, ['verifier', 'verifer']);
+    const points = getProp(item, ['points', 'pts']);
+    const diff = getProp(item, ['leveldifficulty', 'difficulty']);
+    const diffClass = getDifficultyClass(diff);
+    const badgeName = getCleanDifficultyName(diff);
+    const isActive = STATE.selectedLevel.archive && getProp(STATE.selectedLevel.archive, ['level', 'name']) === levelName;
+
+    const row = document.createElement('div');
+    row.className = `leaderboard-row grid-demonlist ${isActive ? 'active' : ''}`;
+    row.innerHTML = `
+      <div class="cell-rank">#${rank}</div>
+      <div class="cell-name-block">
+        <div class="cell-name">${levelName}</div>
+        <div class="cell-badge"><span class="badge ${diffClass}" style="margin-top: 4px; padding: 2px 6px; font-size: 0.65rem;">${badgeName}</span></div>
+      </div>
+      <div class="cell-author cell-sub">${author}</div>
+      <div class="cell-verifer cell-sub">${verifier}</div>
+      <div class="cell-points" style="font-weight: 600; color: var(--accent-cyan);">${points}</div>
+    `;
+
+    row.addEventListener('click', () => {
+      selectLevel('archive', item);
+      document.querySelectorAll('#archive-table .leaderboard-row').forEach(r => r.classList.remove('active'));
       row.classList.add('active');
     });
 
