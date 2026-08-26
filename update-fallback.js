@@ -113,7 +113,7 @@ function getProp(obj, possibleKeys) {
 function generateUpdates(oldData, newData) {
   const updates = [];
   const listsToTrack = [
-    { key: 'demonlist', name: 'Demonlist', nameField: ['level', 'name'] },
+    { key: 'demonlist', name: 'Demonlist', nameField: ['level', 'name'], trackRankChanges: false },
     { key: 'impossible', name: 'Impossible', nameField: ['levels', 'level', 'name'] },
     { key: 'cll', name: 'Challenge List', nameField: ['name'] },
     { key: 'silent', name: 'Silent List', nameField: ['name'] }
@@ -125,7 +125,7 @@ function generateUpdates(oldData, newData) {
 
     const oldNames = fallbackList.map(item => getProp(item, listInfo.nameField)?.toLowerCase().trim()).filter(Boolean);
     const newNames = currentList.map(item => getProp(item, listInfo.nameField)?.toLowerCase().trim()).filter(Boolean);
-    
+
     const sequence = [];
     newNames.forEach(name => {
       const oldIdx = oldNames.indexOf(name);
@@ -138,7 +138,7 @@ function generateUpdates(oldData, newData) {
     if (sequence.length > 0) {
       const tails = [];
       const parent = new Array(sequence.length).fill(-1);
-      
+
       for (let i = 0; i < sequence.length; i++) {
         const x = sequence[i];
         let left = 0, right = tails.length;
@@ -157,7 +157,7 @@ function generateUpdates(oldData, newData) {
           tails[left] = i;
         }
       }
-      
+
       let curr = tails[tails.length - 1];
       while (curr !== -1) {
         lisOldIndices.add(sequence[curr]);
@@ -187,10 +187,10 @@ function generateUpdates(oldData, newData) {
 
       if (!oldItem) {
         updates.push({ type: 'add', list: listInfo.name, name, newRank: currentRank, ...getAboveBelow(idx) });
-      } else {
+      } else if (listInfo.trackRankChanges !== false) {
         const oldRank = oldItem.rank;
         const oldIdx = oldRank - 1;
-        
+
         if (!lisOldIndices.has(oldIdx)) {
           if (currentRank < oldRank) {
             updates.push({ type: 'up', list: listInfo.name, name, oldRank, newRank: currentRank, ...getAboveBelow(idx) });
@@ -216,6 +216,30 @@ async function main() {
   let hasErrors = false;
 
   for (const [name, url] of Object.entries(SHEET_URLS)) {
+    // 'archive' is a static historical snapshot.
+    // Fetch it only once to initialize FALLBACK_DATA, never update it again.
+    if (name === 'archive') {
+      if (OLD_FALLBACK_DATA[name]) {
+        console.log(`Skipping ${name} (already initialized, static archive).`);
+        NEW_FALLBACK_DATA[name] = OLD_FALLBACK_DATA[name];
+      } else {
+        console.log(`Fetching ${name} (first-time initialization)...`);
+        try {
+          const response = await fetch(url);
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          const text = await response.text();
+          const parsed = parseCSV(text);
+          const validData = parsed.filter(item => !!getProp(item, ['level', 'name']));
+          NEW_FALLBACK_DATA[name] = validData;
+          console.log(` -> Initialized archive with ${validData.length} items (will not update in future runs).`);
+        } catch (e) {
+          console.error(` -> Error initializing archive:`, e.message);
+          hasErrors = true;
+        }
+      }
+      continue;
+    }
+
     console.log(`Fetching ${name}...`);
     try {
       const response = await fetch(url);

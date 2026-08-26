@@ -15,6 +15,488 @@ const LEVEL_WARNINGS = {
 const FALLBACK_DATA = {
   "demonlist": [
     {
+      "Level": "Despair",
+      "Top": "1",
+      "Author": "pro100nubickl , soulq1337",
+      "Verifer": "pro100nubickl",
+      "Level Difficulty": "Easy Extreme Demon",
+      "Progresses": "No",
+      "Points": "1000"
+    },
+    {
+      "Level": "Dnyami Nochami",
+      "Top": "2",
+      "Author": "pro100nubikcl",
+      "Verifer": "pro100nubikcl",
+      "Level Difficulty": "Easiest Extreme Demon",
+      "Progresses": "AngryBanana1212 - 100%",
+      "Points": "950"
+    },
+    {
+      "Level": "mat pidora",
+      "Top": "3",
+      "Author": "pro100nubickl",
+      "Verifer": "techopro9",
+      "Level Difficulty": "Cruel Insane Demon",
+      "Progresses": "No",
+      "Points": "900"
+    },
+    {
+      "Level": "Pigpolis",
+      "Top": "4",
+      "Author": "AngryBanana1212",
+      "Verifer": "AngryBanana1212",
+      "Level Difficulty": "Cruel Insane Demon",
+      "Progresses": "No",
+      "Points": "850"
+    },
+    {
+      "Level": "falling wave",
+      "Top": "5",
+      "Author": "pro100nubikcl",
+      "Verifer": "pro100nubikcl",
+      "Level Difficulty": "Cruel Insane Demon",
+      "Progresses": "AngryBanana1212 - 100%",
+      "Points": "800"
+    },
+    {
+      "Level": "Silent sakupen lvl",
+      "Top": "6",
+      "Author": "pro100nubikcl",
+      "Verifer": "pro100nubikcl",
+      "Level Difficulty": "Easy Insane Demon",
+      "Progresses": "AngryBanana1212 - 100%  techopro9 - 100% NazarHK - 100%",
+      "Points": "750"
+    },
+    {
+      "Level": "The Past Is History",
+      "Top": "7",
+      "Author": "techopro9",
+      "Verifer": "pro100nubikcl",
+      "Level Difficulty": "Moderate Hard Demon",
+      "Progresses": "AngryBanana1212 - 100%",
+      "Points": "700"
+    },
+    {
+      "Level": "Last Arrival",
+      "Top": "8",
+      "Author": "AngryBanana1212",
+      "Verifer": "AngryBanana1212",
+      "Level Difficulty": "Moderate Hard Demon",
+      "Progresses": "pro100nubickl - 100%",
+      "Points": "650"
+    },
+    {
+      "Level": "therealchuhan gg",
+      "Top": "9",
+      "Author": "pro100nubikcl",
+      "Verifer": "pro100nubikcl",
+      "Level Difficulty": "Hard Demon",
+      "Progresses": "AngryBanana1212 - 100%",
+      "Points": "600"
+    },
+    {
+      "Level": "ColorWave",
+      "Top": "10",
+      "Author": "NazarHK",
+      "Verifer": "techopro9",
+      "Level Difficulty": "Hard Demon",
+      "Progresses": "pro100nubikcl - 70%",
+      "Points": "550"
+    },
+    {
+      "Level": "super sakupen lvl3",
+      "Top": "11",
+      "Author": "pro100nubikcl",
+      "Verifer": "pro100nubikcl",
+      "Level Difficulty": "Hard demon",
+      "Progresses": "AngryBanana1212 - 100%",
+      "Points": "500"
+    },
+    {
+      "Level": "super sakupen level",
+      "Top": "12",
+      "Author": "pro100nubikcl",
+      "Verifer": "pro100nubikcl",
+      "Level Difficulty": "Hard demon",
+      "Progresses": "AngryBanana1212 - 100%\nTechopro9 - 89%",
+      "Points": "450"
+    },
+    {
+      "Level": "Couch Bratan",
+      "Top": "13",
+      "Author": "NazarHK",
+      "Verifer": "NazarHK",
+      "Level Difficulty": "Couch Medium Demon",
+      "Progresses": "soulq1337 - 100%",
+      "Points": "400"
+    },
+    {
+      "Level": "NA KRYLCE X",
+      "Top": "14",
+      "Author": "NazarHK",
+      "Verifer": "NazarHK",
+      "Level Difficulty": "BAGANIY Medium Demon",
+      "Progresses": "AngryBanana1212 - 100%\nTechopro9 - 100%\npro100nubikcl - 100%",
+      "Points": "350"
+    },
+    {
+      "Level": "super sakupen lvl 2",
+      "Top": "15",
+      "Author": "pro100nubikcl",
+      "Verifer": "pro100nubikcl",
+      "Level Difficulty": "Medium Demon",
+      "Progresses": "AngryBanana1212 - 100%",
+      "Points": "300"
+    },
+    {
+      "Level": "Wave to the Past",
+      "Top": "16",
+      "Author": "soulq1337",
+      "Verifer": "soulq1337",
+      "Level Difficulty": "Medium Demon",
+      "Progresses": "pro100nubickl - 100% NazarHK - 100% techopro9 - 100%",
+      "Points": "250"
+    },
+    {
+      "Level": "Dihnoeument",
+      "Top": "17",
+      "Author": "zlukaW",
+      "Verifer": "techopro9",
+      "Level Difficulty": "Medium Demon",
+      "Progresses": "AngryBanana1212 - 100%",
+      "Points": "200"
+    },
+    {
+      "Level": "Winter Chill",
+      "Top": "18",
+      "Author": "pro100nubickl",
+      "Verifer": "pro100nubickl",
+      "Level Difficulty": "Easy Medium Demon",
+      "Progresses": "No",
+      "Points": "150"
+    },
+    {
+      "Level": "NULLSPACE",
+      "Top": "19",
+      "Author": "techopro9",
+      "Verifer": "techopro9",
+      "Level Difficulty": "Free Easy demon",
+      "Progresses": "No",
+      "Points": "100"
+    },
+    {
+      "Level": "party disco",
+      "Top": "20",
+      "Author": "techopro9",
+      "Verifer": "techopro9",
+      "Level Difficulty": "Free Easy Demon",
+      "Progresses": "AngryBanana1212 - 100%",
+      "Points": "50"
+    }
+  ],
+  "impossible": [
+    {
+      "Levels": "silent sakupen lvl3",
+      "Top Impossible": "top 1",
+      "Author": "pro100nubikcl",
+      "CPS": "High",
+      "ID": "313",
+      "Использование Tps bypass": "Разрешено",
+      "Рекорд сервера": "No",
+      "Low cps - <5 cps": ""
+    },
+    {
+      "Levels": "sakupen dih",
+      "Top Impossible": "top 2",
+      "Author": "NazarHK",
+      "CPS": "High",
+      "ID": "183",
+      "Использование Tps bypass": "Разрешено",
+      "Рекорд сервера": "No",
+      "Low cps - <5 cps": ""
+    },
+    {
+      "Levels": "help god",
+      "Top Impossible": "top 3",
+      "Author": "techopro9",
+      "CPS": "High",
+      "ID": "224",
+      "Использование Tps bypass": "Запрещено",
+      "Рекорд сервера": "No",
+      "Low cps - <5 cps": "Medium cps 5-10 cps"
+    },
+    {
+      "Levels": "silent sakupen lvl2",
+      "Top Impossible": "top 4",
+      "Author": "TheUNrealKorben(pro100nubikcl)",
+      "CPS": "High",
+      "ID": "165",
+      "Использование Tps bypass": "Запрещено",
+      "Рекорд сервера": "TheUNrealkorben - 5.67%",
+      "Low cps - <5 cps": ""
+    },
+    {
+      "Levels": "silent denouement",
+      "Top Impossible": "top 5",
+      "Author": "techopro9",
+      "CPS": "High",
+      "ID": "167",
+      "Использование Tps bypass": "Запрещено",
+      "Рекорд сервера": "No",
+      "Low cps - <5 cps": "High cps - 10-15 cps"
+    },
+    {
+      "Levels": "ton 67",
+      "Top Impossible": "top 6",
+      "Author": "NazarHK",
+      "CPS": "High",
+      "ID": "164",
+      "Использование Tps bypass": "Разрешено",
+      "Рекорд сервера": "NazarHK - 30%",
+      "Low cps - <5 cps": "Ultra High - 15 cps only"
+    },
+    {
+      "Levels": "Asmarin",
+      "Top Impossible": "top 7",
+      "Author": "techopro9",
+      "CPS": "High",
+      "ID": "163",
+      "Использование Tps bypass": "Запрещено",
+      "Рекорд сервера": "techopro9 - 40%",
+      "Low cps - <5 cps": ""
+    },
+    {
+      "Levels": "sakupen pig",
+      "Top Impossible": "top 8",
+      "Author": "TheUNrealKorben(pro100nubikcl)",
+      "CPS": "High",
+      "ID": "160",
+      "Использование Tps bypass": "Запрещено",
+      "Рекорд сервера": "No",
+      "Low cps - <5 cps": ""
+    },
+    {
+      "Levels": "Snowflake (UNNERFIED)",
+      "Top Impossible": "top 9",
+      "Author": "NazarHK",
+      "CPS": "Medium",
+      "ID": "147",
+      "Использование Tps bypass": "Запрещено",
+      "Рекорд сервера": "No",
+      "Low cps - <5 cps": ""
+    },
+    {
+      "Levels": "Evil Parallelogram",
+      "Top Impossible": "top 10",
+      "Author": "techopro9",
+      "CPS": "Medium",
+      "ID": "209",
+      "Использование Tps bypass": "Запрещено",
+      "Рекорд сервера": "No",
+      "Low cps - <5 cps": ""
+    },
+    {
+      "Levels": "lose arrival pig",
+      "Top Impossible": "top 11",
+      "Author": "TheUNrealKorben(pro100nubikcl)",
+      "CPS": "Low",
+      "ID": "151",
+      "Использование Tps bypass": "Запрещено",
+      "Рекорд сервера": "techopro9 - 20%",
+      "Low cps - <5 cps": ""
+    }
+  ],
+  "slayers": [
+    {
+      "Slayers": "TheUNrealkorben",
+      "Tops": "1",
+      "Points": "7500",
+      "Challenge point": "0"
+    },
+    {
+      "Slayers": "techopro9",
+      "Tops": "2",
+      "Points": "3300",
+      "Challenge point": "1750"
+    },
+    {
+      "Slayers": "NazarHK",
+      "Tops": "3",
+      "Points": "2050",
+      "Challenge point": "1850"
+    }
+  ],
+  "future": [
+    {
+      "Levels": "Sakupen Disco",
+      "Upcoming Top": "Top 1",
+      "Author": "techopro9",
+      "Verifier": "techopro9",
+      "Difficulty": "Hell Extreme Demon",
+      "Progress": "75%",
+      "Status": "In progress"
+    },
+    {
+      "Levels": "Silent Every End",
+      "Upcoming Top": "Top 1",
+      "Author": "pro100nubickl",
+      "Verifier": "pro100nubikcl",
+      "Difficulty": "Melted Extreme Demon",
+      "Progress": "100%",
+      "Status": "Verifying"
+    },
+    {
+      "Levels": "Every Start",
+      "Upcoming Top": "Top ?",
+      "Author": "techopro9",
+      "Verifier": "pro100nubickl",
+      "Difficulty": "Hard Demon - Moderate Hard Demon",
+      "Progress": "32%",
+      "Status": "In progress"
+    },
+    {
+      "Levels": "Every End",
+      "Upcoming Top": "Top ?",
+      "Author": "techopro9, ?????",
+      "Verifier": "pro100nubickl",
+      "Difficulty": "Brutal Extreme Demon",
+      "Progress": "0%",
+      "Status": "Not start"
+    },
+    {
+      "Levels": "Loneliness",
+      "Upcoming Top": "Top 1",
+      "Author": "techopro9",
+      "Verifier": "????",
+      "Difficulty": "Frozen Extreme Demon",
+      "Progress": "8%",
+      "Status": "Rework"
+    },
+    {
+      "Levels": "Asankhyeya",
+      "Upcoming Top": "Top 1",
+      "Author": "techopro9",
+      "Verifier": "techopro9",
+      "Difficulty": "Hell Extreme Demon",
+      "Progress": "100%",
+      "Status": "Paused"
+    },
+    {
+      "Levels": "Disconnection",
+      "Upcoming Top": "?",
+      "Author": "NazarHK",
+      "Verifier": "Techopro9",
+      "Difficulty": "Insane/Extreme Demon",
+      "Progress": "20%",
+      "Status": "In Progress"
+    },
+    {
+      "Levels": "Quantum Terminal",
+      "Upcoming Top": "?",
+      "Author": "NazarHK",
+      "Verifier": "AngryBanana1212",
+      "Difficulty": "Insane Demon",
+      "Progress": "75%",
+      "Status": "In Progress"
+    },
+    {
+      "Levels": "Gazoparazit Circles",
+      "Upcoming Top": "Top 1",
+      "Author": "techopro9",
+      "Verifier": "techopro9",
+      "Difficulty": "Easy Extreme Demon",
+      "Progress": "100%",
+      "Status": "Verifying"
+    },
+    {
+      "Levels": "Dnyami nochami buffdate",
+      "Upcoming Top": "Top 2",
+      "Author": "pro100nubickl",
+      "Verifier": "pro100nubikcl",
+      "Difficulty": "Easy Extreme Demon",
+      "Progress": "100%",
+      "Status": "Verifying"
+    }
+  ],
+  "silent": [
+    {
+      "Name": "Hierodule",
+      "Top": "1",
+      "FPS": "240",
+      "TPS": "no",
+      "CPS": "240",
+      "Author": "NazarHK"
+    },
+    {
+      "Name": "Abomination",
+      "Top": "2",
+      "FPS": "2400",
+      "TPS": "960",
+      "CPS": "?",
+      "Author": "pro100nubickl"
+    },
+    {
+      "Name": "Stereo madness copy",
+      "Top": "3",
+      "FPS": "2400",
+      "TPS": "960",
+      "CPS": "?",
+      "Author": "pro100nubickl"
+    }
+  ],
+  "cll": [
+    {
+      "Name": "TCK",
+      "Top": "1",
+      "Author": "NazarHK",
+      "Verifier": "NazarHK",
+      "CPS": "5",
+      "FPS": "240",
+      "Challenge point": "1000",
+      "Challenge point Record": "-",
+      "Challenge point Record 1": "-",
+      "Records": "No"
+    },
+    {
+      "Name": "Tunnel of Hell",
+      "Top": "2",
+      "Author": "DimStream",
+      "Verifier": "AngryBanana1212",
+      "CPS": "5-7",
+      "FPS": "Any",
+      "Challenge point": "950",
+      "Challenge point Record": "500",
+      "Challenge point Record 1": ">60%",
+      "Records": "No"
+    },
+    {
+      "Name": "Parallelogram",
+      "Top": "3",
+      "Author": "NazarHK",
+      "Verifier": "techopro9",
+      "CPS": "4-5",
+      "FPS": "Any",
+      "Challenge point": "900",
+      "Challenge point Record": "475",
+      "Challenge point Record 1": ">56%",
+      "Records": "No"
+    },
+    {
+      "Name": "i gonna give you up",
+      "Top": "4",
+      "Author": "techopro9",
+      "Verifier": "techopro9",
+      "CPS": "5-6",
+      "FPS": "Any",
+      "Challenge point": "850",
+      "Challenge point Record": "-",
+      "Challenge point Record 1": "-",
+      "Records": "NazarHK  - 100%"
+    }
+  ],
+  "archive": [
+    {
       "Level": "P I G",
       "Top": "1",
       "Author": "AngryBanana1212",
@@ -338,310 +820,19 @@ const FALLBACK_DATA = {
       "Progresses": "AngryBanana1212 - 100%",
       "Points": "0.125"
     }
-  ],
-  "impossible": [
-    {
-      "Levels": "silent sakupen lvl3",
-      "Top Impossible": "top 1",
-      "Author": "pro100nubikcl",
-      "CPS": "High",
-      "ID": "313",
-      "Использование Tps bypass": "Разрешено",
-      "Рекорд сервера": "No",
-      "Low cps - <5 cps": ""
-    },
-    {
-      "Levels": "sakupen dih",
-      "Top Impossible": "top 2",
-      "Author": "NazarHK",
-      "CPS": "High",
-      "ID": "183",
-      "Использование Tps bypass": "Разрешено",
-      "Рекорд сервера": "No",
-      "Low cps - <5 cps": ""
-    },
-    {
-      "Levels": "help god",
-      "Top Impossible": "top 3",
-      "Author": "techopro9",
-      "CPS": "High",
-      "ID": "224",
-      "Использование Tps bypass": "Запрещено",
-      "Рекорд сервера": "No",
-      "Low cps - <5 cps": "Medium cps 5-10 cps"
-    },
-    {
-      "Levels": "silent sakupen lvl2",
-      "Top Impossible": "top 4",
-      "Author": "TheUNrealKorben(pro100nubikcl)",
-      "CPS": "High",
-      "ID": "165",
-      "Использование Tps bypass": "Запрещено",
-      "Рекорд сервера": "TheUNrealkorben - 5.67%",
-      "Low cps - <5 cps": ""
-    },
-    {
-      "Levels": "silent denouement",
-      "Top Impossible": "top 5",
-      "Author": "techopro9",
-      "CPS": "High",
-      "ID": "167",
-      "Использование Tps bypass": "Запрещено",
-      "Рекорд сервера": "No",
-      "Low cps - <5 cps": "High cps - 10-15 cps"
-    },
-    {
-      "Levels": "ton 67",
-      "Top Impossible": "top 6",
-      "Author": "NazarHK",
-      "CPS": "High",
-      "ID": "164",
-      "Использование Tps bypass": "Разрешено",
-      "Рекорд сервера": "NazarHK - 30%",
-      "Low cps - <5 cps": "Ultra High - 15 cps only"
-    },
-    {
-      "Levels": "Asmarin",
-      "Top Impossible": "top 7",
-      "Author": "techopro9",
-      "CPS": "High",
-      "ID": "163",
-      "Использование Tps bypass": "Запрещено",
-      "Рекорд сервера": "techopro9 - 40%",
-      "Low cps - <5 cps": ""
-    },
-    {
-      "Levels": "sakupen pig",
-      "Top Impossible": "top 8",
-      "Author": "TheUNrealKorben(pro100nubikcl)",
-      "CPS": "High",
-      "ID": "160",
-      "Использование Tps bypass": "Запрещено",
-      "Рекорд сервера": "No",
-      "Low cps - <5 cps": ""
-    },
-    {
-      "Levels": "Snowflake (UNNERFIED)",
-      "Top Impossible": "top 9",
-      "Author": "NazarHK",
-      "CPS": "Medium",
-      "ID": "147",
-      "Использование Tps bypass": "Запрещено",
-      "Рекорд сервера": "No",
-      "Low cps - <5 cps": ""
-    },
-    {
-      "Levels": "Evil Parallelogram",
-      "Top Impossible": "top 10",
-      "Author": "techopro9",
-      "CPS": "Medium",
-      "ID": "209",
-      "Использование Tps bypass": "Запрещено",
-      "Рекорд сервера": "No",
-      "Low cps - <5 cps": ""
-    },
-    {
-      "Levels": "lose arrival pig",
-      "Top Impossible": "top 11",
-      "Author": "TheUNrealKorben(pro100nubikcl)",
-      "CPS": "Low",
-      "ID": "151",
-      "Использование Tps bypass": "Запрещено",
-      "Рекорд сервера": "techopro9 - 20%",
-      "Low cps - <5 cps": ""
-    }
-  ],
-  "slayers": [
-    {
-      "Slayers": "AngryBanana1212",
-      "Tops": "1",
-      "Points": "1337, 665",
-      "Challenge point": "1000"
-    },
-    {
-      "Slayers": "TheUNrealkorben",
-      "Tops": "2",
-      "Points": "188,36",
-      "Challenge point": "0"
-    },
-    {
-      "Slayers": "techopro9",
-      "Tops": "3",
-      "Points": "87,31",
-      "Challenge point": "1850"
-    },
-    {
-      "Slayers": "NazarHK",
-      "Tops": "4",
-      "Points": "26,21",
-      "Challenge point": "0"
-    },
-    {
-      "Slayers": "DimStrem",
-      "Tops": "5",
-      "Points": "0",
-      "Challenge point": "0"
-    }
-  ],
-  "future": [
-    {
-      "Levels": "Sakupen Disco",
-      "Upcoming Top": "Top 3-5",
-      "Author": "techopro9",
-      "Verifier": "techopro9",
-      "Difficulty": "Hell Extreme Demon",
-      "Progress": "75%",
-      "Status": "In progress"
-    },
-    {
-      "Levels": "Silent Every End",
-      "Upcoming Top": "Top ?",
-      "Author": "pro100nubickl",
-      "Verifier": "pro100nubikcl",
-      "Difficulty": "Melted Extreme Demon",
-      "Progress": "100%",
-      "Status": "Rework"
-    },
-    {
-      "Levels": "Every Start",
-      "Upcoming Top": "Top 22-25",
-      "Author": "techopro9",
-      "Verifier": "pro100nubickl",
-      "Difficulty": "Hard Demon - Moderate Hard Demon",
-      "Progress": "32%",
-      "Status": "In progress"
-    },
-    {
-      "Levels": "Every End",
-      "Upcoming Top": "Top 10-12",
-      "Author": "techopro9, ?????",
-      "Verifier": "pro100nubickl",
-      "Difficulty": "Brutal Extreme Demon",
-      "Progress": "0%",
-      "Status": "Not start"
-    },
-    {
-      "Levels": "Loneliness",
-      "Upcoming Top": "Top 1",
-      "Author": "techopro9",
-      "Verifier": "????",
-      "Difficulty": "Frozen Extreme Demon",
-      "Progress": "8%",
-      "Status": "Rework"
-    },
-    {
-      "Levels": "Asankhyeya",
-      "Upcoming Top": "Top 4",
-      "Author": "techopro9",
-      "Verifier": "techopro9",
-      "Difficulty": "Hell Extreme Demon",
-      "Progress": "100%",
-      "Status": "Paused"
-    },
-    {
-      "Levels": "Disconnection",
-      "Upcoming Top": "?",
-      "Author": "NazarHK",
-      "Verifier": "Techopro9",
-      "Difficulty": "Insane/Extreme Demon",
-      "Progress": "20%",
-      "Status": "In Progress"
-    },
-    {
-      "Levels": "Quantum Terminal",
-      "Upcoming Top": "?",
-      "Author": "NazarHK",
-      "Verifier": "AngryBanana1212",
-      "Difficulty": "Insane Demon",
-      "Progress": "75%",
-      "Status": "In Progress"
-    },
-    {
-      "Levels": "Gazoparazit Circles",
-      "Upcoming Top": "Top 12-14",
-      "Author": "techopro9",
-      "Verifier": "techopro9",
-      "Difficulty": "Easy Extreme Demon",
-      "Progress": "100%",
-      "Status": "Verifying"
-    },
-    {
-      "Levels": "Dnyami nochami buffdate",
-      "Upcoming Top": "Top 12-13",
-      "Author": "pro100nubickl",
-      "Verifier": "pro100nubikcl",
-      "Difficulty": "Easy Extreme Demon",
-      "Progress": "100%",
-      "Status": "Verifying"
-    }
-  ],
-  "silent": [
-    {
-      "Name": "Hierodule",
-      "Top": "1",
-      "FPS": "240",
-      "TPS": "no",
-      "CPS": "240",
-      "Author": "NazarHK"
-    },
-    {
-      "Name": "Abomination",
-      "Top": "2",
-      "FPS": "2400",
-      "TPS": "960",
-      "CPS": "?",
-      "Author": "pro100nubickl"
-    },
-    {
-      "Name": "Stereo madness copy",
-      "Top": "3",
-      "FPS": "2400",
-      "TPS": "960",
-      "CPS": "?",
-      "Author": "pro100nubickl"
-    }
-  ],
-  "cll": [
-    {
-      "Name": "Tunnel of Hell",
-      "Top": "1",
-      "Author": "DimStream",
-      "Verifier": "AngryBanana1212",
-      "CPS": "5-7",
-      "FPS": "Any",
-      "Challenge point": "1000",
-      "Challenge point Record": "500",
-      "Challenge point Record 1": ">60%",
-      "Records": "No"
-    },
-    {
-      "Name": "Parallelogram",
-      "Top": "2",
-      "Author": "NazarHK",
-      "Verifier": "techopro9",
-      "CPS": "4-5",
-      "FPS": "Any",
-      "Challenge point": "950",
-      "Challenge point Record": "475",
-      "Challenge point Record 1": ">56%",
-      "Records": "No"
-    },
-    {
-      "Name": "i gonna give you up",
-      "Top": "3",
-      "Author": "techopro9",
-      "Verifier": "techopro9",
-      "CPS": "5-6",
-      "FPS": "Any",
-      "Challenge point": "900",
-      "Challenge point Record": "-",
-      "Challenge point Record 1": "-",
-      "Records": "No"
-    }
   ]
 };
 
 const CHANGELOG = [
+  {
+    "type": "add",
+    "list": "Challenge List",
+    "name": "TCK",
+    "newRank": 1,
+    "above": null,
+    "below": "Tunnel of Hell",
+    "date": "19 АВГУСТА, 2026"
+  },
   {
     "type": "add",
     "list": "Impossible",
