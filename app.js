@@ -1926,11 +1926,6 @@ function renderSilentList(list) {
       const cpsB = sv(getProp(b, ['cps']));
       return filters.sort === 'cps-desc' ? cpsB - cpsA : cpsA - cpsB;
     }
-    if (filters.sort === 'fps-desc' || filters.sort === 'fps-asc') {
-      const fpsA = sv(getProp(a, ['fps']));
-      const fpsB = sv(getProp(b, ['fps']));
-      return filters.sort === 'fps-desc' ? fpsB - fpsA : fpsA - fpsB;
-    }
     if (filters.sort === 'tps-desc' || filters.sort === 'tps-asc') {
       const tpsA = sv(getProp(a, ['tps']));
       const tpsB = sv(getProp(b, ['tps']));
@@ -1950,7 +1945,6 @@ function renderSilentList(list) {
     const rank = getProp(item, ['top', 'rank']);
     const levelName = getProp(item, ['name']);
     const author = getProp(item, ['author', 'creator']);
-    const fps = getProp(item, ['fps']);
     const tps = getProp(item, ['tps']);
     const cps = getProp(item, ['cps']);
 
@@ -1960,7 +1954,6 @@ function renderSilentList(list) {
       <div class="cell-rank">#${rank}</div>
       <div class="cell-name">${levelName}</div>
       <div class="cell-author cell-sub">${author}</div>
-      <div class="cell-fps" style="font-weight: 600; color: var(--accent-cyan);">${fps}</div>
       <div class="cell-tps">${tps}</div>
       <div class="cell-cps" style="font-weight: 600; color: var(--accent-purple);">${cps}</div>
     `;
@@ -2236,7 +2229,6 @@ function getDetailsHTML(tabName, item) {
     `;
   } else if (tabName === 'silent') {
     const rawRank = getProp(item, ['top', 'rank']);
-    const fps = getProp(item, ['fps']);
     const tps = getProp(item, ['tps']);
     const cps = getProp(item, ['cps']);
 
@@ -2250,10 +2242,6 @@ function getDetailsHTML(tabName, item) {
         <div class="detail-meta-item">
           <span class="detail-meta-label">Создатель</span>
           <span class="detail-meta-val">${author}</span>
-        </div>
-        <div class="detail-meta-item">
-          <span class="detail-meta-label">FPS</span>
-          <span class="detail-meta-val" style="color: var(--accent-cyan); font-weight: 700;">${fps}</span>
         </div>
         <div class="detail-meta-item">
           <span class="detail-meta-label">TPS</span>

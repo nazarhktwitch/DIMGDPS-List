@@ -910,7 +910,7 @@ textarea {
 }
 
 .grid-silent {
-  grid-template-columns: 80px 2fr 1.5fr 100px 100px 100px;
+  grid-template-columns: 80px 2fr 1.5fr 100px 100px;
 }
 
 .grid-cll {
