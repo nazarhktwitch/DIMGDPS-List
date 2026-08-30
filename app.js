@@ -2112,6 +2112,10 @@ function getDetailsHTML(tabName, item) {
     const record = getProp(item, ['рекорд сервера', 'рекорд', 'record']);
     const cpsBadge = getCpsBadge(cps);
     const tpsClass = tps === 'Разрешено' ? 'badge-tps-allowed' : 'badge-tps-disallowed';
+    
+    const keys = Object.keys(item);
+    const exactTpsKey = keys.find(k => k.trim().toLowerCase() === 'tps');
+    const tpsValue = exactTpsKey ? item[exactTpsKey] : '';
 
     return `
       <div class="detail-title-wrapper">
@@ -2136,6 +2140,11 @@ function getDetailsHTML(tabName, item) {
           <span class="detail-meta-label">TPS Bypass</span>
           <span class="badge ${tpsClass}">${tps}</span>
         </div>
+        ${(tps === 'Разрешено' && tpsValue && tpsValue !== '-') ? `
+        <div class="detail-meta-item">
+          <span class="detail-meta-label">TPS</span>
+          <span class="detail-meta-val" style="color: var(--accent-cyan); font-weight: 700;">${tpsValue}</span>
+        </div>` : ''}
       </div>
       
       <div class="detail-progress-section">
