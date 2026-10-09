@@ -204,6 +204,7 @@ const FALLBACK_DATA = {
       "ID": "313",
       "Использование Tps bypass": "Разрешено",
       "Рекорд сервера": "No",
+      "TPS": "5000",
       "Low cps - <5 cps": ""
     },
     {
@@ -214,6 +215,7 @@ const FALLBACK_DATA = {
       "ID": "183",
       "Использование Tps bypass": "Разрешено",
       "Рекорд сервера": "No",
+      "TPS": "2400",
       "Low cps - <5 cps": ""
     },
     {
@@ -224,6 +226,7 @@ const FALLBACK_DATA = {
       "ID": "224",
       "Использование Tps bypass": "Запрещено",
       "Рекорд сервера": "No",
+      "TPS": "",
       "Low cps - <5 cps": "Medium cps 5-10 cps"
     },
     {
@@ -234,6 +237,7 @@ const FALLBACK_DATA = {
       "ID": "165",
       "Использование Tps bypass": "Запрещено",
       "Рекорд сервера": "TheUNrealkorben - 5.67%",
+      "TPS": "",
       "Low cps - <5 cps": ""
     },
     {
@@ -244,6 +248,7 @@ const FALLBACK_DATA = {
       "ID": "167",
       "Использование Tps bypass": "Запрещено",
       "Рекорд сервера": "No",
+      "TPS": "",
       "Low cps - <5 cps": "High cps - 10-15 cps"
     },
     {
@@ -254,6 +259,7 @@ const FALLBACK_DATA = {
       "ID": "164",
       "Использование Tps bypass": "Разрешено",
       "Рекорд сервера": "NazarHK - 30%",
+      "TPS": "",
       "Low cps - <5 cps": "Ultra High - 15 cps only"
     },
     {
@@ -264,6 +270,7 @@ const FALLBACK_DATA = {
       "ID": "163",
       "Использование Tps bypass": "Запрещено",
       "Рекорд сервера": "techopro9 - 40%",
+      "TPS": "",
       "Low cps - <5 cps": ""
     },
     {
@@ -274,6 +281,7 @@ const FALLBACK_DATA = {
       "ID": "160",
       "Использование Tps bypass": "Запрещено",
       "Рекорд сервера": "No",
+      "TPS": "",
       "Low cps - <5 cps": ""
     },
     {
@@ -284,6 +292,7 @@ const FALLBACK_DATA = {
       "ID": "147",
       "Использование Tps bypass": "Запрещено",
       "Рекорд сервера": "No",
+      "TPS": "",
       "Low cps - <5 cps": ""
     },
     {
@@ -294,6 +303,7 @@ const FALLBACK_DATA = {
       "ID": "209",
       "Использование Tps bypass": "Запрещено",
       "Рекорд сервера": "No",
+      "TPS": "",
       "Low cps - <5 cps": ""
     },
     {
@@ -304,6 +314,7 @@ const FALLBACK_DATA = {
       "ID": "151",
       "Использование Tps bypass": "Запрещено",
       "Рекорд сервера": "techopro9 - 20%",
+      "TPS": "",
       "Low cps - <5 cps": ""
     }
   ],
@@ -421,25 +432,43 @@ const FALLBACK_DATA = {
   ],
   "silent": [
     {
-      "Name": "Hierodule",
+      "Name": "LYCLOLYC",
       "Top": "1",
-      "FPS": "240",
-      "TPS": "no",
+      "TPS": "2000",
+      "CPS": "5500",
+      "Author": "NazarHK"
+    },
+    {
+      "Name": "Sakupen Dihsco",
+      "Top": "2",
+      "TPS": "5000",
+      "CPS": "6700",
+      "Author": "NazarHK"
+    },
+    {
+      "Name": "SLL Izi",
+      "Top": "3",
+      "TPS": "10000",
+      "CPS": "503",
+      "Author": "NazarHK"
+    },
+    {
+      "Name": "Hierodule",
+      "Top": "4",
+      "TPS": "240",
       "CPS": "240",
       "Author": "NazarHK"
     },
     {
       "Name": "Abomination",
-      "Top": "2",
-      "FPS": "2400",
+      "Top": "5",
       "TPS": "960",
       "CPS": "?",
       "Author": "pro100nubickl"
     },
     {
       "Name": "Stereo madness copy",
-      "Top": "3",
-      "FPS": "2400",
+      "Top": "6",
       "TPS": "960",
       "CPS": "?",
       "Author": "pro100nubickl"
@@ -824,6 +853,33 @@ const FALLBACK_DATA = {
 };
 
 const CHANGELOG = [
+  {
+    "type": "add",
+    "list": "Silent List",
+    "name": "LYCLOLYC",
+    "newRank": 1,
+    "above": null,
+    "below": "Sakupen Dihsco",
+    "date": "7 ОКТЯБРЯ, 2026"
+  },
+  {
+    "type": "add",
+    "list": "Silent List",
+    "name": "Sakupen Dihsco",
+    "newRank": 1,
+    "above": null,
+    "below": "SLL Izi",
+    "date": "30 АВГУСТА, 2026"
+  },
+  {
+    "type": "add",
+    "list": "Silent List",
+    "name": "SLL Izi",
+    "newRank": 1,
+    "above": null,
+    "below": "Hierodule",
+    "date": "26 АВГУСТА, 2026"
+  },
   {
     "type": "add",
     "list": "Challenge List",
@@ -2112,7 +2168,7 @@ function getDetailsHTML(tabName, item) {
     const record = getProp(item, ['рекорд сервера', 'рекорд', 'record']);
     const cpsBadge = getCpsBadge(cps);
     const tpsClass = tps === 'Разрешено' ? 'badge-tps-allowed' : 'badge-tps-disallowed';
-    
+
     const keys = Object.keys(item);
     const exactTpsKey = keys.find(k => k.trim().toLowerCase() === 'tps');
     const tpsValue = exactTpsKey ? item[exactTpsKey] : '';
